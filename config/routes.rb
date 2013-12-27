@@ -1,4 +1,15 @@
 WillmontDixon::Application.routes.draw do
+
+  namespace :api, defaults: { format: :json } do
+    resources :pre_enrolment_tests do
+      resources :sections
+      resources :questions
+    end
+    resources :users do
+      resources :next_of_kins
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
