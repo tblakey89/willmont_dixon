@@ -10,6 +10,14 @@ WillmontDixon::Application.routes.draw do
     end
   end
 
+  devise_for :user, path_prefix: 'api'
+
+  devise_scope :user do
+    post 'api/registrations' => 'api/registrations#create', as: 'register'
+    post 'api/sessions' => 'api/sessions#create', as: 'login'
+    delete 'api/sessions' => 'api/sessions#destroy', as: 'logout'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

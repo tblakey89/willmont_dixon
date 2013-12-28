@@ -28,6 +28,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'rabl'
 
+gem 'devise', '3.0.2'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
