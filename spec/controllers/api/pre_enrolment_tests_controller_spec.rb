@@ -4,6 +4,8 @@ describe Api::PreEnrolmentTestsController do
   let(:pre_enrolment_test) { double(PreEnrolmentTest, id: 1, name: "Test", update_attributes: true) }
   let(:json) { { format: :json, pre_enrolment_test: { name: "Test2"} } }
 
+  before { sign_in_user }
+
   describe "#index" do
     before { PreEnrolmentTest.stub(:all).and_return([pre_enrolment_test]) }
 

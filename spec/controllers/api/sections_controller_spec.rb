@@ -5,6 +5,8 @@ describe Api::SectionsController do
   let(:sections) { double(Section, find: section, new: section) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, section: { name: "Test", order: 1 } } }
 
+  before { sign_in_user }
+
   describe "#index" do
     before { PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, id: 1, name: "Test", sections: [section]) } }
 

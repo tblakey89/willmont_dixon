@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe Api::UsersController do
-  let(:user) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, destroy: true) }
+  let!(:user) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, destroy: true) }
   let(:json) { { format: :json, user: { first_name: "Test" } } }
+  before do
+    allow_message_expectations_on_nil
+    request.env['warden'].stub(:authenticate).and_return(user)
+    Api::UsersController.any_instance.stub(:current_user).and_return(user)
+    Api::UsersController.any_instance.stub(:authorize).and_return(true)
+  end
 
   describe "#index" do
     before { User.stub(:all).and_return([user]) }

@@ -5,6 +5,8 @@ describe Api::QuestionsController do
   let(:questions) { double(Question, find: question, new: question) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, question: { name: "Test", order: 1, section_id: 1, answer1: "Test", answer2: "Test2", answer3: "Test3", answer4: "Test4", answer: 1 } } }
 
+  before { sign_in_user }
+
   describe "#index" do
     before { PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, id: 1, name: "Test", questions: [question]) } }
 

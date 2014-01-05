@@ -5,6 +5,8 @@ describe Api::NextOfKinsController do
   let(:next_of_kins) { double(NextOfKin, find: next_of_kin, new: next_of_kin) }
   let(:json) { { format: :json, user_id: 1, next_of_kin: {first_name: "Test", last_name: "Test", relationship: "Test", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", user_id: 1 } } }
 
+  before { sign_in_user }
+
   describe "#index" do
     before { User.stub(:find) { double(User, id: 1, next_of_kins: [next_of_kin]) }}
 
