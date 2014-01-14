@@ -1,5 +1,6 @@
 class Api::NextOfKinsController < ApplicationController
   before_filter :load_user
+  before_filter :authenticate
 
   def index
     @next_of_kins = @user.next_of_kins

@@ -1,0 +1,196 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="user"></menu>
+				
+		
+			</div> <!-- /span3 -->
+			
+			
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					<i class="icon-th-large"></i>
+					User Account					
+				</h1>
+				
+				
+				<div class="row">
+					
+					<div class="span9">
+				
+						<div class="widget">
+							
+							<div class="widget-header">
+								<h3>User Information</h3>
+							</div> <!-- /widget-header -->
+									
+							<div class="widget-content">
+								
+								<form id="edit-profile" class="form-horizontal" ng-init="getUser()">
+									<fieldset>
+										
+										<div class="control-group">											
+											<label class="control-label" for="firstname">First Name</label>
+											<div class="controls">
+												<input type="text" class="input-medium" id="firstname" value="{{user.first_name}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										<div class="control-group">											
+											<label class="control-label" for="lastname">Last Name</label>
+											<div class="controls">
+												<input type="text" class="input-medium" id="lastname" value="{{user.last_name}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										<div class="control-group">											
+											<label class="control-label" for="email">Email Address</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="email" value="{{user.email}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+										
+										<div class="control-group">											
+											<label class="control-label" for="job">Job</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="job" value="{{user.job}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+										<div class="control-group">											
+											<label class="control-label" for="health_issues">Health Issues</label>
+											<div class="controls">
+												<input type="checkbox" class="input-large" id="health_issues" value="{{user.health_issues}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+										<div class="control-group">											
+											<label class="control-label" for="is_supervisor">Is Supervisor?</label>
+											<div class="controls">
+												<input type="checkbox" class="input-large" id="is_supervisor" value="{{user.is_supervisor}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="cscs_number">CSCS Number</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="cscs_number" value="{{user.cscs_number}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="cscs_expiry_date">CSCS Expiry Date</label>
+											<div class="controls">
+												<input type="date" class="input-large" id="cscs_expiry_date" value="{{user.cscs_expiry_date}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="date_of_birth">Date of Birth</label>
+											<div class="controls">
+												<input type="date" class="input-large" id="date_of_birth" value="{{user.date_of_birth}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="national_insurance">National Insurance</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="national_insurance" value="{{user.national_insurance}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="completed_pre_enrolment">Completed Pre Enrolment</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="completed_pre_enrolment" value="{{user.completed_pre_enrolment}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="pre_enrolment_due">Pre Enrolment Due</label>
+											<div class="controls">
+												<input type="text" class="input-large" id="pre_enrolment_due" value="{{user.pre_enrolment_due}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="contact_number">Contact Number</label>
+											<div class="controls">
+												<input type="tel" class="input-large" id="contact_number" value="{{user.contact_number}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="address_line_1">Address Line 1</label>
+											<div class="controls">
+												<input type="tel" class="input-large" id="address_line_1" value="{{user.address_line_1}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="address_line_1">Address Line 2</label>
+											<div class="controls">
+												<input type="tel" class="input-large" id="address_line_2" value="{{user.address_line_2}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="city">City</label>
+											<div class="controls">
+												<input type="tel" class="input-large" id="city" value="{{user.city}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+										<div class="control-group">											
+											<label class="control-label" for="postcode">Postcode</label>
+											<div class="controls">
+												<input type="tel" class="input-large" id="postcode" value="{{user.postcode}}">
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+										
+											
+											<br />
+										
+											
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Save</button> 
+											<button class="btn">Cancel</button>
+										</div> <!-- /form-actions -->
+									</fieldset>
+								</form>								
+							</div>
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+				
+			</div> <!-- /span9 -->
+			
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

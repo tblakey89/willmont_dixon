@@ -1,14 +1,16 @@
 class Permission
   def initialize(user)
+    allow :pages, [:home]
     allow :sessions, [:create, :failure]
     allow :registrations, [:create]
     if user
       allow :users, [:show, :update] do |the_user|
         the_user.id == user.id
       end
-      allow :questions, [:show]
-      allow :sections, [:show]
-      allow :next_of_kins, [:index, :show, :update, :destroy, :create]
+      allow "api/users", [:index, :show]
+      allow "api/questions", [:show, :index, :create, :destroy, :update]
+      allow "api/sections", [:index, :show, :update, :create, :destroy, :questions]
+      allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
       allow :pre_enrolment_tests, [:show]
       #allow_if_owned :images, [:update, :edit, :delete, :destroy], user
       #allow_all if user.is_super_admin?

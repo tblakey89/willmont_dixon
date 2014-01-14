@@ -2,11 +2,23 @@ WillmontDixon::Application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :pre_enrolment_tests do
-      resources :sections
+      resources :sections do
+        member do
+          get 'questions'
+        end
+      end
       resources :questions
     end
     resources :users do
       resources :next_of_kins
+    end
+  end
+
+  namespace :admin do
+    resources :pages do
+      collection do
+        get 'home'
+      end
     end
   end
 

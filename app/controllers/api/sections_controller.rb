@@ -1,5 +1,6 @@
 class Api::SectionsController < ApplicationController
   before_filter :load_test
+  before_filter :authenticate
 
   def index
     @sections = @pre_enrolment_test.sections
@@ -34,6 +35,11 @@ class Api::SectionsController < ApplicationController
     render nothing: true, status: 204
   rescue
     render nothing: true, status: 400
+  end
+
+  def questions
+    @section = @pre_enrolment_test.sections.find(params[:id])
+    @questions = @section.questions
   end
 
 private

@@ -1,0 +1,94 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="user"></menu>	
+				
+		
+			</div> <!-- /span3 -->
+			
+			
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					Next Of Kin					
+				</h1>
+				
+				<div class="row">
+					
+					<div class="span9" ng-init="getNextOfKin()">
+				
+						<div class="widget">
+							
+							<div class="widget-header">
+								<i class="icon-user"></i> 
+								<h3>Next Of Kin Information</h3>
+							</div> <!-- /widget-header -->
+									
+							<div class="widget-content">
+								<table class="information-table">
+									<tr>
+										<td>First Name:</td>
+										<td>{{nextOfKin.first_name}}</td>
+									</tr>
+									<tr>
+										<td>Last Name:</td>
+										<td>{{nextOfKin.last_name}}</td>
+									</tr>
+									<tr>
+										<td>For:</td>
+										<td><a href="#/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+									</tr>
+									<tr>
+										<td>Relationship:</td>
+										<td>{{nextOfKin.email}}</td>
+									</tr>
+									<tr>
+										<td>Contact Number</td>
+										<td>{{nextOfKin.contact_number}}</td>
+									</tr>
+									<tr>
+										<td>Address Line 1</td>
+										<td>{{nextOfKin.address_line_1}}</td>
+									</tr>
+									<tr>
+										<td>Address Line 2</td>
+										<td>{{nextOfKin.address_line_2}}</td>
+									</tr>
+									<tr>
+										<td>City</td>
+										<td>{{nextOfKin.city}}</td>
+									</tr>
+									<tr>
+										<td>Postcode</td>
+										<td>{{nextOfKin.postcode}}</td>
+									</tr>
+								</table>
+												
+								<br />
+								
+									
+								<div class="form-actions">
+									<a href="#users/{{userId}}/next_of_kins/{{nextOfKin.id}}/edit" class="btn btn-warning">Edit</a> 
+									<button class="btn btn-danger">Delete</button>
+								</div> <!-- /form-actions -->							
+								
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+
+			</div> <!-- /span9 -->
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

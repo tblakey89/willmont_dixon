@@ -8,6 +8,7 @@ describe Api::UsersController do
     request.env['warden'].stub(:authenticate).and_return(user)
     Api::UsersController.any_instance.stub(:current_user).and_return(user)
     Api::UsersController.any_instance.stub(:authorize).and_return(true)
+    Api::UsersController.any_instance.stub(:authenticate).and_return(true)
   end
 
   describe "#index" do

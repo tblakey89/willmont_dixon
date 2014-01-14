@@ -32,8 +32,19 @@ protected
       if current_user
         render status: 401, json: { status: false, info: "You are not allowed to view this inforation" }
       else
-        redirect_to login_path
+        render status: 401, json: { status: false, info: "Please log in" }
       end
+    end
+  end
+
+  def authenticate
+    if request.headers["auth-token"].present?
+      @current_user = User.find_by_authentication_token(request.headers["auth-token"])
+      unless @current_user
+        render status: 401, json: { status: false, info: request.headers["auth-token"], data: {} }
+      end
+    else
+      render status: 401, json: { status: false, info: "You are not logged in", data: {} }
     end
   end
 end

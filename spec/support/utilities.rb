@@ -4,4 +4,5 @@ def sign_in_user
   request.env['warden'].stub(:authenticate).and_return(user)
   ApplicationController.any_instance.stub(:current_user).and_return(user)
   ApplicationController.any_instance.stub(:authorize).and_return(true)
+  ApplicationController.any_instance.stub(:authenticate).and_return(true)
 end

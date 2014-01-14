@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem "twitter-bootstrap-rails"
 gem "therubyracer"
+gem "less-rails"
+gem 'angularjs-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -40,6 +42,8 @@ group :development, :test do
   gem 'spork'
   gem 'terminal-notifier'
   gem 'terminal-notifier-guard'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

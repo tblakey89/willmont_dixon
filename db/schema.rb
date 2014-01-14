@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228193905) do
+ActiveRecord::Schema.define(version: 20140112191437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20131228193905) do
     t.boolean  "health_issues"
     t.boolean  "is_supervisor"
     t.string   "cscs_number"
-    t.datetime "cscs_expiry_date"
+    t.date     "cscs_expiry_date"
     t.date     "date_of_birth"
     t.string   "national_insurance"
     t.date     "completed_pre_enrolment"

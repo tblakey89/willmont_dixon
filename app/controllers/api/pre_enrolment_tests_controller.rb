@@ -1,4 +1,5 @@
 class Api::PreEnrolmentTestsController < ApplicationController
+  before_filter :authenticate
 
   def index
     @pre_enrolment_tests = PreEnrolmentTest.all

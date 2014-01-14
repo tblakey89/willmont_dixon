@@ -1,12 +1,21 @@
 class Api::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token, if: Proc.new { |c| c.request.format == 'application/json' }
   before_filter :authenticate_user!, :only => [:destroy]
+  skip_before_filter :authorize
 
   respond_to :json
 
   def create
-    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-    render status: 200, json: { success: true, info: "Logged in", data: { auth_token: current_user.authentication_token } }
+    user = User.find_by_email(params[:user][:email])
+
+    if user && user.valid_password?(params[:user][:password])
+      warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+      current_user.reset_authentication_token
+      current_user.save
+      render status: 200, json: { success: true, info: "Logged in", user: current_user, auth_token: current_user.authentication_token }
+    else
+      render status: 401, json: { status: false, info: "Login failed", data: {} }
+    end
   end
 
   def destroy

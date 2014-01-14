@@ -1,5 +1,6 @@
 class Api::QuestionsController < ApplicationController
   before_filter :load_test
+  before_filter :authenticate
 
   def index
     @questions = @pre_enrolment_test.questions
