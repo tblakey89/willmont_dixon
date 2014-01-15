@@ -8,6 +8,9 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.getUser = (id) ->
     $http.get(urlBase + "/" + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
+  dataFactory.getDisciplinaryCards = (id) ->
+    $http.get(urlBase + "/" + id + "/disciplinary_cards", { headers: { 'auth-token': sessionStorage.authToken } })
+
   #dataFactory.insertCustomer = (cust) ->
     #$http.post urlBase, cust
 
@@ -53,6 +56,17 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.getQuestion = (id) ->
+    $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory
+]).factory("DisciplinaryCard", ["$http", ($http, $window) ->
+  dataFactory = {}
+  urlBase = "/api/disciplinary_cards/"
+
+  dataFactory.getDisciplinaryCards = ->
+    $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.getDisciplinaryCard = (id) ->
     $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory

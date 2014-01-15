@@ -165,4 +165,23 @@ describe Api::UsersController do
       end
     end
   end
+
+  describe "#disciplinary_cards" do
+    let(:disciplinary_card) { double(DisciplinaryCard) }
+    before do
+      user.stub(:disciplinary_cards).and_return([disciplinary_card])
+      User.stub(:find).and_return(user)
+    end
+
+    it "should assign disciplinary_cards" do
+      get :disciplinary_cards, id: user.id, format: :json
+      assigns(:disciplinary_cards).should eq([disciplinary_card])
+    end
+
+    it "should render the right template" do
+      get :disciplinary_cards, id: user.id, format: :json
+      response.should be_success
+      response.should render_template :disciplinary_cards
+    end
+  end
 end

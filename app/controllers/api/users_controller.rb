@@ -36,4 +36,9 @@ class Api::UsersController < ApplicationController
     render nothing: true, status: 400
   end
 
+  def disciplinary_cards
+    user = User.find(params[:id])
+    @disciplinary_cards = user.disciplinary_cards
+  end
+
 end

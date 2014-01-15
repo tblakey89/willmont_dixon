@@ -1,0 +1,73 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="discipline"></menu>
+				
+		
+			</div> <!-- /span3 -->
+			
+			
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					Disciplinary Cards					
+				</h1>				
+				
+				<div class="row">
+					
+					<div class="span9" ng-init="getDisciplinaryCard()">
+				
+						<div class="widget">
+							
+							<div class="widget-header">
+								<i class="icon-user"></i> 
+								<h3>Disciplinary Card Information</h3>
+							</div> <!-- /widget-header -->
+									
+							<div class="widget-content">
+								<table class="information-table">
+									<tr>
+										<td>Assigned To:</td>
+										<td><a href="#/users/{{disciplinaryCard.user.id}}">{{disciplinaryCard.user.first_name}} {{disciplinaryCard.user.last_name}}</a></td>
+									</tr>
+									<tr>
+										<td>Type:</td>
+										<td>{{disciplinaryCard.colour}}</td>
+									</tr>
+									<tr>
+										<td>Location:</td>
+										<td>{{disciplinaryCard.location}}</td>
+									</tr>
+									<tr>
+										<td>Reason:</td>
+										<td>{{disciplinaryCard.reason}}</td>
+									</tr>
+								</table>
+												
+								<br />
+								
+									
+								<div class="form-actions">
+									<button class="btn btn-danger">Delete</button>
+								</div> <!-- /form-actions -->							
+								
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+
+			</div> <!-- /span9 -->
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

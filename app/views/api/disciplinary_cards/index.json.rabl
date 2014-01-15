@@ -1,2 +1,2 @@
 collection @disciplinary_cards
-attributes :id, :location, :reason, :colour, :user
+extends "api/disciplinary_cards/show"

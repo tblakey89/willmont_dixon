@@ -11,6 +11,9 @@ WillmontDixon::Application.routes.draw do
     end
     resources :users do
       resources :next_of_kins
+      member do
+        get 'disciplinary_cards'
+      end
     end
     resources :disciplinary_cards
   end

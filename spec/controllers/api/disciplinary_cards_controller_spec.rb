@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::DisciplinaryCardsController do
-  let(:disciplinary_card) { double(DisciplinaryCard, id: 1, user_id: 1, colour: "Green", reason: "Test", location: "Test", save: true, update_attributes: true, destroy: true) }
+  let(:disciplinary_card) { double(DisciplinaryCard, id: 1, user: double(User), colour: "Green", reason: "Test", location: "Test", save: true, update_attributes: true, destroy: true) }
   let(:disciplinary_cards) { double(DisciplinaryCard, find: disciplinary_card, new: disciplinary_card) }
   let(:json) { { format: :json, disciplinary_card: { reason: "Test" } } }
 

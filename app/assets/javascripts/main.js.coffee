@@ -59,6 +59,15 @@
   }).when("/questions/:id/edit", {
     templateUrl: '../../template/question/question_edit.html',
     controller: 'QuestionCrtl'
+  }).when("/disciplinary_cards", {
+    templateUrl: '../../template/disciplinary_card/disciplinary_cards.html',
+    controller: 'DisciplinaryCardCrtl'
+  }).when("/users/:userId/new_disciplinary_card", {
+    templateUrl: '../../template/user/disciplinary_card_new.html',
+    controller: 'UserCrtl'
+  }).when("/disciplinary_cards/:id", {
+    templateUrl: '../../template/disciplinary_card/disciplinary_card.html',
+    controller: 'DisciplinaryCardCrtl'
   }).otherwise({
     templateUrl: '../../template/home.html',
     controller: 'HomeCrtl'

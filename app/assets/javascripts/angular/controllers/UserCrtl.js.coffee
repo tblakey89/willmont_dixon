@@ -19,4 +19,10 @@
 	    	$scope.nextOfKins = data
 	  	).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
+
+	$scope.getDisciplinaryCards = ->
+		User.getDisciplinaryCards($scope.id).success((data) ->
+	    	$scope.disciplinaryCards = data
+	  	).error (error) ->
+	    	$scope.status = "Unable to load user data: " + error.message
 ]

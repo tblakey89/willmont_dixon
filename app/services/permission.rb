@@ -8,7 +8,7 @@ class Permission
         the_user.id == user.id
       end
       allow "api/disciplinary_cards", [:index, :show, :create, :update, :destroy]
-      allow "api/users", [:index, :show]
+      allow "api/users", [:index, :show, :disciplinary_cards]
       allow "api/questions", [:show, :index, :create, :destroy, :update]
       allow "api/sections", [:index, :show, :update, :create, :destroy, :questions]
       allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
