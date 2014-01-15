@@ -21,4 +21,5 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token
 
   has_many :next_of_kins, dependent: :destroy
+  has_many :disciplinary_cards, dependent: :destroy
 end

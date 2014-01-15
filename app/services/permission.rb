@@ -7,6 +7,7 @@ class Permission
       allow :users, [:show, :update] do |the_user|
         the_user.id == user.id
       end
+      allow "api/disciplinary_cards", [:index, :show, :create, :update, :destroy]
       allow "api/users", [:index, :show]
       allow "api/questions", [:show, :index, :create, :destroy, :update]
       allow "api/sections", [:index, :show, :update, :create, :destroy, :questions]

@@ -40,6 +40,7 @@ describe User do
   it { should respond_to(:postcode) }
   it { should respond_to(:last_sign_in) }
   it { should respond_to(:next_of_kins) }
+  it { should respond_to(:disciplinary_cards) }
   it { should be_valid }
 
   describe "first_name should be present" do

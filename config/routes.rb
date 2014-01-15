@@ -12,6 +12,7 @@ WillmontDixon::Application.routes.draw do
     resources :users do
       resources :next_of_kins
     end
+    resources :disciplinary_cards
   end
 
   namespace :admin do
