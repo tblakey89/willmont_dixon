@@ -8,6 +8,7 @@ WillmontDixon::Application.routes.draw do
         end
       end
       resources :questions
+      resources :videos
     end
     resources :users do
       resources :next_of_kins

@@ -8,6 +8,7 @@ describe PreEnrolmentTest do
   it { should respond_to(:name) }
   it { should respond_to(:sections) }
   it { should respond_to(:questions) }
+  it { should respond_to(:videos) }
   it { should be_valid }
 
   describe "name should be present" do

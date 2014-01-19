@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::QuestionsController do
-  let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, section_id: 1, answer1: "Test", answer2: "Test2", answer3: "Test3", answer4: "Test4", answer: 1, save: true, update_attributes: true, destroy: true) }
+  let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, section_id: 1, answer1: "Test", answer2: "Test2", answer3: "Test3", answer4: "Test4", answer: 1, section: double(Section, name: "Test"), save: true, update_attributes: true, destroy: true) }
   let(:questions) { double(Question, find: question, new: question) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, question: { name: "Test", order: 1, section_id: 1, answer1: "Test", answer2: "Test2", answer3: "Test3", answer4: "Test4", answer: 1 } } }
 

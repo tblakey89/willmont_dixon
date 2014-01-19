@@ -1,43 +1,42 @@
 require 'spec_helper'
 
-describe Section do
-  let(:pre_enrolment_test) { FactoryGirl.create(:pre_enrolment_test) }
-  before { @section = pre_enrolment_test.sections.build(name: "The test", order: 1) }
+describe Video do
+  let(:section) { FactoryGirl.create(:section) }
+  before { @video = Video.new(name: "Test", order: 1, section_id: section.id, pre_enrolment_test_id: section.pre_enrolment_test.id) }
 
-  subject { @section }
+  subject { @video }
 
   it { should respond_to(:name) }
   it { should respond_to(:order) }
-  it { should respond_to(:questions) }
-  it { should respond_to(:videos) }
   it { should respond_to(:pre_enrolment_test) }
+  it { should respond_to(:section) }
   it { should be_valid }
 
   describe "the name should be present" do
-    before { @section.name = "" }
+    before { @video.name = "" }
     it { should_not be_valid }
   end
 
   describe "the name should be unique" do
     before do
-      section2 = @section.clone
-      section2.order = 2
-      section2.save
+      video2 = @video.clone
+      video2.order = 2
+      video2.save
     end
 
     it { should_not be_valid }
   end
 
   describe "the order should be present" do
-    before { @section.order = nil }
+    before { @video.order = "" }
     it { should_not be_valid }
   end
 
   describe "the order should be unique" do
     before do
-      section2 = @section.clone
-      section2.name = "That other section"
-      section2.save
+      video2 = @video.clone
+      video2.name = "Test2"
+      video2.save
     end
 
     it { should_not be_valid }
