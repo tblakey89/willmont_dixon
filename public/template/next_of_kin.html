@@ -45,7 +45,7 @@
 									</tr>
 									<tr>
 										<td>Relationship:</td>
-										<td>{{nextOfKin.email}}</td>
+										<td>{{nextOfKin.relationship}}</td>
 									</tr>
 									<tr>
 										<td>Contact Number</td>
@@ -74,7 +74,7 @@
 									
 								<div class="form-actions">
 									<a href="#users/{{userId}}/next_of_kins/{{nextOfKin.id}}/edit" class="btn btn-warning">Edit</a> 
-									<button class="btn btn-danger">Delete</button>
+									<a ng-click="deleteNextOfKin()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								
 							</div> <!-- /widget-content -->

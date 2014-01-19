@@ -1,4 +1,4 @@
-@admin.controller 'SectionCrtl', ['$scope', 'Section', 'Session', '$routeParams', ($scope, Section, Session, $routeParams) ->
+@admin.controller 'SectionCrtl', ['$scope', 'Section', 'Session', '$routeParams', '$location', ($scope, Section, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
 
@@ -19,5 +19,35 @@
 	    	$scope.questions = questions
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.addSection = ->
+		Section.addSection($scope.section).success((data) ->
+	    	$location.path('sections/' + data.section.id)
+	  	).error (error) ->
+	    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.updateSection = ->
+		Section.updateSection($scope.id, $scope.section).success((data) ->
+	    	$location.path('sections/' + $scope.id)
+	  	).error (error) ->
+	    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.deleteSectionFromTable = (id ,index) ->
+		Section.deleteSection(id).success((data) ->
+	    	$scope.sections.splice(index, 1)
+	  	).error (error) ->
+	    	$scope.status = "There was an error deleting this section: " + error.message
+
+	$scope.deleteSection = ->
+		Section.deleteSection($scope.id).success((data) ->
+	    	$location.path('sections/')
+	  	).error (error) ->
+	    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.deleteDisciplinaryCard = ->
+		Section.deleteSection($scope.id).success((data) ->
+	    	$location.path('sections/')
+	  	).error (error) ->
+	    	$scope.status = "There was an error deleting this section: " + error.message
 
 ]

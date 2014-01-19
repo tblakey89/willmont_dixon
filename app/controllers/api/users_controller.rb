@@ -20,7 +20,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(edit_params)
       render :show, id: @user.id, status: 200
     else
       render nothing: true, status: 400
@@ -39,6 +39,11 @@ class Api::UsersController < ApplicationController
   def disciplinary_cards
     user = User.find(params[:id])
     @disciplinary_cards = user.disciplinary_cards
+  end
+
+private
+  def edit_params
+    params.require(:user).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :email, :job, :health_issues, :is_supervisor, :cscs_number, :cscs_expiry_date, :date_of_birth, :contact_number, :completed_pre_enrolment)
   end
 
 end

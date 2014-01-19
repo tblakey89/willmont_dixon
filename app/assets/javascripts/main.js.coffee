@@ -27,10 +27,13 @@
     templateUrl: '../../template/user.html',
     controller: 'UserCrtl'
   }).when("/users/:userId/edit", {
-    templateUrl: '../../template/user_form.html',
+    templateUrl: '../../template/user/user_edit.html',
     controller: 'UserCrtl'
   }).when("/users/:userId/next_of_kins/new", {
     templateUrl: '../../template/next_of_kin_new.html',
+    controller: 'NextOfKinCrtl'
+  }).when("/users/:userId/next_of_kins/:id/edit", {
+    templateUrl: '../../template/next_of_kin_edit.html',
     controller: 'NextOfKinCrtl'
   }).when("/users/:userId/next_of_kins/:id", {
     templateUrl: '../../template/next_of_kin.html',

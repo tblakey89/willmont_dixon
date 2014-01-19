@@ -45,8 +45,8 @@
 								
 									
 								<div class="form-actions">
-									<button href="#section/{{section.id}}/edit" class="btn btn-warning">Edit</button> 
-									<button class="btn btn-danger">Delete</button>
+									<a href="#sections/{{section.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a ng-click="deleteSection()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								
 							</div> <!-- /widget-content -->
@@ -78,7 +78,7 @@
 											<td><a href="#/questions/{{item.question.id}}">{{item.question.name}}</a></td>
 											<td class="action-td">
 												<a href="#/questions/{{item.question.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
-												<a href="" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+												<a class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>

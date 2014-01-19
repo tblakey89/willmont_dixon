@@ -10,7 +10,7 @@ class Api::DisciplinaryCardsController < ApplicationController
   end
 
   def create
-    @disciplinary_card = DisciplinaryCard.new(params[:disciplinary_card])
+    @disciplinary_card = DisciplinaryCard.new(safe_params)
     if @disciplinary_card.save
       render :show, id: @disciplinary_card.id, status: 201
     else
@@ -19,7 +19,7 @@ class Api::DisciplinaryCardsController < ApplicationController
   end
 
   def update
-    @disciplinary_card = DisciplinaryCard.find(params[:id])
+    @disciplinary_card = DisciplinaryCard.find(safe_params)
     if @disciplinary_card.update_attributes(params[:user])
       render :show, id: @disciplinary_card.id, status: 201
     else
@@ -34,5 +34,10 @@ class Api::DisciplinaryCardsController < ApplicationController
     render nothing: true, status: 204
   rescue
     render nothing: true, status: 400
+  end
+
+private
+  def safe_params
+    params.require(:disciplinary_card).permit(:user_id, :reason, :location, :colour)
   end
 end

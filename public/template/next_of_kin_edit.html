@@ -38,7 +38,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="firstname" value="{{nextOfKin.first_name}}">
+												<input type="text" class="input-medium" ng-model="nextOfKin.first_name" id="firstname" value="{{nextOfKin.first_name}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -46,15 +46,15 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="lastname" value="{{nextOfKin.last_name}}">
+												<input type="text" class="input-medium" ng-model="nextOfKin.last_name" id="lastname" value="{{nextOfKin.last_name}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
 										<div class="control-group">											
-											<label class="control-label" for="email">Relationship</label>
+											<label class="control-label" for="relationship">Relationship</label>
 											<div class="controls">
-												<input type="text" class="input-large" id="email" value="{{nextOfKin.relationship}}">
+												<input type="text" class="input-large" ng-model="nextOfKin.relationship" id="relationship" value="{{nextOfKin.relationship}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -62,7 +62,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="contact_number">Contact Number</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="contact_number" value="{{nextOfKin.contact_number}}">
+												<input type="tel" class="input-large" id="contact_number" ng-model="nextOfKin.contact_number" value="{{nextOfKin.contact_number}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -70,7 +70,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="address_line_1">Address Line 1</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_1" value="{{nextOfKin.address_line_1}}">
+												<input type="tel" class="input-large" id="address_line_1" ng-model="nextOfKin.address_line_1" value="{{nextOfKin.address_line_1}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -78,7 +78,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="address_line_1">Address Line 2</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_2" value="{{nextOfKin.address_line_2}}">
+												<input type="tel" class="input-large" id="address_line_2" ng-model="nextOfKin.address_line_2" value="{{nextOfKin.address_line_2}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -86,7 +86,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="city">City</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="city" value="{{nextOfKin.city}}">
+												<input type="tel" class="input-large" id="city" ng-model="nextOfKin.city" value="{{nextOfKin.city}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -94,7 +94,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="postcode">Postcode</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="postcode" value="{{nextOfKin.postcode}}">
+												<input type="tel" class="input-large" id="postcode" ng-model="nextOfKin.postcode" value="{{nextOfKin.postcode}}">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -103,8 +103,8 @@
 										
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save</button> 
-											<button class="btn">Cancel</button>
+											<a ng-click="updateNextOfKin()" type="submit" class="btn btn-primary">Save</a> 
+											<a href="#/users/{{userId}}" class="btn">Cancel</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>								

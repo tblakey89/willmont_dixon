@@ -38,7 +38,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="firstname">First Name</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="firstname" value="">
+												<input type="text" class="input-medium" id="firstname" ng-model="nextOfKin.first_name" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -46,15 +46,15 @@
 										<div class="control-group">											
 											<label class="control-label" for="lastname">Last Name</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="lastname" value="">
+												<input type="text" class="input-medium" id="lastname" ng-model="nextOfKin.last_name" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
 										
 										<div class="control-group">											
-											<label class="control-label" for="email">Relationship</label>
+											<label class="control-label" for="relationship">Relationship</label>
 											<div class="controls">
-												<input type="text" class="input-large" id="email" value="">
+												<input type="text" class="input-large" id="relationship" ng-model="nextOfKin.relationship" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -62,7 +62,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="contact_number">Contact Number</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="contact_number" value="">
+												<input type="tel" class="input-large" id="contact_number" ng-model="nextOfKin.contact_number" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -70,7 +70,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="address_line_1">Address Line 1</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_1" value="">
+												<input type="tel" class="input-large" id="address_line_1" ng-model="nextOfKin.address_line_1" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -78,7 +78,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="address_line_1">Address Line 2</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_2" value="">
+												<input type="tel" class="input-large" id="address_line_2" ng-model="nextOfKin.address_line_2" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -86,7 +86,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="city">City</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="city" value="">
+												<input type="tel" class="input-large" id="city" ng-model="nextOfKin.city" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
@@ -94,7 +94,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="postcode">Postcode</label>
 											<div class="controls">
-												<input type="tel" class="input-large" id="postcode" value="">
+												<input type="tel" class="input-large" id="postcode" ng-model="nextOfKin.postcode" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -103,8 +103,8 @@
 										
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save</button> 
-											<button class="btn">Cancel</button>
+											<button ng-click="addNextOfKin()" type="submit" class="btn btn-primary">Save</button> 
+											<a href="#/users/{{userId}}" class="btn">Cancel</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>								

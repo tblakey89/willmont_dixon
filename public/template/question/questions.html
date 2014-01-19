@@ -25,8 +25,9 @@
 						<div class="widget widget-table">
 										
 							<div class="widget-header">
-								<i class="icon-th-list"></i>
+								<i class="icon-check"></i>
 								<h3>Questions</h3>
+								<a href="#questions/new" class="btn btn-small btn-success">Add</a>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -46,7 +47,7 @@
 											<td><a href="#/questions/{{question.question.id}}">{{question.question.name}}</a></td>
 											<td class="action-td">
 												<a href="#questions/{{question.question.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
-												<a href="" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+												<a ng-click="deleteQuestionFromTable(question.question.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>

@@ -5,7 +5,7 @@
 			
 			<div class="span3">
 				
-				<menu active="section"></menu>
+				<menu active="user"></menu>
 				
 			</div> <!-- /span3 -->
 			
@@ -35,7 +35,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="order">Order</label>
 											<div class="controls">
-												<select class="input-medium">
+												<select ng-model="disciplinaryCard.colour" class="input-medium">
 													<option value="Green">Green</option>
 													<option value="Yellow">Yellow</option>
 													<option value="Red">Red</option>
@@ -47,14 +47,14 @@
 										<div class="control-group">											
 											<label class="control-label" for="location">Location</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="location" value="">
+												<input type="text" class="input-medium" ng-model="disciplinaryCard.location" id="location" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
 										<div class="control-group">											
 											<label class="control-label" for="reason">Reason</label>
 											<div class="controls">
-												<textarea rows="3" id="reason"></textarea>
+												<textarea rows="3" ng-model="disciplinaryCard.reason" id="reason"></textarea>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->										
 											
@@ -62,8 +62,8 @@
 										
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save</button> 
-											<button class="btn">Cancel</button>
+											<a ng-click="addDisciplinaryCard()" type="submit" class="btn btn-primary">Save</a> 
+											<a href="#/users/{{user.id}}" class="btn">Cancel</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>								

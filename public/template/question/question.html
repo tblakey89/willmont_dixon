@@ -25,19 +25,43 @@
 						<div class="widget">
 							
 							<div class="widget-header">
-								<i class="icon-user"></i> 
+								<i class="icon-check"></i> 
 								<h3>Question Information</h3>
 							</div> <!-- /widget-header -->
 									
 							<div class="widget-content">
 								<table class="information-table">
 									<tr>
+										<td>Question:</td>
+										<td>{{question.name}}</td>
+									</tr>
+									<tr>
+										<td>Section:</td>
+										<td>{{question.section.name}}</td>
+									</tr>
+									<tr>
 										<td>Order:</td>
 										<td>{{question.order}}</td>
 									</tr>
 									<tr>
-										<td>Name:</td>
-										<td>{{question.name}}</td>
+										<td>Answer 1:</td>
+										<td>{{question.answer1}}</td>
+									</tr>
+									<tr>
+										<td>Answer 2:</td>
+										<td>{{question.answer2}}</td>
+									</tr>
+									<tr>
+										<td>Answer 3:</td>
+										<td>{{question.answer3}}</td>
+									</tr>
+									<tr>
+										<td>Answer 4:</td>
+										<td>{{question.answer4}}</td>
+									</tr>
+									<tr>
+										<td>Correct Answer:</td>
+										<td>{{question.answer}}</td>
 									</tr>
 								</table>
 												
@@ -45,8 +69,8 @@
 								
 									
 								<div class="form-actions">
-									<button href="#question/{{question.id}}/edit" class="btn btn-warning">Edit</button> 
-									<button class="btn btn-danger">Delete</button>
+									<a href="#questions/{{question.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a ng-click="deleteQuestion()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								
 							</div> <!-- /widget-content -->

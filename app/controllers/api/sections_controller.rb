@@ -7,7 +7,7 @@ class Api::SectionsController < ApplicationController
   end
 
   def create
-    @section = @pre_enrolment_test.sections.new(params[:section])
+    @section = @pre_enrolment_test.sections.new(safe_params)
     if @section.save
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @section.id, status: 201
     else
@@ -17,7 +17,7 @@ class Api::SectionsController < ApplicationController
 
   def update
     @section = @pre_enrolment_test.sections.find(params[:id])
-    if @section.update_attributes(params[:section])
+    if @section.update_attributes(safe_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @section.id, status: 200
     else
       render nothing: true, status: 400
@@ -45,5 +45,9 @@ class Api::SectionsController < ApplicationController
 private
   def load_test
     @pre_enrolment_test = PreEnrolmentTest.find(params[:pre_enrolment_test_id])
+  end
+
+  def safe_params
+    params.require(:section).permit(:order, :name)
   end
 end

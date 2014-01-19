@@ -11,7 +11,7 @@ class Api::QuestionsController < ApplicationController
   end
 
   def create
-    @question = @pre_enrolment_test.questions.new(params[:question])
+    @question = @pre_enrolment_test.questions.new(safe_params)
     if @question.save
       render :show, pre_enrolment_test: @pre_enrolment_test.id, id: @question.id, status: 201
     else
@@ -21,7 +21,7 @@ class Api::QuestionsController < ApplicationController
 
   def update
     @question = @pre_enrolment_test.questions.find(params[:id])
-    if @question.update_attributes(params[:question])
+    if @question.update_attributes(safe_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @question.id, status: 200
     else
       render nothing: true, status: 400
@@ -40,5 +40,9 @@ class Api::QuestionsController < ApplicationController
 private
   def load_test
     @pre_enrolment_test = PreEnrolmentTest.find(params[:pre_enrolment_test_id])
+  end
+
+  def safe_params
+    params.require(:question).permit(:order, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section_id)
   end
 end

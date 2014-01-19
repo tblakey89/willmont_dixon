@@ -48,7 +48,7 @@
 											<td>{{disciplinaryCard.disciplinary_card.location}}</td>
 											<td class="action-td">
 												<a href="#disciplinary_cards/{{disciplinaryCard.disciplinary_card.id}}" class="btn btn-small btn-success"><i class="icon-search"></i></a>
-												<a href="" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+												<a ng-click="deleteDisciplinaryCardFromTable(disciplinaryCard.disciplinary_card.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>

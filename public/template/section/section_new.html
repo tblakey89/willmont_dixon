@@ -29,13 +29,13 @@
 									
 							<div class="widget-content">
 								
-								<form id="edit-profile" class="form-horizontal" ng-init="getSection()">
+								<form id="edit-profile" class="form-horizontal">
 									<fieldset>
 										
 										<div class="control-group">											
 											<label class="control-label" for="order">Order</label>
 											<div class="controls">
-												<input type="number" class="input-medium" id="order" ng-model="section.order" value="{{section.order}}">
+												<input type="number" class="input-medium" ng-model="section.order" id="order" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 										
@@ -43,7 +43,7 @@
 										<div class="control-group">											
 											<label class="control-label" for="name">Name</label>
 											<div class="controls">
-												<input type="text" class="input-medium" id="name" ng-model="section.name" value="{{section.name}}">
+												<input type="text" class="input-medium" id="name" ng-model="section.name" value="">
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->										
 											
@@ -51,8 +51,8 @@
 										
 											
 										<div class="form-actions">
-											<a ng-click="updateSection()" type="submit" class="btn btn-primary">Save</a> 
-											<a href="#/sections/" class="btn">Cancel</a>
+											<a ng-click="addSection()" type="submit" class="btn btn-primary">Save</a> 
+											<a href="#/sections" class="btn">Cancel</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>								

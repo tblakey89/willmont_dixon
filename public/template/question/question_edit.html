@@ -24,35 +24,43 @@
 						<div class="widget">
 							
 							<div class="widget-header">
+								<i class="icon-check"></i>
 								<h3>Question Information</h3>
 							</div> <!-- /widget-header -->
 									
 							<div class="widget-content">
 								
-								<form id="edit-profile" class="form-horizontal" ng-init="getQuestion()">
+								<form id="edit-profile" class="form-horizontal" ng-init="[getQuestion(), getSections()]">
 									<fieldset>
-										
+
 										<div class="control-group">											
-											<label class="control-label" for="order">Order</label>
+											<label class="control-label" for="order">Section</label>
 											<div class="controls">
-												<input type="number" class="input-medium" id="order" value="{{question.order}}">
+												<select ng-model="question.section_id">
+													<option ng-repeat="item in sections" ng-selected="{{question.section_id == item.section.id}}" value ="{{item.section.id}}">{{item.section.name}}</option>
+												</select>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="name">Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" id="name" value="{{question.name}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->										
+
+										<inputmodel type="number" id="order" model="question.order" name="Order"></inputmodel>
+
+										<inputmodel type="text" id="name" model="question.name" name="Question"></inputmodel>	
+
+										<inputmodel type="text" id="answer1" model="question.answer1" name="Answer 1"></inputmodel>
+
+										<inputmodel type="text" id="answer2" model="question.answer2" name="Answer 2"></inputmodel>	
+
+										<inputmodel type="text" id="answer3" model="question.answer3" name="Answer 3"></inputmodel>	
+
+										<inputmodel type="text" id="answer4" model="question.answer4" name="Answer 4"></inputmodel>
+
+										<inputmodel type="number" min="1" max="4" id="answer" model="question.answer" name="Correct Answer"></inputmodel>							
 											
-											<br />
-										
+										<br />
 											
 										<div class="form-actions">
-											<button type="submit" class="btn btn-primary">Save</button> 
-											<button class="btn">Cancel</button>
+											<a ng-click="updateQuestion()" type="submit" class="btn btn-primary">Save</a> 
+											<a href="#/questions/{{question.id}}" class="btn">Cancel</a>
 										</div> <!-- /form-actions -->
 									</fieldset>
 								</form>								
