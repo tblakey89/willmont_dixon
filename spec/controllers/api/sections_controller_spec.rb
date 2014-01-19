@@ -161,4 +161,29 @@ describe Api::SectionsController do
       end
     end
   end
+
+  describe "#questions" do
+    let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, section_id: 1) }
+    before do
+      section.stub(:videos).and_return([video])
+      PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, sections: sections) }
+    end
+
+    it "populates an array of videos" do
+      get :videos, pre_enrolment_test_id: 1, id: 1, format: :json
+      assigns(:videos).should eq([video])
+    end
+    context "with render views" do
+      render_views
+
+      it "renders the show view" do
+        get :videos, pre_enrolment_test_id: 1, id: 1, format: :json
+        response.should be_success
+        result = JSON.parse(response.body).first
+        result[video.class.name.downcase]['id'].should eql(1)
+        result[video.class.name.downcase]['name'].should eql("Test")
+        result[video.class.name.downcase]['order'].should eql(1)
+      end
+    end
+  end
 end

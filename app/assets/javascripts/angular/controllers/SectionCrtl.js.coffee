@@ -20,6 +20,12 @@
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 
+	$scope.getVideos = ->
+		Section.getVideos($scope.id).success((videos) ->
+	    	$scope.videos = videos
+	  	).error (error) ->
+	    	$scope.status = "Unable to load section data: " + error.message
+
 	$scope.addSection = ->
 		Section.addSection($scope.section).success((data) ->
 	    	$location.path('sections/' + data.section.id)

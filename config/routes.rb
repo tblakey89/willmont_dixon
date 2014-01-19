@@ -5,6 +5,7 @@ WillmontDixon::Application.routes.draw do
       resources :sections do
         member do
           get 'questions'
+          get 'videos'
         end
       end
       resources :questions

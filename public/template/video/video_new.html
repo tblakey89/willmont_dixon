@@ -1,0 +1,71 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="video"></menu>
+				
+			</div> <!-- /span3 -->
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					Video Account					
+				</h1>
+				
+				
+				<div class="row">
+					
+					<div class="span9">
+				
+						<div class="widget">
+							
+							<div class="widget-header">
+								<i class="icon-film"></i>
+								<h3>Video Information</h3>
+							</div> <!-- /widget-header -->
+									
+							<div class="widget-content">
+								
+								<form id="edit-profile" class="form-horizontal" ng-init="getSections()">
+									<fieldset>
+										
+										<div class="control-group">											
+											<label class="control-label" for="order">Section</label>
+											<div class="controls">
+												<select ng-model="video.section_id">
+													<option ng-repeat="item in sections" ng-selected="{{video.section_id == item.section.id}}" value ="{{item.section.id}}">{{item.section.name}}</option>
+												</select>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+										<inputmodel type="number" id="order" model="video.order" name="Order"></inputmodel>
+
+										<inputmodel type="text" id="name" model="video.name" name="Video"></inputmodel>
+											
+											<br />
+										
+											
+										<div class="form-actions">
+											<a ng-click="addVideo()" type="submit" class="btn btn-primary">Save</a> 
+											<a href="#/videos/" class="btn">Cancel</a>
+										</div> <!-- /form-actions -->
+									</fieldset>
+								</form>								
+							</div>
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+				
+			</div> <!-- /span9 -->
+				
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

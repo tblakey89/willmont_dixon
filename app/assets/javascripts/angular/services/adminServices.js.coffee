@@ -53,6 +53,9 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.getQuestions = (id) ->
     $http.get(urlBase + id + "/questions", { headers: { 'auth-token': sessionStorage.authToken } })
 
+  dataFactory.getVideos = (id) ->
+    $http.get(urlBase + id + "/videos", { headers: { 'auth-token': sessionStorage.authToken } })
+
   dataFactory.addSection = (section) ->
     $http.post urlBase, { section: section }, { headers: { 'auth-token': sessionStorage.authToken } }
 
@@ -98,6 +101,23 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.post urlBase, { disciplinary_card: disciplinaryCard }, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory.deleteDisciplinaryCard = (id) ->
+    $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory
+]).factory("Video", ["$http", ($http, $window) ->
+  dataFactory = {}
+  urlBase = "/api/pre_enrolment_tests/1/videos/"
+
+  dataFactory.getVideos = ->
+    $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.getVideo = (id) ->
+    $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.addVideo = (video) ->
+    $http.post urlBase, { video: video }, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory.deleteVideo = (id) ->
     $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory

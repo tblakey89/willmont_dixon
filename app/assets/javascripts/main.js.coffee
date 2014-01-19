@@ -71,6 +71,15 @@
   }).when("/disciplinary_cards/:id", {
     templateUrl: '../../template/disciplinary_card/disciplinary_card.html',
     controller: 'DisciplinaryCardCrtl'
+  }).when("/videos", {
+    templateUrl: '../../template/video/videos.html',
+    controller: 'VideoCrtl'
+  }).when("/videos/new", {
+    templateUrl: '../../template/video/video_new.html',
+    controller: 'VideoCrtl'
+  }).when("/videos/:id", {
+    templateUrl: '../../template/video/video.html',
+    controller: 'VideoCrtl'
   }).otherwise({
     templateUrl: '../../template/home.html',
     controller: 'HomeCrtl'

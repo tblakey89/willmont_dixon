@@ -1,0 +1,70 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="video"></menu>
+				
+		
+			</div> <!-- /span3 -->
+			
+			
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					Videos					
+				</h1>				
+				
+				<div class="row">
+					
+					<div class="span9" ng-init="getVideos()">
+
+						<div class="widget widget-table">
+										
+							<div class="widget-header">
+								<i class="icon-film"></i>
+								<h3>Videos</h3>
+								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
+							</div> <!-- /widget-header -->
+							
+							<div class="widget-content">
+						
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>Order</th>
+											<th>Name</th>
+											<th></th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<tr ng-repeat="video in videos">
+											<td>{{video.video.order}}</td>
+											<td><a href="#/videos/{{video.video.id}}">{{video.video.name}}</a></td>
+											<td class="action-td">
+												<!--<a href="#videos/{{video.video.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>-->				
+												<a ng-click="deleteVideoFromTable(video.video.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+
+			</div> <!-- /span9 -->
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

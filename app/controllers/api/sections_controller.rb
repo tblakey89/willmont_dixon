@@ -42,6 +42,11 @@ class Api::SectionsController < ApplicationController
     @questions = @section.questions
   end
 
+  def videos
+    @section = @pre_enrolment_test.sections.find(params[:id])
+    @videos = @section.videos
+  end
+
 private
   def load_test
     @pre_enrolment_test = PreEnrolmentTest.find(params[:pre_enrolment_test_id])

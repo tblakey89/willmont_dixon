@@ -10,9 +10,10 @@ class Permission
       allow "api/disciplinary_cards", [:index, :show, :create, :update, :destroy]
       allow "api/users", [:index, :show, :disciplinary_cards, :update, :destroy]
       allow "api/questions", [:show, :index, :create, :destroy, :update]
-      allow "api/sections", [:index, :show, :update, :create, :destroy, :questions]
+      allow "api/sections", [:index, :show, :update, :create, :destroy, :questions, :videos]
       allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
       allow :pre_enrolment_tests, [:show]
+      allow "api/videos", [:index, :show, :update, :destroy, :create]
       #allow_if_owned :images, [:update, :edit, :delete, :destroy], user
       #allow_all if user.is_super_admin?
     end
