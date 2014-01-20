@@ -14,6 +14,7 @@ class Permission
       allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
       allow :pre_enrolment_tests, [:show]
       allow "api/videos", [:index, :show, :update, :destroy, :create]
+      allow "api/admins", [:index, :show, :update, :destroy, :create]
       #allow_if_owned :images, [:update, :edit, :delete, :destroy], user
       #allow_all if user.is_super_admin?
     end

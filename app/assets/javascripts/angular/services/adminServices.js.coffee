@@ -18,6 +18,26 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory
+]).factory("Admin", ["$http", ($http, $window) ->
+  urlBase = "/api/admins/"
+  dataFactory = {}
+
+  dataFactory.getAdmins = () ->
+    $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.getAdmin = (id) ->
+    $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.addAdmin = (admin) ->
+    $http.post urlBase, { admin: admin }, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory.updateAdmin = (id, admin) ->
+    $http.put urlBase + id, { admin: admin }, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory.deleteAdmin = (id) ->
+    $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory
 ]).factory("NextOfKin", ["$http", ($http, $window) ->
   dataFactory = {}
 

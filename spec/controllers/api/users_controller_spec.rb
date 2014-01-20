@@ -12,7 +12,7 @@ describe Api::UsersController do
   end
 
   describe "#index" do
-    before { User.stub(:all).and_return([user]) }
+    before { User.stub(:where).and_return([user]) }
 
     it "populates an array of users" do
       get :index, format: :json

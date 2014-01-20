@@ -1,0 +1,82 @@
+<div id="content">
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+				
+				<menu active="admin"></menu>
+				
+		
+			</div> <!-- /span3 -->
+			
+			
+			
+			<div class="span9">
+				
+				<h1 class="page-title">
+					Admins					
+				</h1>				
+				
+				<div class="row">
+					
+					<div class="span9" ng-init="getAdmin()">
+				
+						<div class="widget">
+							
+							<div class="widget-header">
+								<i class="icon-check"></i> 
+								<h3>Admin Information</h3>
+							</div> <!-- /widget-header -->
+									
+							<div class="widget-content">
+								<table class="information-table">
+									<tr>
+										<td>First Name:</td>
+										<td>{{admin.first_name}}</td>
+									</tr>
+									<tr>
+										<td>Last Name:</td>
+										<td>{{admin.last_name}}</td>
+									</tr>
+									<tr>
+										<td>Email:</td>
+										<td>{{admin.email}}</td>
+									</tr>
+									<tr>
+										<td>Role:</td>
+										<td>{{admin.role}}</td>
+									</tr>
+									<tr>
+										<td>Last Sign In:</td>
+										<td>{{admin.last_sign_in_at}}</td>
+									</tr>
+									<tr>
+										<td>Role:</td>
+										<td>{{admin.sign_in_count}}</td>
+									</tr>
+								</table>
+												
+								<br />
+								
+									
+								<div class="form-actions">
+									<a href="#admins/{{admin.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a ng-click="deleteAdmin()" class="btn btn-danger">Delete</a>
+								</div> <!-- /form-actions -->							
+								
+							</div> <!-- /widget-content -->
+							
+						</div> <!-- /widget -->
+						
+					</div> <!-- /span9 -->
+					
+				</div> <!-- /row -->
+
+			</div> <!-- /span9 -->
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+	
+</div> <!-- /content -->

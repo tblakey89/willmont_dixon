@@ -17,6 +17,7 @@ WillmontDixon::Application.routes.draw do
         get 'disciplinary_cards'
       end
     end
+    resources :admins
     resources :disciplinary_cards
   end
 

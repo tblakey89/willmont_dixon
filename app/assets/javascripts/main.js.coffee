@@ -29,6 +29,18 @@
   }).when("/users/:userId/edit", {
     templateUrl: '../../template/user/user_edit.html',
     controller: 'UserCrtl'
+  }).when("/admins", {
+    templateUrl: '../../template/admin/admins.html',
+    controller: 'AdminCrtl'
+  }).when("/admins/new", {
+    templateUrl: '../../template/admin/admin_new.html',
+    controller: 'AdminCrtl'
+  }).when("/admins/:id", {
+    templateUrl: '../../template/admin/admin.html',
+    controller: 'AdminCrtl'
+  }).when("/admins/:id/edit", {
+    templateUrl: '../../template/admin/admin_edit.html',
+    controller: 'AdminCrtl'
   }).when("/users/:userId/next_of_kins/new", {
     templateUrl: '../../template/next_of_kin_new.html',
     controller: 'NextOfKinCrtl'
