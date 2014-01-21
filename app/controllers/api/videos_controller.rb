@@ -15,7 +15,7 @@ class Api::VideosController < ApplicationController
     if @video.save
       render :show, pre_enrolment_test: @pre_enrolment_test.id, id: @video.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @video.errors }, status: 400
     end
   end
 
@@ -24,7 +24,7 @@ class Api::VideosController < ApplicationController
     if @video.update_attributes(safe_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @video.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @video.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -43,6 +43,6 @@ private
   end
 
   def safe_params
-    params.require(:video).permit(:order, :name, :section_id)
+    params.require(:video).permit(:order, :name, :section_id) unless params[:video].blank?
   end
 end

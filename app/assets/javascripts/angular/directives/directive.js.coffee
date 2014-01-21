@@ -15,6 +15,7 @@ angular.module("Directive", []).directive("menu", ->
   	type: "@"
   	min: "@"
   	max: "@"
+  error: '='
   }
   templateUrl: "../../template/input.html"
 )

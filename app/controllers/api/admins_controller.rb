@@ -15,7 +15,7 @@ class Api::AdminsController < ApplicationController
     if @admin.save
       render :show, id: @admin.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @admin.errors }, status: 400
     end
   end
 
@@ -24,7 +24,7 @@ class Api::AdminsController < ApplicationController
     if @admin.update_attributes(safe_params)
       render :show, id: @admin.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @admin.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -39,6 +39,6 @@ class Api::AdminsController < ApplicationController
 
 private
   def safe_params
-    params.require(:admin).permit(:first_name, :last_name, :email)
+    params.require(:admin).permit(:first_name, :last_name, :email) unless params[:admin].blank?
   end
 end

@@ -15,7 +15,7 @@ class Api::NextOfKinsController < ApplicationController
     if @next_of_kin.save
       render :show, user_id: @user.id, id: @next_of_kin.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @next_of_kin.errors }, status: 400
     end
   end
 
@@ -24,7 +24,7 @@ class Api::NextOfKinsController < ApplicationController
     if @next_of_kin.update_attributes(safe_params)
       render :show, user_id: @user.id, id: @next_of_kin.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @next_of_kin.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -43,6 +43,6 @@ private
   end
 
   def safe_params
-    params.require(:next_of_kin).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :contact_number, :relationship)
+    params.require(:next_of_kin).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :contact_number, :relationship) unless params[:next_of_kin].blank?
   end
 end

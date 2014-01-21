@@ -17,14 +17,14 @@
 	$scope.addAdmin = ->
 		Admin.addAdmin($scope.admin).success((data) ->
 	    	$location.path('admins/' + data.admin.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load admin data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.updateAdmin = ->
 		Admin.updateAdmin($scope.id, $scope.admin).success((data) ->
 	    	$location.path('admins/' + $scope.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load admin data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.deleteAdminFromTable = (id ,index) ->
 		Admin.deleteAdmin(id).success((data) ->

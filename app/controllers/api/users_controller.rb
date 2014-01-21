@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       render :show, id: @user.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @user.errors }, status: 400
     end
   end
 
@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
     if @user.update_attributes(edit_params)
       render :show, id: @user.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @user.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -43,7 +43,7 @@ class Api::UsersController < ApplicationController
 
 private
   def edit_params
-    params.require(:user).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :email, :job, :health_issues, :is_supervisor, :cscs_number, :cscs_expiry_date, :date_of_birth, :contact_number, :completed_pre_enrolment)
+    params.require(:user).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :email, :job, :health_issues, :is_supervisor, :cscs_number, :cscs_expiry_date, :date_of_birth, :contact_number, :completed_pre_enrolment) unless params[:user].blank?
   end
 
 end

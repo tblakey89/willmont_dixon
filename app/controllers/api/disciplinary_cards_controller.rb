@@ -14,7 +14,7 @@ class Api::DisciplinaryCardsController < ApplicationController
     if @disciplinary_card.save
       render :show, id: @disciplinary_card.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @disciplinary_card.errors }, status: 400
     end
   end
 
@@ -23,7 +23,7 @@ class Api::DisciplinaryCardsController < ApplicationController
     if @disciplinary_card.update_attributes(params[:user])
       render :show, id: @disciplinary_card.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @disciplinary_card.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -38,6 +38,6 @@ class Api::DisciplinaryCardsController < ApplicationController
 
 private
   def safe_params
-    params.require(:disciplinary_card).permit(:user_id, :reason, :location, :colour)
+    params.require(:disciplinary_card).permit(:user_id, :reason, :location, :colour) unless params[:disciplinary_card].blank?
   end
 end

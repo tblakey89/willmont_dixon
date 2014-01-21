@@ -11,7 +11,7 @@ class Api::SectionsController < ApplicationController
     if @section.save
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @section.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @section.errors }, status: 400
     end
   end
 
@@ -20,7 +20,7 @@ class Api::SectionsController < ApplicationController
     if @section.update_attributes(safe_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @section.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @section.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -53,6 +53,6 @@ private
   end
 
   def safe_params
-    params.require(:section).permit(:order, :name)
+    params.require(:section).permit(:order, :name) if params[:section].blank?
   end
 end

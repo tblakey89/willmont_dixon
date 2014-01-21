@@ -35,68 +35,21 @@
 								<form id="edit-profile" class="form-horizontal" ng-init="getNextOfKin()">
 									<fieldset>
 										
-										<div class="control-group">											
-											<label class="control-label" for="firstname">First Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" ng-model="nextOfKin.first_name" id="firstname" value="{{nextOfKin.first_name}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="lastname">Last Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" ng-model="nextOfKin.last_name" id="lastname" value="{{nextOfKin.last_name}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="relationship">Relationship</label>
-											<div class="controls">
-												<input type="text" class="input-large" ng-model="nextOfKin.relationship" id="relationship" value="{{nextOfKin.relationship}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
+										<inputmodel type="text" id="firstname" model="nextOfKin.first_name" name="First Name" error="error.first_name[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="contact_number">Contact Number</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="contact_number" ng-model="nextOfKin.contact_number" value="{{nextOfKin.contact_number}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="lastname" model="nextOfKin.last_name" name="Last Name" error="error.last_name[0]"></inputmodel>
 
+										<inputmodel type="text" id="relationship" model="nextOfKin.relationship" name="Relationship" error="error.relationship[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="address_line_1">Address Line 1</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_1" ng-model="nextOfKin.address_line_1" value="{{nextOfKin.address_line_1}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="contact_number" model="nextOfKin.contact_number" name="Contact Number" error="error.contact_number[0]"></inputmodel>
 
+										<inputmodel type="text" id="address_line_1" model="nextOfKin.address_line_1" name="Address Line 1" error="error.address_line_1[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="address_line_1">Address Line 2</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_2" ng-model="nextOfKin.address_line_2" value="{{nextOfKin.address_line_2}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="address_line_2" model="nextOfKin.address_line_2" name="Address Line 2" error="error.address_line_2[0]"></inputmodel>
 
+										<inputmodel type="text" id="city" model="nextOfKin.city" name="City" error="error.city[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="city">City</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="city" ng-model="nextOfKin.city" value="{{nextOfKin.city}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="postcode">Postcode</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="postcode" ng-model="nextOfKin.postcode" value="{{nextOfKin.postcode}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="postcode" model="nextOfKin.postcode" name="Postcode" error="error.postcode[0]"></inputmodel>
 										
 											
 											<br />

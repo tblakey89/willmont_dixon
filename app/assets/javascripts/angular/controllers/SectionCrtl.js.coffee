@@ -29,14 +29,14 @@
 	$scope.addSection = ->
 		Section.addSection($scope.section).success((data) ->
 	    	$location.path('sections/' + data.section.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.updateSection = ->
 		Section.updateSection($scope.id, $scope.section).success((data) ->
 	    	$location.path('sections/' + $scope.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.deleteSectionFromTable = (id ,index) ->
 		Section.deleteSection(id).success((data) ->

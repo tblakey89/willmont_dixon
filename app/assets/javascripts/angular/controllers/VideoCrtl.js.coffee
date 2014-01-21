@@ -17,8 +17,8 @@
 	$scope.addVideo = ->
 		Video.addVideo($scope.video).success((data) ->
 	    	$location.path('videos/' + data.video.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.getSections = ->
 		Section.getSections().success((sections) ->
@@ -29,8 +29,8 @@
 	$scope.updateVideo = ->
 		Video.updateVideo($scope.id, $scope.video).success((data) ->
 	    	$location.path('videos/' + $scope.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load video data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.deleteVideoFromTable = (id ,index) ->
 		Video.deleteVideo(id).success((data) ->

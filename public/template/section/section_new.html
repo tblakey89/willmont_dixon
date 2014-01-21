@@ -31,21 +31,10 @@
 								
 								<form id="edit-profile" class="form-horizontal">
 									<fieldset>
-										
-										<div class="control-group">											
-											<label class="control-label" for="order">Order</label>
-											<div class="controls">
-												<input type="number" class="input-medium" ng-model="section.order" id="order" value="">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="name">Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" id="name" ng-model="section.name" value="">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->										
+
+										<inputmodel type="number" id="order" model="section.order" name="Order" error="error.order[0]"></inputmodel>
+
+										<inputmodel type="text" id="name" model="section.name" name="Name" error="error.name[0]"></inputmodel>								
 											
 											<br />
 										

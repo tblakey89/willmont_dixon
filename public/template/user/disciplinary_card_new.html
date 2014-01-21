@@ -32,7 +32,9 @@
 								<form id="edit-profile" class="form-horizontal">
 									<fieldset>
 										
-										<div class="control-group">											
+										<input type="hidden" value="{{id}}" ng-model="disciplinaryCard.user_id"/>
+										
+										<div class="control-group" ng-class="{ 'error' : error.colour[0] != undefined}">											
 											<label class="control-label" for="order">Order</label>
 											<div class="controls">
 												<select ng-model="disciplinaryCard.colour" class="input-medium">
@@ -40,21 +42,17 @@
 													<option value="Yellow">Yellow</option>
 													<option value="Red">Red</option>
 												</select>
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="location">Location</label>
-											<div class="controls">
-												<input type="text" class="input-medium" ng-model="disciplinaryCard.location" id="location" value="">
+												<span class="help-inline">{{error.colour[0]}}</span>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
-										<div class="control-group">											
+										<inputmodel type="text" id="location" model="disciplinaryCard.location" name="Location" error="error.location[0]"></inputmodel>
+
+										<div class="control-group" ng-class="{ 'error' : error.reason[0] != undefined}">											
 											<label class="control-label" for="reason">Reason</label>
 											<div class="controls">
 												<textarea rows="3" ng-model="disciplinaryCard.reason" id="reason"></textarea>
+												<span class="help-inline">{{error.reason[0]}}</span>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->										
 											

@@ -32,7 +32,7 @@
 								<form id="edit-profile" class="form-horizontal">
 									<fieldset>
 										
-										<div class="control-group">											
+										<div class="control-group" ng-class="{ 'error' : error.role[0] != undefined}">											
 											<label class="control-label" for="order">Role</label>
 											<div class="controls">
 												<select ng-model="admin.role">
@@ -40,19 +40,20 @@
 													<option ng-selected="{{admin.role == 3}}" value="3">Super Admin</option>
 													<option ng-selected="{{admin.role == 4}}" value="4">Director Admin</option>
 												</select>
+												<span class="help-inline">{{error.role[0]}}</span>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
 
-										<inputmodel type="text" id="first_name" model="admin.first_name" name="First Name"></inputmodel>	
+										<inputmodel type="text" id="first_name" model="admin.first_name" name="First Name" error="error.first_name[0]"></inputmodel>	
 
-										<inputmodel type="text" id="last_name" model="admin.last_name" name="Last Name"></inputmodel>
+										<inputmodel type="text" id="last_name" model="admin.last_name" name="Last Name" error="error.last_name[0]"></inputmodel>
 
-										<inputmodel type="text" id="email" model="admin.email" name="Email"></inputmodel>	
+										<inputmodel type="text" id="email" model="admin.email" name="Email" error="error.email[0]"></inputmodel>	
 
-										<inputmodel type="password" id="password" model="admin.password" name="Password"></inputmodel>	
+										<inputmodel type="password" id="password" model="admin.password" name="Password" error="error.password[0]"></inputmodel>	
 
-										<inputmodel type="password" id="password_confirmation" model="admin.password_confirmation" name="Password Confirmation"></inputmodel>
+										<inputmodel type="password" id="password_confirmation" model="admin.password_confirmation" name="Password Confirmation" error="error.password_confirmation[0]"></inputmodel>
 											
 											<br />
 										

@@ -17,8 +17,8 @@
 	$scope.updateUser = ->
 		User.updateUser($scope.id, $scope.user).success((data) ->
 	    	$location.path('users/' + $scope.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load user data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.deleteUserFromTable = (id ,index) ->
 		User.deleteUser(id).success((data) ->
@@ -53,8 +53,8 @@
 	$scope.addDisciplinaryCard = ->
 		DisciplinaryCard.addDisciplinaryCard($scope.id, $scope.disciplinaryCard).success((data) ->
 	    	$location.path('users/' + $scope.id)
-	  	).error (error) ->
-	    	$scope.status = "Unable to load user data: " + error.message
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 	$scope.deleteDisciplinaryCard = (id, index) ->
 		DisciplinaryCard.deleteDisciplinaryCard(id).success((data) ->

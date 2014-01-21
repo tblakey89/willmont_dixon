@@ -19,8 +19,8 @@
 	$scope.addNextOfKin = ->
 		NextOfKin.addNextOfKin($scope.userId, $scope.nextOfKin).success((data) ->
 			$location.path('users/' + $scope.userId)
-		).error (error) ->
-			$scope.status = "There was an error uploading your data " + error.message
+		).error (errors) ->
+			$scope.error = errors.errors
 
 	$scope.deleteNextOfKin = ->
 		NextOfKin.deleteNextOfKin($scope.userId, $scope.id).success((data) ->
@@ -31,6 +31,6 @@
 	$scope.updateNextOfKin = ->
 		NextOfKin.updateNextOfKin($scope.userId, $scope.id, $scope.nextOfKin).success((data) ->
 			$location.path('users/' + $scope.userId)
-		).error (error) ->
-			$scope.status = "There was an error deleting your data " + error.message
+		).error (errors) ->
+			$scope.error = errors.errors
 ]

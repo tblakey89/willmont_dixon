@@ -35,36 +35,13 @@
 								<form id="edit-profile" class="form-horizontal" ng-init="getUser()">
 									<fieldset>
 										
-										<div class="control-group">											
-											<label class="control-label" for="firstname">First Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" id="firstname" value="{{user.first_name}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="first_name" model="user.first_name" name="First Name" error="error.first_name[0]"></inputmodel>
 										
+										<inputmodel type="text" id="last_name" model="user.last_name" name="Last Name" error="error.last_name[0]"></inputmodel>
 										
-										<div class="control-group">											
-											<label class="control-label" for="lastname">Last Name</label>
-											<div class="controls">
-												<input type="text" class="input-medium" id="lastname" value="{{user.last_name}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="email" model="user.email" name="Email" error="error.email[0]"></inputmodel>									
 										
-										
-										<div class="control-group">											
-											<label class="control-label" for="email">Email Address</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="email" value="{{user.email}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-										
-										
-										<div class="control-group">											
-											<label class="control-label" for="job">Job</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="job" value="{{user.job}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
 										<div class="control-group">											
 											<label class="control-label" for="health_issues">Health Issues</label>
@@ -80,93 +57,27 @@
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 
+										<inputmodel type="text" id="cscs_number" model="user.cscs_number" name="CSCS Number" error="error.cscs_number[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="cscs_number">CSCS Number</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="cscs_number" value="{{user.cscs_number}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="date" id="cscs_date" model="user.cscs_date" name="CSCS Expiry Date" error="error.cscs_date[0]"></inputmodel>
 
+										<inputmodel type="date" id="date_of_birth" model="user.date_of_birth" name="Date Of Birth" error="error.date_of_birth[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="cscs_expiry_date">CSCS Expiry Date</label>
-											<div class="controls">
-												<input type="date" class="input-large" id="cscs_expiry_date" value="{{user.cscs_expiry_date}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="national_insurance" model="user.national_insurance" name="National Insurance" error="error.national_insurance[0]"></inputmodel>
 
+										<inputmodel type="text" id="completed_pre_enrolment" model="user.completed_pre_enrolment" name="Completed Pre Enrolment" error="error.completed_pre_enrolment[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="date_of_birth">Date of Birth</label>
-											<div class="controls">
-												<input type="date" class="input-large" id="date_of_birth" value="{{user.date_of_birth}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="date" id="pre_enrolment_due" model="user.pre_enrolment_due" name="Pre Enrolment Due" error="error.pre_enrolment_due[0]"></inputmodel>
 
+										<inputmodel type="text" id="contact_number" model="user.contact_number" name="Contact Number" error="error.contact_number[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="national_insurance">National Insurance</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="national_insurance" value="{{user.national_insurance}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="address_line_1" model="user.address_line_1" name="Address Line 1" error="error.address_line_1[0]"></inputmodel>
 
+										<inputmodel type="text" id="address_line_2" model="user.address_line_2" name="Address Line 2" error="error.address_line_2[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="completed_pre_enrolment">Completed Pre Enrolment</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="completed_pre_enrolment" value="{{user.completed_pre_enrolment}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="city" model="user.city" name="City" error="error.city[0]"></inputmodel>
 
-
-										<div class="control-group">											
-											<label class="control-label" for="pre_enrolment_due">Pre Enrolment Due</label>
-											<div class="controls">
-												<input type="text" class="input-large" id="pre_enrolment_due" value="{{user.pre_enrolment_due}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="contact_number">Contact Number</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="contact_number" value="{{user.contact_number}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="address_line_1">Address Line 1</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_1" value="{{user.address_line_1}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="address_line_1">Address Line 2</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="address_line_2" value="{{user.address_line_2}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="city">City</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="city" value="{{user.city}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
-
-
-										<div class="control-group">											
-											<label class="control-label" for="postcode">Postcode</label>
-											<div class="controls">
-												<input type="tel" class="input-large" id="postcode" value="{{user.postcode}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="text" id="postcode" model="user.postcode" name="Postcode" error="error.postcode[0]"></inputmodel>
 										
 											
 											<br />

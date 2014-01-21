@@ -15,7 +15,7 @@ class Api::QuestionsController < ApplicationController
     if @question.save
       render :show, pre_enrolment_test: @pre_enrolment_test.id, id: @question.id, status: 201
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @question.errors }, status: 400
     end
   end
 
@@ -24,7 +24,7 @@ class Api::QuestionsController < ApplicationController
     if @question.update_attributes(safe_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @question.id, status: 200
     else
-      render nothing: true, status: 400
+      render :json => { :errors => @question.errors }, status: 400
     end
   rescue
     render nothing: true, status: 400
@@ -43,6 +43,6 @@ private
   end
 
   def safe_params
-    params.require(:question).permit(:order, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section_id)
+    params.require(:question).permit(:order, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section_id) unless params[:question].blank?
   end
 end
