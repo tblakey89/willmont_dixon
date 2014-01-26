@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::SectionsController do
-  let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: true, update_attributes: true, destroy: true) }
+  let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, work_at_height: false, scaffolder: false, ground_worker: false, operate_machinery: false, lift_loads: false, young: false, supervisor: false, save: true, update_attributes: true, destroy: true) }
   let(:sections) { double(Section, find: section, new: section) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, section: { name: "Test", order: 1 } } }
 
@@ -49,6 +49,13 @@ describe Api::SectionsController do
         result[section.class.name.downcase]['id'].should eql(1)
         result[section.class.name.downcase]['name'].should eql("Test")
         result[section.class.name.downcase]['order'].should eql(1)
+        result[section.class.name.downcase]['work_at_height'].should eql(false)
+        result[section.class.name.downcase]['scaffolder'].should eql(false)
+        result[section.class.name.downcase]['ground_worker'].should eql(false)
+        result[section.class.name.downcase]['lift_loads'].should eql(false)
+        result[section.class.name.downcase]['young'].should eql(false)
+        result[section.class.name.downcase]['supervisor'].should eql(false)
+        result[section.class.name.downcase]['operate_machinery'].should eql(false)
       end
     end
   end
@@ -68,12 +75,11 @@ describe Api::SectionsController do
     end
 
     context "invalid information" do
-      let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false) }
+      let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false, errors: "test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -94,12 +100,11 @@ describe Api::SectionsController do
     end
 
     context "invalid information" do
-      let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false) }
+      let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false, errors: "test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

@@ -78,12 +78,11 @@ describe Api::QuestionsController do
     end
 
     context "invalid information" do
-      let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false) }
+      let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false, errors: "Test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -104,12 +103,11 @@ describe Api::QuestionsController do
     end
 
     context "invalid information" do
-      let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false) }
+      let(:question) { double(Question, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false, errors: "Test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

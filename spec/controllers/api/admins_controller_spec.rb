@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::AdminsController do
-  let!(:admin) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, destroy: true, add_role: true) }
+  let!(:admin) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, destroy: true, add_role: true, errors: "test") }
   let(:json) { { format: :json, admin: { first_name: "Test" } } }
   before do
     allow_message_expectations_on_nil
@@ -74,12 +74,11 @@ describe Api::AdminsController do
     end
 
     context "invalid information" do
-      let(:admin) { double(User, add_role: true, save: false) }
+      let(:admin) { double(User, add_role: true, save: false, errors: "Test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -100,12 +99,11 @@ describe Api::AdminsController do
     end
 
     context "invalid information" do
-      let(:admin) { double(User, update_attributes: false) }
+      let(:admin) { double(User, update_attributes: false, errors: "Test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

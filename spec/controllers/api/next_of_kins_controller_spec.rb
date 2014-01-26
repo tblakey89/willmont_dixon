@@ -78,12 +78,11 @@ describe Api::NextOfKinsController do
     end
 
     context "invalid information" do
-      let(:next_of_kin) { double(NextOfKin, id: 1, user_id: 1, save: false) }
+      let(:next_of_kin) { double(NextOfKin, id: 1, user_id: 1, save: false, errors: "Test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -104,12 +103,11 @@ describe Api::NextOfKinsController do
     end
 
     context "invalid information" do
-      let(:next_of_kin) { double(User, id: 1, update_attributes: false) }
+      let(:next_of_kin) { double(User, id: 1, update_attributes: false, errors: "Test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

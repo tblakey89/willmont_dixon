@@ -39,6 +39,34 @@
 										<td>Name:</td>
 										<td>{{section.name}}</td>
 									</tr>
+									<tr>
+										<td>Requires Working At Height:</td>
+										<td>{{section.work_at_height}}</td>
+									</tr>
+									<tr>
+										<td>Requires Scaffolder:</td>
+										<td>{{section.scaffolder}}</td>
+									</tr>
+									<tr>
+										<td>Requires Ground Worker:</td>
+										<td>{{section.ground_worker}}</td>
+									</tr>
+									<tr>
+										<td>Requires Operates Plant and/or Machinery:</td>
+										<td>{{section.operate_machinery}}</td>
+									</tr>
+									<tr>
+										<td>Requires Mechanical Lifting of Loads:</td>
+										<td>{{section.lift_loads}}</td>
+									</tr>
+									<tr>
+										<td>Requires Younger Than 18:</td>
+										<td>{{section.young}}</td>
+									</tr>
+									<tr>
+										<td>Requires Supervisor or Manager:</td>
+										<td>{{section.supervisor}}</td>
+									</tr>
 								</table>
 												
 								<br />
@@ -58,7 +86,8 @@
 							<div class="widget-header">
 								<i class="icon-check"></i>
 								<h3>Questions</h3>
-								<a href="#questions/new" class="btn btn-small btn-success">Add</a>	
+								<a href="#questions/new" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="questionSearch" currentpage="currentPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -73,7 +102,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="item in questions">
+										<tr ng-repeat="item in questions | filter:questionSearch">
 											<td>{{item.question.order}}</td>
 											<td><a href="#/questions/{{item.question.id}}">{{item.question.name}}</a></td>
 											<td class="action-td">
@@ -93,7 +122,8 @@
 							<div class="widget-header">
 								<i class="icon-film"></i>
 								<h3>Videos</h3>
-								<a href="#videos/new" class="btn btn-small btn-success">Add</a>	
+								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="videoSearch" currentpage="currentPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -108,7 +138,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="item in videos">
+										<tr ng-repeat="item in videos | filter:videoSearch">
 											<td>{{item.video.order}}</td>
 											<td><a href="#/videos/{{item.video.id}}">{{item.video.name}}</a></td>
 											<td class="action-td">

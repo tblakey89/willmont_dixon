@@ -100,12 +100,11 @@ describe Api::UsersController do
     end
 
     context "invalid information" do
-      let(:user) { double(User, save: false) }
+      let(:user) { double(User, save: false, errors: "Test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -126,12 +125,11 @@ describe Api::UsersController do
     end
 
     context "invalid information" do
-      let(:user) { double(User, update_attributes: false) }
+      let(:user) { double(User, update_attributes: false, errors: "Test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::VideosController do
-  let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, section_id: 1, section: double(Section, name: "Test"), save: true, update_attributes: true, destroy: true) }
+  let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, section_id: 1, section: double(Section, name: "Test"), save: true, update_attributes: true, destroy: true, extension_valid?: true) }
   let(:videos) { double(Video, find: video, new: video) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, video: { name: "Test", order: 1, section_id: 1, answer1: "Test", answer2: "Test2", answer3: "Test3", answer4: "Test4", answer: 1 } } }
 
@@ -54,7 +54,11 @@ describe Api::VideosController do
   end
 
   describe "#create" do
-    before { PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, id: 1, videos: videos) } }
+    before do
+      PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, id: 1, videos: videos) }
+      controller.params[:file].stub(:original_filename).and_return(".mp4")
+      File.stub(:open).and_return(true)
+    end
 
     it "assigns a video" do
       post :create, json
@@ -68,12 +72,11 @@ describe Api::VideosController do
     end
 
     context "invalid information" do
-      let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false) }
+      let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, save: false, errors: "Test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -94,12 +97,11 @@ describe Api::VideosController do
     end
 
     context "invalid information" do
-      let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false) }
+      let(:video) { double(Video, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, update_attributes: false, errors: "Test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 

@@ -43,19 +43,9 @@
 										
 										<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="health_issues">Health Issues</label>
-											<div class="controls">
-												<input type="checkbox" class="input-large" id="health_issues" value="{{user.health_issues}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="checkbox" id="health_issues" model="user.health_issues" name="Health Issues" error="error.health_issues[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="is_supervisor">Is Supervisor?</label>
-											<div class="controls">
-												<input type="checkbox" class="input-large" id="is_supervisor" value="{{user.is_supervisor}}">
-											</div> <!-- /controls -->				
-										</div> <!-- /control-group -->
+										<inputmodel type="checkbox" id="is_supervisor" model="user.is_supervisor" name="Is Supervisor?" error="error.is_supervisor[0]"></inputmodel>
 
 										<inputmodel type="text" id="cscs_number" model="user.cscs_number" name="CSCS Number" error="error.cscs_number[0]"></inputmodel>
 

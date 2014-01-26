@@ -8,6 +8,13 @@ describe Section do
 
   it { should respond_to(:name) }
   it { should respond_to(:order) }
+  it { should respond_to(:work_at_height) }
+  it { should respond_to(:scaffolder) }
+  it { should respond_to(:ground_worker) }
+  it { should respond_to(:operate_machinery) }
+  it { should respond_to(:lift_loads) }
+  it { should respond_to(:young) }
+  it { should respond_to(:supervisor) }
   it { should respond_to(:questions) }
   it { should respond_to(:videos) }
   it { should respond_to(:pre_enrolment_test) }

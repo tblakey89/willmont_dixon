@@ -53,6 +53,6 @@ private
   end
 
   def safe_params
-    params.require(:section).permit(:order, :name) if params[:section].blank?
+    params.require(:section).permit(:order, :name, :work_at_height, :scaffolder, :ground_worker, :operate_machinery, :lift_loads, :young, :supervisor) if params[:section].blank?
   end
 end

@@ -68,12 +68,11 @@ describe Api::DisciplinaryCardsController do
     end
 
     context "invalid information" do
-      let(:disciplinary_card) { double(DisciplinaryCard, save: false) }
+      let(:disciplinary_card) { double(DisciplinaryCard, save: false, errors: "test") }
 
       it "renders nothing" do
         post :create, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
   end
@@ -94,12 +93,11 @@ describe Api::DisciplinaryCardsController do
     end
 
     context "invalid information" do
-      let(:disciplinary_card) { double(DisciplinaryCard, update_attributes: false) }
+      let(:disciplinary_card) { double(DisciplinaryCard, update_attributes: false, errors: "test") }
 
       it "renders nothing" do
         put :update, json
         response.status.should eq(400)
-        response.body.should be_blank
       end
     end
 
