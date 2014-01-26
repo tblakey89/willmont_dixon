@@ -4,4 +4,8 @@ class Video < ActiveRecord::Base
 
   belongs_to :pre_enrolment_test
   belongs_to :section
+
+  def extension_valid? extension
+    extension =~ /\.mp4/
+  end
 end

@@ -499,3 +499,11 @@ input {
 }
 
 
+form.form-search.inline-form {
+	margin-bottom: 0px;
+	margin-right: 20px;
+}
+
+.pagination ul li.active a{
+	background-color: white;
+}

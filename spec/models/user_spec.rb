@@ -146,4 +146,38 @@ describe User do
     before { @user.contact_number = "abcdefjnfdnjjj" }
     it { should_not be_valid }
   end
+
+  describe "card methods" do
+    let!(:disciplinary_card) { FactoryGirl.create(:disciplinary_card, user: @user, created_at: DateTime.now) }
+
+    it "should return one green card and no red or yellow cards" do
+      @user.green_cards.should eq(1)
+      @user.yellow_cards.should eq(0)
+      @user.red_cards.should eq(0)
+    end
+
+    it "should return one yellow card and no green or red cards" do
+      disciplinary_card.colour = "Yellow"
+      disciplinary_card.save
+      @user.green_cards.should eq(0)
+      @user.yellow_cards.should eq(1)
+      @user.red_cards.should eq(0)
+    end
+
+    it "should return one red card and no green or yellow cards" do
+      disciplinary_card.colour = "Red"
+      disciplinary_card.save
+      @user.green_cards.should eq(0)
+      @user.yellow_cards.should eq(0)
+      @user.red_cards.should eq(1)
+    end
+
+    it "should return no green or yellow or red cards" do
+      disciplinary_card.created_at = 2.year.ago
+      disciplinary_card.save
+      @user.green_cards.should eq(0)
+      @user.yellow_cards.should eq(0)
+      @user.red_cards.should eq(0)
+    end
+  end
 end

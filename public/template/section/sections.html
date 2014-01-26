@@ -28,6 +28,7 @@
 								<i class="icon-th-list"></i>
 								<h3>Sections</h3>
 								<a href="#sections/new" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="search"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -42,7 +43,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="section in sections">
+										<tr ng-repeat="section in sections | filter:search">
 											<td>{{section.section.order}}</td>
 											<td><a href="#/sections/{{section.section.id}}">{{section.section.name}}</a></td>
 											<td class="action-td">
@@ -56,6 +57,8 @@
 							</div> <!-- /widget-content -->
 							
 						</div> <!-- /widget -->
+
+						<pagination lastpage="lastPage" currentpage="currentPage"></pagination>
 						
 					</div> <!-- /span9 -->
 					

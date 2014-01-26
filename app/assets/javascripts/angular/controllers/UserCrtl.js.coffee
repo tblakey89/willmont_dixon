@@ -1,10 +1,13 @@
 @admin.controller 'UserCrtl', ['$scope', 'User', 'NextOfKin', 'DisciplinaryCard', 'Session', '$routeParams', '$location', ($scope, User, NextOfKin, DisciplinaryCard, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.userId
+	$scope.currentPage = 1
+	$scope.lastPage = 1
 
 	$scope.getUsers = ->
 		User.getUsers().success((users) ->
 	    	$scope.users = users
+	    	$scope.lastPage = Math.ceil($scope.users.length/10)
 	  	).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
 

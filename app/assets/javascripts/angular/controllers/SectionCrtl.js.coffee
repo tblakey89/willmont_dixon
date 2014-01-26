@@ -1,10 +1,13 @@
 @admin.controller 'SectionCrtl', ['$scope', 'Section', 'Session', '$routeParams', '$location', ($scope, Section, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.currentPage = 1
+	$scope.lastPage = 1
 
 	$scope.getSections = ->
 		Section.getSections().success((sections) ->
 	    	$scope.sections = sections
+	    	$scope.lastPage = Math.ceil($scope.sections.length/10)
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 

@@ -13,9 +13,18 @@ class Api::VideosController < ApplicationController
   def create
     @video = @pre_enrolment_test.videos.new(safe_params)
     if @video.save
-      render :show, pre_enrolment_test: @pre_enrolment_test.id, id: @video.id, status: 201
+      directory = Rails.root.join("public", "videos")
+      extension = params[:file].original_filename[-4..-1]
+      if @video.extension_valid? extension
+        path = File.join(directory, @video.id.to_s + extension)
+        File.open(path, "wb") { |f| f.write(params[:file].read) }
+        render :show, pre_enrolment_test: @pre_enrolment_test.id, id: @video.id, status: 201
+      else
+        @video.destroy
+        render nothing: true, status: 400
+      end
     else
-      render :json => { :errors => @video.errors }, status: 400
+      render :json => {  }, status: 400
     end
   end
 
@@ -32,6 +41,9 @@ class Api::VideosController < ApplicationController
 
   def destroy
     @pre_enrolment_test.videos.find(params[:id]).destroy
+    if File.exists?("public/videos/" + params[:id] + ".mp4")
+      File.delete("public/videos/" + params[:id] + ".mp4")
+    end
     render nothing: true, status: 204
   rescue
     render nothing: true, status: 400
@@ -43,6 +55,6 @@ private
   end
 
   def safe_params
-    params.require(:video).permit(:order, :name, :section_id) unless params[:video].blank?
+    params.permit(:order, :name, :section_id) unless params.blank?
   end
 end

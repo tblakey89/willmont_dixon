@@ -31,7 +31,7 @@
 								
 								<form id="edit-profile" class="form-horizontal" ng-init="getSections()">
 									<fieldset>
-										
+
 										<div class="control-group" ng-class="{ 'error' : error.section_id[0] != undefined}">											
 											<label class="control-label" for="order">Section</label>
 											<div class="controls">
@@ -45,6 +45,26 @@
 										<inputmodel type="number" id="order" model="video.order" name="Order" error="error.order[0]"></inputmodel>
 
 										<inputmodel type="text" id="name" model="video.name" name="Video" error="error.name[0]"></inputmodel>
+
+										<div class="control-group" ng-class="{ 'error' : error.section_id[0] != undefined}">											
+											<label class="control-label" for="order">Video File</label>
+											<div class="controls">
+												<input type="file" ng-file-select="onFileSelect($files)" >
+												<span class="help-inline">{{error.section_id[0]}}</span>
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+										<div class="control-group" ng-show="progress">											
+											<label class="control-label" for="order">Progress</label>
+											<div class="controls">
+												<div class="progress progress-striped active" style="width: 50%;">
+												  <div class="bar" style="width: {{progress}}%;"></div>
+												</div>		
+											</div> <!-- /controls -->				
+										</div> <!-- /control-group -->
+
+
+														
 											
 											<br />
 										

@@ -28,6 +28,7 @@
 								<i class="icon-film"></i>
 								<h3>Videos</h3>
 								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="search"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -42,7 +43,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="video in videos">
+										<tr ng-repeat="video in videos | filter:search">
 											<td>{{video.video.order}}</td>
 											<td><a href="#/videos/{{video.video.id}}">{{video.video.name}}</a></td>
 											<td class="action-td">
@@ -56,6 +57,8 @@
 							</div> <!-- /widget-content -->
 							
 						</div> <!-- /widget -->
+
+						<pagination lastpage="lastPage" currentpage="currentPage"></pagination>
 						
 					</div> <!-- /span9 -->
 					

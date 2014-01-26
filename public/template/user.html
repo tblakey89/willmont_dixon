@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" ng-init="getUser()">
 	<div class="container">
 		
 		<div class="row">
@@ -22,21 +22,21 @@
 					
 					<div class="stat-holder">						
 						<div class="stat">							
-							<span>3</span>							
+							<span>{{user.green_cards}}</span>							
 							Green Cards	(Last 12 months)						
 						</div> <!-- /stat -->						
 					</div> <!-- /stat-holder -->
 					
 					<div class="stat-holder">						
 						<div class="stat">							
-							<span>2</span>							
+							<span>{{user.yellow_cards}}</span>							
 							Yellow Cards (Last 12 months)						
 						</div> <!-- /stat -->						
 					</div> <!-- /stat-holder -->
 					
 					<div class="stat-holder">						
 						<div class="stat">							
-							<span>1</span>							
+							<span>{{user.red_cards}}</span>							
 							Red Cards (Last 12 months)					
 						</div> <!-- /stat -->						
 					</div> <!-- /stat-holder -->
@@ -46,7 +46,7 @@
 				
 				<div class="row">
 					
-					<div class="span9" ng-init="getUser()">
+					<div class="span9">
 				
 						<div class="widget">
 							
@@ -152,7 +152,8 @@
 							<div class="widget-header">
 								<i class="icon-user"></i>
 								<h3>Next Of Kin</h3>
-								<a href="#users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success">Add</a>	
+								<a href="#users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="kinSearch"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -168,7 +169,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="item in nextOfKins">
+										<tr ng-repeat="item in nextOfKins | filter:kinSearch">
 											<td><a href="#/users/{{user.id}}/next_of_kins/{{item.next_of_kin.id}}">{{item.next_of_kin.first_name}} {{item.next_of_kin.last_name}}</a></td>
 											<td>{{item.next_of_kin.relationship}}</td>
 											<td>{{item.next_of_kin.contact_number}}</td>
@@ -189,7 +190,8 @@
 							<div class="widget-header">
 								<i class="icon-th-large"></i>
 								<h3>Disciplinary Cards</h3>
-								<a href="#users/{{user.id}}/new_disciplinary_card" class="btn btn-small btn-success">Add</a>	
+								<a href="#users/{{user.id}}/new_disciplinary_card" class="btn btn-small btn-success">Add</a>
+								<search searchmodel="cardSearch" currentpage="currentPage"></search>	
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -204,7 +206,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="item in disciplinaryCards">
+										<tr ng-repeat="item in disciplinaryCards | filter:cardSearch">
 											<td>{{item.disciplinary_card.colour}}</td>
 											<td>{{item.disciplinary_card.location}}</td>
 											<td class="action-td">

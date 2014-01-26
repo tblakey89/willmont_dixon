@@ -41,4 +41,14 @@ describe Video do
 
     it { should_not be_valid }
   end
+
+  describe "#extension_valid?" do
+    it "should return something for .mp4" do
+      @video.extension_valid?(".mp4").should eq(0)
+    end
+
+    it "should return nil for .exe" do
+      @video.extension_valid?(".exe").should eq(nil)
+    end
+  end
 end

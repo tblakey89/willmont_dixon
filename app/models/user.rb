@@ -32,4 +32,20 @@ class User < ActiveRecord::Base
       self.role = role
     end
   end
+
+  def green_cards
+    self.cards "Green"
+  end
+
+  def yellow_cards
+    self.cards "Yellow"
+  end
+
+  def red_cards
+    self.cards "Red"
+  end
+
+  def cards colour
+    self.disciplinary_cards.where("colour = '" + colour  + "' and created_at >= (NOW() -  '1 year'::interval)").count
+  end
 end

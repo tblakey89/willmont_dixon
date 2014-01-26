@@ -1,0 +1,10 @@
+<div class="pagination pagination-right">
+ 	<ul>
+ 		<!--TODO: arrow key stuff inside diretive if possible-->
+    	<li ng-class="{ 'disabled' : currentpage == 1}"><a ng-click="currentpage = 1">&laquo;</a></li>
+    	<li ng-hide="(currentpage -1) < 1"><a ng-click="currentpage = currentpage - 1">{{currentpage - 1}}</a></li>
+    	<li class="active"><a>{{currentpage}}</a></li>
+    	<li ng-hide="(currentpage + 1) > lastpage"><a ng-click="nextPage()">{{(currentpage + 1)}}</a></li>
+    	<li ng-class="{ 'disabled' : currentpage == lastpage}"><a ng-click="toLastPage()">&raquo;</a></li>
+	</ul>
+</div>

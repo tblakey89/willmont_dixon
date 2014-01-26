@@ -1,10 +1,13 @@
 @admin.controller 'AdminCrtl', ['$scope', 'Admin', 'Session', '$routeParams', '$location', ($scope, Admin, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.currentPage = 1
+	$scope.lastPage = 1
 
 	$scope.getAdmins = ->
 		Admin.getAdmins().success((admins) ->
 	    	$scope.admins = admins.admins
+	    	$scope.lastPage = Math.ceil($scope.admins.length/10)
 	  	).error (error) ->
 	    	$scope.status = "Unable to load admin data: " + error.message
 

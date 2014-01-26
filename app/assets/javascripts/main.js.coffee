@@ -1,4 +1,10 @@
-@admin = angular.module('admin', ["sessionService", "ngRoute", "adminService", "Directive"])
+@admin = angular.module('admin', ["sessionService", "ngRoute", "adminService", "Directive", 'angularFileUpload'])
+
+@admin.filter "slice", ->
+    (arr, start, end) ->
+        arr.slice start, end
+
+
 
 @admin.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")

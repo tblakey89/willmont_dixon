@@ -1,10 +1,13 @@
 @admin.controller 'QuestionCrtl', ['$scope', 'Question', 'Section', 'Session', '$routeParams', '$location', ($scope, Question, Section, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.currentPage = 1
+	$scope.lastPage = 1
 
 	$scope.getQuestions = ->
 		Question.getQuestions().success((questions) ->
 	    	$scope.questions = questions
+	    	$scope.lastPage = Math.ceil($scope.questions.length/10)
 	  	).error (error) ->
 	    	$scope.status = "Unable to load question data: " + error.message
 

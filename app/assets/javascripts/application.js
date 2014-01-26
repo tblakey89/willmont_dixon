@@ -18,7 +18,14 @@
 //= require angular-resource
 //= require angular-route
 //= require_self
+//= require jwplayer.min
+//= require jwplayer.html5
 //= require_tree ./angular/services
 //= require_tree ./angular/directives
+//= require angular-file-upload
+//= require angular-file-upload-shim
+//= require angular-file-upload-html5-shim
+//= require FileAPI.min
 //= require main
 //= require_tree ./angular/controllers
+//= require_tree ./angular/services

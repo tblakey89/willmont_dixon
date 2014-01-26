@@ -117,7 +117,7 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.addDisciplinaryCard = (userId, disciplinaryCard) ->
-    #disciplinaryCard.user_id = userId
+    disciplinaryCard.user_id = userId
     $http.post urlBase, { disciplinary_card: disciplinaryCard }, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory.deleteDisciplinaryCard = (id) ->

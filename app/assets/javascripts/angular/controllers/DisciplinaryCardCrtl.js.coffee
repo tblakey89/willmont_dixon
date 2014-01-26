@@ -1,11 +1,15 @@
 @admin.controller 'DisciplinaryCardCrtl', ['$scope', 'DisciplinaryCard', 'Session', '$routeParams', '$location', ($scope, DisciplinaryCard, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.disciplinaryCards = []
+	$scope.currentPage = 1
+	$scope.lastPage = 1
 
 	$scope.getDisciplinaryCards = ->
 		DisciplinaryCard.getDisciplinaryCards().success((disciplinaryCards) ->
 	    	$scope.disciplinaryCards = disciplinaryCards
-	  	).error (error) ->
+	    	$scope.lastPage = Math.ceil($scope.disciplinaryCards.length/10)
+		).error (error) ->
 	    	$scope.status = "Unable to load disciplinary card data: " + error.message
 
 	$scope.getDisciplinaryCard = ->
