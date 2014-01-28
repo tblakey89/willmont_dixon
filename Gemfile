@@ -32,6 +32,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'rabl'
 
+group :production do
+   gem 'rails_12factor'
+end
+
 gem 'devise', '3.0.2'
 
 group :development, :test do
