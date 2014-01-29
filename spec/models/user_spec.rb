@@ -38,6 +38,11 @@ describe User do
   it { should respond_to(:address_line_2) }
   it { should respond_to(:city) }
   it { should respond_to(:postcode) }
+  it { should respond_to(:work_at_height) }
+  it { should respond_to(:scaffolder) }
+  it { should respond_to(:ground_worker) }
+  it { should respond_to(:operate_machinery) }
+  it { should respond_to(:lift_loads) }
   it { should respond_to(:last_sign_in) }
   it { should respond_to(:next_of_kins) }
   it { should respond_to(:disciplinary_cards) }

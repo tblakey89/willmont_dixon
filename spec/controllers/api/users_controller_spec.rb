@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::UsersController do
-  let!(:user) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, destroy: true) }
+  let!(:user) { double(User, id: 1, first_name: "Test", last_name: "Test", email: "test@test.com", role: 1, job: "Tester", health_issues: false, is_supervisor: false, cscs_number: "testest", cscs_expiry_date: "2013-12-26", date_of_birth: "2013-12-26", national_insurance: "JG121212G", completed_pre_enrolment: "2013-12-26", contact_number: "07777777777", address_line_1: "Test", address_line_2: "Test", city: "Test", postcode: "cb6 2jx", save: true, update_attributes: true, work_at_height: false, scaffolder: false, ground_worker: false, operate_machinery: false, lift_loads: false, destroy: true) }
   let(:json) { { format: :json, user: { first_name: "Test" } } }
   before do
     allow_message_expectations_on_nil
@@ -81,6 +81,11 @@ describe Api::UsersController do
         result[user.class.name.downcase]['address_line_2'].should eql("Test")
         result[user.class.name.downcase]['city'].should eql("Test")
         result[user.class.name.downcase]['postcode'].should eql("cb6 2jx")
+        result[user.class.name.downcase]['work_at_height'].should eql(false)
+        result[user.class.name.downcase]['scaffolder'].should eql(false)
+        result[user.class.name.downcase]['ground_worker'].should eql(false)
+        result[user.class.name.downcase]['operate_machinery'].should eql(false)
+        result[user.class.name.downcase]['lift_loads'].should eql(false)
       end
     end
   end
