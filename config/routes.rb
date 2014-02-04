@@ -29,8 +29,13 @@ WillmontDixon::Application.routes.draw do
     end
   end
 
-  devise_for :user, path_prefix: 'api'
+  resources :pages do
+    collection do
+      get 'home'
+    end
+  end
 
+  devise_for :user, path_prefix: 'api'
   devise_scope :user do
     post 'api/registrations' => 'api/registrations#create', as: 'register'
     post 'api/sessions' => 'api/sessions#create', as: 'login'

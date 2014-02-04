@@ -39,6 +39,6 @@ class Api::AdminsController < ApplicationController
 
 private
   def safe_params
-    params.require(:admin).permit(:first_name, :last_name, :email) unless params[:admin].blank?
+    params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation) unless params[:admin].blank?
   end
 end

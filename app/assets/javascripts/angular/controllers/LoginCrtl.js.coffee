@@ -2,6 +2,13 @@
 
 	$scope.login = ->
 		Session.login($scope.email, $scope.password)
+		$scope.email = ""
+		$scope.password= ""
 
-
+	$scope.$watch (->
+		Session.error
+		), ((data) ->
+			$scope.error = data
+			return
+			), true
 ]

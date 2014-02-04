@@ -27,5 +27,6 @@
 //= require angular-file-upload-html5-shim
 //= require FileAPI.min
 //= require main
+//= require exam
 //= require_tree ./angular/controllers
 //= require_tree ./angular/services

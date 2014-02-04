@@ -7,12 +7,17 @@
 		
 	</div> <!-- /login-header -->
 <div id="login-content" class="clearfix">
-	<form>
+
+	<div class="alert alert-error" ng-show="error.status == false">
+		{{error.info}}
+	</div>
+
+	<form ng-enter="login()">
 				<fieldset>
 					<div class="control-group">
-						<label class="control-label" for="username">Username</label>
+						<label class="control-label" for="username">Email</label>
 						<div class="controls">
-							<input type="text" class="" ng-model="email" id="username" placeholder="Username">
+							<input type="text" class="" ng-model="email" id="username" placeholder="Email">
 						</div>
 					</div>
 					<div class="control-group">

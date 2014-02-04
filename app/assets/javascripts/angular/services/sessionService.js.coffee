@@ -10,13 +10,14 @@ angular.module("sessionService", []).factory "Session", ($location, $http, $q, $
         user:
           email: email
           password: password
-      ).then (response) ->
+      ).then((response) ->
         service.currentUser = response.data.user
         $window.sessionStorage.authToken = response.data.auth_token
-        
         #TODO: Send them back to where they came from
         #$location.path(response.data.redirect);
         $location.path "/"  if service.isAuthenticated()
+        service.error = response.data
+      )
 
 
     logout: (redirectTo) ->
