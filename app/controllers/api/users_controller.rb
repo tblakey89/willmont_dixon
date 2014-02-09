@@ -32,8 +32,6 @@ class Api::UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
   def disciplinary_cards

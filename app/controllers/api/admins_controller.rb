@@ -26,15 +26,11 @@ class Api::AdminsController < ApplicationController
     else
       render :json => { :errors => @admin.errors }, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def destroy
     User.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
 private

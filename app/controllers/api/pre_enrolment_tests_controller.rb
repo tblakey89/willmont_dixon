@@ -25,14 +25,10 @@ class Api::PreEnrolmentTestsController < ApplicationController
     else
       render nothing: true, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def destroy
     PreEnrolmentTest.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 end

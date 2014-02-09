@@ -35,8 +35,6 @@ class Api::VideosController < ApplicationController
     else
       render :json => { :errors => @video.errors }, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def destroy
@@ -45,8 +43,6 @@ class Api::VideosController < ApplicationController
       File.delete("public/videos/" + params[:id] + ".mp4")
     end
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
 private

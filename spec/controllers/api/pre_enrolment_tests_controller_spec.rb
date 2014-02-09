@@ -106,11 +106,11 @@ describe Api::PreEnrolmentTestsController do
       end
 
       context "unable to find test" do
-        before { PreEnrolmentTest.stub(:find).and_return(nil) }
+        before { PreEnrolmentTest.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
         it "renders nothing" do
           put :update, json
-          response.status.should eq(400)
+          response.status.should eq(404)
           response.body.should be_blank
         end
       end
@@ -130,11 +130,11 @@ describe Api::PreEnrolmentTestsController do
       end
 
       context "doesn't find a test" do
-        before { PreEnrolmentTest.stub(:find).and_return(nil) }
+        before { PreEnrolmentTest.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
-        it "should return status 400" do
+        it "should return status 404" do
           delete :destroy, id: 2
-          response.status.should eq(400)
+          response.status.should eq(404)
           response.body.should be_blank
         end
       end

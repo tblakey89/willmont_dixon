@@ -26,15 +26,11 @@ class Api::NextOfKinsController < ApplicationController
     else
       render :json => { :errors => @next_of_kin.errors }, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def destroy
     @next_of_kin = @user.next_of_kins.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
 private

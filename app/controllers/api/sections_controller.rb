@@ -22,8 +22,6 @@ class Api::SectionsController < ApplicationController
     else
       render :json => { :errors => @section.errors }, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def show
@@ -33,8 +31,6 @@ class Api::SectionsController < ApplicationController
   def destroy
     @pre_enrolment_test.sections.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
   def questions

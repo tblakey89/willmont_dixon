@@ -107,12 +107,17 @@ describe Api::AdminsController do
       end
     end
 
-    context "with no admin" do
-      before { User.stub(:find).and_return(nil) }
+    context "when there are is no user with that ID" do
+      before do
+        User.stub(:find).and_raise(ActiveRecord::RecordNotFound)
+        put :update, json
+      end
 
       it "renders nothing" do
-        put :update, json
-        response.status.should eq(400)
+        response.status.should eq(404)
+      end
+
+      it 'renders a 404 status' do
         response.body.should be_blank
       end
     end
@@ -128,11 +133,11 @@ describe Api::AdminsController do
     end
 
     context "doesn't find question" do
-      before { User.stub(:find).and_return(nil) }
+      before { User.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
-      it "should return status 400" do
+      it "returns status 404" do
         delete :destroy, id: 1
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end

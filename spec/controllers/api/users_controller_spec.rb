@@ -140,7 +140,7 @@ describe Api::UsersController do
     end
 
     context "with no user" do
-      before { User.stub(:find).and_return(nil) }
+      before { User.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
       it "renders nothing" do
         put :update, json
@@ -160,11 +160,11 @@ describe Api::UsersController do
     end
 
     context "doesn't find question" do
-      before { User.stub(:find).and_return(nil) }
+      before { User.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
-      it "should return status 400" do
+      it "should return status 404" do
         delete :destroy, id: 1
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end

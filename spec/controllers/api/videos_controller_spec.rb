@@ -106,11 +106,12 @@ describe Api::VideosController do
     end
 
     context "with no video" do
-      let(:videos) { double(Video, find: nil) }
+      let(:videos) { double(Video) }
+      before { videos.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
       it "renders nothing" do
         put :update, json
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end
@@ -129,11 +130,12 @@ describe Api::VideosController do
     end
 
     context "doesn't find video" do
-      let(:videos) { double(Video, find: nil) }
+      let(:videos) { double(Video) }
+      before { videos.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
-      it "should return status 400" do
+      it "should return status 404" do
         delete :destroy, pre_enrolment_test_id: 1, id: 1
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end

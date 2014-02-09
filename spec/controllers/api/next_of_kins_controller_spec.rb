@@ -112,11 +112,12 @@ describe Api::NextOfKinsController do
     end
 
     context "with no next_of_kin" do
-      let(:next_of_kins) { double(User, find: nil) }
+      let(:next_of_kins) { double(User) }
+      before { next_of_kins.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
       it "renders nothing" do
         put :update, json
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end
@@ -132,11 +133,12 @@ describe Api::NextOfKinsController do
     end
 
     context "doesn't find next_of_kin" do
-      let(:next_of_kins) { double(User, find: nil) }
+      let(:next_of_kins) { double(User) }
+      before { next_of_kins.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
       it "should return status 400" do
         delete :destroy, user_id: 1, id: 1
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end

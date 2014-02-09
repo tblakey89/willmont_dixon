@@ -109,11 +109,12 @@ describe Api::SectionsController do
     end
 
     context "with no section" do
-      let(:sections) { double(Section, find: nil) }
+      let(:sections) { double(Section) }
+      before { sections.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
       it "renders nothing" do
         put :update, json
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end
@@ -132,11 +133,12 @@ describe Api::SectionsController do
     end
 
     context "doesn't find section" do
-      let(:sections) { double(Section, find: nil) }
+      let(:sections) { double(Section) }
+      before { sections.stub(:find).and_raise(ActiveRecord::RecordNotFound) }
 
-      it "should return status 400" do
+      it "should return status 404" do
         delete :destroy, pre_enrolment_test_id: 1, id: 1
-        response.status.should eq(400)
+        response.status.should eq(404)
         response.body.should be_blank
       end
     end

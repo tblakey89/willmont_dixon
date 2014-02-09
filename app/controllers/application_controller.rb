@@ -12,7 +12,10 @@ class ApplicationController < ActionController::Base
   delegate :allow_param?, to: :current_permission
   helper_method :allow_param?
 
-protected
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
+  protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :date_of_birth, :email, :national_insurance, :cscs_number, :cscs_expiry_date, :role, :postcode, :contact_number, :password, :password_confirmation) }
   end
@@ -46,5 +49,9 @@ protected
     else
       render status: 401, json: { status: false, info: "You are not logged in", data: {} }
     end
+  end
+
+  def record_not_found
+    render nothing: true, status: 404
   end
 end

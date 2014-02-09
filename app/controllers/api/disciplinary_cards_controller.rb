@@ -25,15 +25,11 @@ class Api::DisciplinaryCardsController < ApplicationController
     else
       render :json => { :errors => @disciplinary_card.errors }, status: 400
     end
-  rescue
-    render nothing: true, status: 400
   end
 
   def destroy
     DisciplinaryCard.find(params[:id]).destroy
     render nothing: true, status: 204
-  rescue
-    render nothing: true, status: 400
   end
 
 private
