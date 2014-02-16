@@ -1,0 +1,46 @@
+<div id="content" ng-init="getEmployer()">
+<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+		
+			</div> <!-- /span3 -->
+			
+			<div class="span9">
+				
+				<div class="widget-content">
+					<h3>Employer</h3>
+
+					<p>Please enter your Employer's details:</p>
+
+					<form class="form-horizontal">
+						<inputmodel type="text" id="company_name" model="employer.company_name" name="Employer (Company Name)" error="error.company_name[0]"></inputmodel>
+
+						<inputmodel type="text" id="contact_number" model="employer.contact_number" name="Employer Contact Number" error="error.contact_number[0]"></inputmodel>
+
+						<inputmodel type="text" id="address_line_1" model="employer.address_line_1" name="Employer Address Line 1" error="error.address_line_1[0]"></inputmodel>
+
+						<inputmodel type="text" id="address_line_2" model="employer.address_line_2" name="Employer Address Line 2" error="error.address_line_2[0]"></inputmodel>
+
+						<inputmodel type="text" id="city" model="employer.city" name="Employer City" error="error.city[0]"></inputmodel>
+
+						<inputmodel type="text" id="postal_code" model="employer.postal_code" name="Employer Postcode" error="error.postal_code[0]"></inputmodel>
+
+						<div class="control-group">
+						    <div class="controls">
+						      <button type="submit" class="btn" ng-click="addEmployer()">Submit</button>
+						    </div>
+						</div>
+					</form>
+
+					<p>Once you click the "Submit" button below, you will begin the Pre-Enrolment Test. This will consist of a series of short video clips followed by multiple choice questions. These questions must be answered correctly in order for you to proceed.</p>
+				</div>
+				
+			</div> <!-- /span9 -->
+			
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+</div>

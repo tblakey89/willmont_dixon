@@ -13,8 +13,12 @@ WillmontDixon::Application.routes.draw do
     end
     resources :users do
       resources :next_of_kins
+      resources :employers
       member do
         get 'disciplinary_cards'
+      end
+      collection do
+        post 'cscs_check'
       end
     end
     resources :admins

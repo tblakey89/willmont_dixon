@@ -1,0 +1,50 @@
+<div id="content" ng-init="getNextOfKin()">
+<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+		
+			</div> <!-- /span3 -->
+			
+			<div class="span9">
+				
+				<div class="widget-content">
+					<h3>Next of Kin</h3>
+
+					<p><b>This section is optional. If you do not wish to provide us with a next of kin simply leave this form blank and click 'Submit' below.</b></p>
+
+					<p>In case of emergencies please fill out a next of kin in the form below for our records</p>
+
+					<form class="form-horizontal">
+						<inputmodel type="text" id="first_name" model="next_of_kin.first_name" name="Next of Kin First Name" error="error.first_name[0]"></inputmodel>
+
+						<inputmodel type="text" id="last_name" model="next_of_kin.last_name" name="Next of Kin Last Name" error="error.last_name[0]"></inputmodel>
+
+						<inputmodel type="text" id="relationship" model="next_of_kin.relationship" name="Next of Kin Relationship" error="error.relationship[0]"></inputmodel>
+
+						<inputmodel type="text" id="contact_number" model="next_of_kin.contact_number" name="Next of Kin Contact Number" error="error.contact_number[0]"></inputmodel>
+
+						<inputmodel type="text" id="address_line_1" model="next_of_kin.address_line_1" name="Next of Kin Address Line 1" error="error.address_line_1[0]"></inputmodel>
+
+						<inputmodel type="text" id="address_line_2" model="next_of_kin.address_line_2" name="Next of Kin Address Line 2" error="error.address_line_2[0]"></inputmodel>
+
+						<inputmodel type="text" id="city" model="next_of_kin.city" name="Next of Kin City" error="error.city[0]"></inputmodel>
+
+						<inputmodel type="text" id="postcode" model="next_of_kin.postcode" name="Next of Kin Postcode" error="error.postcode[0]"></inputmodel>
+
+						<div class="control-group">
+						    <div class="controls">
+						      <button type="submit" class="btn" ng-click="AddNextOfKin()">Submit</button>
+						    </div>
+						</div>
+					</form>
+				</div>
+				
+			</div> <!-- /span9 -->
+			
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+</div>

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::SectionsController do
-  let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, work_at_height: false, scaffolder: false, ground_worker: false, operate_machinery: false, lift_loads: false, young: false, supervisor: false, save: true, update_attributes: true, destroy: true) }
+  let(:section) { double(Section, id: 1, name: "Test", order: 1, pre_enrolment_test_id: 1, work_at_height: false, scaffolder: false, ground_worker: false, operate_machinery: false, lift_loads: false, young: false, supervisor: false, save: true, update_attributes: true, destroy: true, videos: true, questions: true) }
   let(:sections) { double(Section, find: section, new: section) }
   let(:json) { { format: :json, pre_enrolment_test_id: 1, section: { name: "Test", order: 1 } } }
 

@@ -5,7 +5,9 @@ describe NextOfKin do
                                         last_name: "Testerson",
                                         relationship: "Brother",
                                         address_line_1: "test street",
-                                        postcode: "CB6 2JX") }
+                                        postcode: "CB6 2JX",
+                                        contact_number: "07981195131"
+                                       ) }
 
   subject { @next_of_kin }
 
@@ -16,6 +18,7 @@ describe NextOfKin do
   it { should respond_to(:address_line_2) }
   it { should respond_to(:city) }
   it { should respond_to(:postcode) }
+  it { should respond_to(:user) }
   it { should be_valid }
 
   describe "first_name should be present" do

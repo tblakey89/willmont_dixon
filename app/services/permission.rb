@@ -3,6 +3,7 @@ class Permission
     allow :pages, [:home]
     allow :sessions, [:create, :failure]
     allow :registrations, [:create]
+    allow :users, [:cscs_check]
     if user
       allow :users, [:show, :update] do |the_user|
         the_user.id == user.id
@@ -12,6 +13,7 @@ class Permission
       allow "api/questions", [:show, :index, :create, :destroy, :update]
       allow "api/sections", [:index, :show, :update, :create, :destroy, :questions, :videos]
       allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
+      allow "api/employers", [:index, :show, :update, :destroy, :create]
       allow :pre_enrolment_tests, [:show]
       allow "api/videos", [:index, :show, :update, :destroy, :create]
       allow "api/admins", [:index, :show, :update, :destroy, :create]

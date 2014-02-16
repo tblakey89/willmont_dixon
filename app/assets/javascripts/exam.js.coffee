@@ -20,6 +20,24 @@
   $routeProvider.when("/", {
     templateUrl: '../../template/exam/home.html',
     controller: 'ExamHomeCrtl'
+  }).when("/cscs_check", {
+    templateUrl: '../../template/exam/cscs.html',
+    controller: 'SignUpCrtl'
+  }).when("/signup", {
+    templateUrl: '../../template/exam/signup.html',
+    controller: 'SignUpCrtl'
+  }).when("/signup_2", {
+    templateUrl: '../../template/exam/signup2.html',
+    controller: 'SignUpCrtl'
+  }).when("/next_of_kin", {
+    templateUrl: '../../template/exam/next_of_kin.html',
+    controller: 'SignUpCrtl'
+  }).when("/employer", {
+    templateUrl: '../../template/exam/employer.html',
+    controller: 'SignUpCrtl'
+  }).when("/sections/:id", {
+    templateUrl: '../../template/exam/section.html',
+    controller: 'ExamCrtl'
   }).otherwise({
     templateUrl: '../../template/exam/home.html',
     controller: 'ExamHomeCrtl'

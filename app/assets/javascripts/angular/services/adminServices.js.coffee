@@ -17,6 +17,9 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.deleteUser = (id) ->
     $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
 
+  dataFactory.checkCSCS = (user) ->
+    $http.post urlBase + "cscs_check", { user: user }
+
   dataFactory
 ]).factory("Admin", ["$http", ($http, $window) ->
   urlBase = "/api/admins/"
@@ -57,6 +60,28 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.put urlBase(userId) + id, { next_of_kin: nextOfKin }, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory.deleteNextOfKin = (userId, id) ->
+    $http.delete urlBase(userId) + id, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory
+]).factory("Employer", ["$http", ($http, $window) ->
+  dataFactory = {}
+
+  urlBase = (userId) ->
+    "/api/users/" + userId + "/employers/"
+
+  dataFactory.getEmployers = (userId) ->
+    $http.get(urlBase(userId), { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.getEmployer = (userId, id) ->
+    $http.get(urlBase(userId) + "/" + id, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.addEmployer = (userId, employer) ->
+    $http.post urlBase(userId), { employer: employer }, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory.updateEmployer = (userId, id, employer) ->
+    $http.put urlBase(userId) + id, { employer: employer }, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory.deleteEmployer = (userId, id) ->
     $http.delete urlBase(userId) + id, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory

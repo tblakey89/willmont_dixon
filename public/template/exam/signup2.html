@@ -1,0 +1,99 @@
+<div id="content" ng-init="getUser()">
+<div class="container">
+		
+		<div class="row">
+			
+			<div class="span3">
+		
+			</div> <!-- /span3 -->
+			
+			<div class="span9">
+				
+				<div class="widget-content">
+					<h3>Enter Information Part 2 of 2</h3>
+
+					<form class="form-horizontal">
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="work_at_height">Do you work at height?</label>
+							<div class="controls">
+								<select ng-model="user.work_at_height" name="work_at_height" id="work_at_height">
+									<option value="0" ng-selected="user.work_at_height == 0">No</option>
+									<option value="1" ng-selected="user.work_at_height == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="scaffolder">Are you a scaffolder?</label>
+							<div class="controls">
+								<select ng-model="user.scaffolder" name="scaffolder" id="scaffolder">
+									<option value="0" ng-selected="user.scaffolder == 0">No</option>
+									<option value="1" ng-selected="user.scaffolder == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="ground_worker">Are you a ground worker?</label>
+							<div class="controls">
+								<select ng-model="user.ground_worker" name="ground_worker" id="ground_worker">
+									<option value="0" ng-selected="user.ground_worker == 0">No</option>
+									<option value="1" ng-selected="user.ground_worker == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="operate_machinery">Do you operate plant and/or machinery?</label>
+							<div class="controls">
+								<select ng-model="user.operate_machinery" name="operate_machinery" id="operate_machinery">
+									<option value="0" ng-selected="user.operate_machinery == 0">No</option>
+									<option value="1" ng-selected="user.operate_machinery == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="lift_loads">Are you involved with mechanical lifting of loads?</label>
+							<div class="controls">
+								<select ng-model="user.lift_loads" name="lift_loads" id="lift_loads">
+									<option value="0" ng-selected="user.lift_loads == 0">No</option>
+									<option value="1" ng-selected="user.lift_loads == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="is_supervisor">Are you a supervisor or manager?</label>
+							<div class="controls">
+								<select ng-model="user.is_supervisor" name="is_supervisor" id="is_supervisor">
+									<option value="0" ng-selected="user.is_supervisor == 0">No</option>
+									<option value="1" ng-selected="user.is_supervisor == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group">
+						    <div class="controls">
+						      <button type="submit" class="btn" ng-click="signUp2()">Submit</button>
+						    </div>
+						</div>
+
+						<p>By clicking "Submit" you confirm that:</p>
+						<ol>
+							<li>The details you have entered are correct to the best of your knowledge.</li>
+							<li>You will abide by Willmott Dixon's general health and safety rulesand any specific instructions given to you when you arrive on our site.</li>
+							<li>That you will cooperate with us to ensure that your work conducted on our sites is safe and without risk to health.</li>
+							<li>Bring to our site manager's attention any item that you could beleive to be dangerous or cause ill health</li>
+							<li>You agree to Willmott Dixon holding the personal data that you have provided (including any sensitive personal data) which Willmott Dixon shall use only for the purpose of complying with its health and safety obligations and in accordance with its data protection policy.</li>
+						</ol>
+					</form>
+				</div>
+				
+			</div> <!-- /span9 -->
+			
+			
+		</div> <!-- /row -->
+		
+	</div> <!-- /container -->
+</div>
