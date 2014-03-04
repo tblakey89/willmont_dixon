@@ -27,6 +27,12 @@ class Api::PreEnrolmentTestsController < ApplicationController
     end
   end
 
+  def begin_test
+    @pre_enrolment_test = PreEnrolmentTest.find(params[:id])
+    @section = @pre_enrolment_test.sections.first(order: "sections.order asc")
+    render "api/sections/show", id: @section.id
+  end
+
   def destroy
     PreEnrolmentTest.find(params[:id]).destroy
     render nothing: true, status: 204

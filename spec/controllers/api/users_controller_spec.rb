@@ -188,4 +188,29 @@ describe Api::UsersController do
       response.should render_template :disciplinary_cards
     end
   end
+
+  describe "#find_by_auth_token" do
+    before { User.stub(:find_by).and_return(user) }
+
+    it "assigns a user" do
+      post :find_by_auth_token, { format: :json, auth_token: "3432424" }
+      assigns(:user).should eq(user)
+    end
+
+    it "renders the show view" do
+      post :find_by_auth_token, { format: :json, auth_token: "2342442" }
+      response.status.should eq(200)
+      response.should render_template("show")
+    end
+
+    context "with no user" do
+      before { User.stub(:find_by).and_raise(ActiveRecord::RecordNotFound) }
+
+      it "renders nothing" do
+        post :find_by_auth_token, { format: :json, auth_token: "2342442" }
+        response.status.should eq(404)
+        response.body.should be_blank
+      end
+    end
+  end
 end

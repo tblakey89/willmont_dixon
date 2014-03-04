@@ -35,7 +35,7 @@
   }).when("/employer", {
     templateUrl: '../../template/exam/employer.html',
     controller: 'SignUpCrtl'
-  }).when("/sections/:id", {
+  }).when("/section/:id", {
     templateUrl: '../../template/exam/section.html',
     controller: 'ExamCrtl'
   }).otherwise({

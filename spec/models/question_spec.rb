@@ -21,6 +21,7 @@ describe Question do
   it { should respond_to(:answer) }
   it { should respond_to(:order) }
   it { should respond_to(:section) }
+  it { should respond_to(:video) }
   it { should respond_to(:pre_enrolment_test) }
   it { should be_valid }
 

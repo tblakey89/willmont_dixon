@@ -11,11 +11,15 @@ class Api::NextOfKinsController < ApplicationController
   end
 
   def create
-    @next_of_kin = @user.next_of_kins.new(safe_params)
-    if @next_of_kin.save
-      render :show, user_id: @user.id, id: @next_of_kin.id, status: 201
+    unless params[:next_of_kin].blank?
+      @next_of_kin = @user.next_of_kins.new(safe_params)
+      if @next_of_kin.save
+        render :show, user_id: @user.id, id: @next_of_kin.id, status: 201
+      else
+        render :json => { :errors => @next_of_kin.errors }, status: 400
+      end
     else
-      render :json => { :errors => @next_of_kin.errors }, status: 400
+      render nothing: true, status: 200
     end
   end
 

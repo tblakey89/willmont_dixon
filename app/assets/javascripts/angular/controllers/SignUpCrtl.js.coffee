@@ -1,28 +1,34 @@
-@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', '$routeParams', '$location', '$window', ($scope, Session, User, NextOfKin, Employer, $routeParams, $location, $window) ->
+@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', 'PreEnrolmentTest', '$routeParams', '$location', '$window', 'ExamSections', ($scope, Session, User, NextOfKin, Employer, PreEnrolmentTest, $routeParams, $location, $window, ExamSections) ->
+
+	$scope.sections = ExamSections.sections
 
 	$scope.CSCSCheck = ->
 		User.checkCSCS($scope.user).success((user) ->
 	    	$window.sessionStorage.user_id = user.user.id
 	    	$window.sessionStorage.authToken = user.user.authentication_token
+	    	$window.sessionStorage["cscs_check"] = true
 	    	$location.path "/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
 
 	$scope.signUp = ->
 		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->
-	    	$location.path "/signup_2"
-	  	).error (errors) ->
+			$window.sessionStorage["signup"] = true
+			$location.path "/signup_2"
+		).error (errors) ->
 	    	$scope.error = errors.errors
 
 	$scope.signUp2 = ->
 		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->
-	    	$location.path "/next_of_kin"
-	  	).error (errors) ->
+			$window.sessionStorage["signup2"] = true
+			$location.path "/next_of_kin"
+		).error (errors) ->
 	    	$scope.error = errors.errors
 
 	$scope.addNextOfKin = ->
 		NextOfKin.addNextOfKin($window.sessionStorage.user_id, $scope.next_of_kin).success((data) ->
-			$window.sessionStorage.next_of_kin_id = data.next_of_kin.id
+			$window.sessionStorage.next_of_kin_id = data.next_of_kin.id unless data is " "
+			$window.sessionStorage["next_of_kin"] = true
 			$location.path "/employer"
 		).error (errors) ->
 			$scope.error = errors.errors
@@ -30,7 +36,11 @@
 	$scope.addEmployer = ->
 		Employer.addEmployer($window.sessionStorage.user_id, $scope.employer).success((data) ->
 			$window.sessionStorage.employer_id = data.employer.id
-			$location.path "/employer"
+			$window.sessionStorage["employer"] = true
+			PreEnrolmentTest.beginTest().success((data) ->
+				$location.path "/section/" + data.section.id
+			).error(errors) ->
+				$scope.error = errors.errors
 		).error (errors) ->
 			$scope.error = errors.errors
 

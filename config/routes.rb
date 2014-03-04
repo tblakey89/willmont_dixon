@@ -6,10 +6,18 @@ WillmontDixon::Application.routes.draw do
         member do
           get 'questions'
           get 'videos'
+          post 'check_answers'
         end
       end
       resources :questions
-      resources :videos
+      resources :videos do
+        member do
+          get :and_questions
+        end
+      end
+      member do
+        get 'begin_test'
+      end
     end
     resources :users do
       resources :next_of_kins
@@ -19,6 +27,8 @@ WillmontDixon::Application.routes.draw do
       end
       collection do
         post 'cscs_check'
+        post 'find_by_auth_token'
+        get 'submit_results'
       end
     end
     resources :admins

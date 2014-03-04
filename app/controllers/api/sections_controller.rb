@@ -43,6 +43,16 @@ class Api::SectionsController < ApplicationController
     @videos = @section.videos
   end
 
+  def check_answers
+    section = Section.find(params[:id])
+    answers = params[:answers]
+    if section.correct? answers
+      render status: 200, json: { data: params[:answers] }
+    else
+      render status: 422, json: { data: params[:answers] }
+    end
+  end
+
 private
   def load_test
     @pre_enrolment_test = PreEnrolmentTest.find(params[:pre_enrolment_test_id])

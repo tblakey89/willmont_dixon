@@ -1,37 +1,161 @@
-@exam.controller 'ExamCrtl', ['$scope', 'Session', 'Video', 'Question', 'Section', '$routeParams', '$location', ($scope, Session, Video, Question, Section, $routeParams, $location) ->
+@exam.controller 'ExamCrtl', ['$scope', 'Session', 'Video', 'Question', 'Section', '$routeParams', '$location', '$route', 'ExamSections', '$window', 'CurrentUser', ($scope, Session, Video, Question, Section, $routeParams, $location, $route, ExamSections, $window, CurrentUser) ->
 
 	$scope.id = $routeParams.id
+	$scope.showVideo = true
+	$scope.finished = false
+	$scope.incorrect = false
+	$scope.answers = {}
+	$scope.order = 0
+	$scope.videoOrder = 0
+	$scope.answerSelected = 0
+	CurrentUser.getUser().success((data) ->
+		$scope.currentUser = data.user
+	)
+	$scope.sections = ExamSections.getSections().success((data) ->
+		$scope.sections = data
+	)
 
 	$scope.getSection = ->
 		Section.getSection($scope.id).success((section) ->
-	    	$scope.section = section.section
-	    	$scope.getVideo($scope.section.videos[0].video.id)
-	  	).error (error) ->
+			$scope.section = section.section
+			if $window.sessionStorage["section" + $scope.section.order] is "true"
+				$scope.showVideo = false
+				$scope.finished = true
+			else
+				unless $scope.section.videos.length is 0
+					$scope.video = $scope.section.videos[0].video
+					$scope.questions = $scope.video.questions
+					$scope.setUpVideo()
+
+		).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 
-	$scope.getVideo = (video_id) ->
-		Video.getVideo(video_id).success((video) ->
-	    	$scope.video = video.video
-	    	$scope.setUpVideo()
-	  	).error (error) ->
-	    	$scope.status = "Unable to load video data: " + error.message
+	#TODO
+	#7)Check filling in details works fine
 
-	$scope.getQuestion = ->
-		Question.getQuestion($scope.id).success((question) ->
-	    	$scope.question = question.question
-	  	).error (error) ->
-	    	$scope.status = "Unable to load question data: " + error.message
+	$scope.submitAnswer = ->
+		$scope.answers[$scope.question.id] = $scope.answerSelected
+	
+	$scope.nextQuestion = ->
+		if $scope.questions.length is Object.keys($scope.answers).length
+			unless $scope.videoOrder + 1 is $scope.section.videos.length
+				$scope.videoOrder += 1
+				$scope.order = 0
+				$scope.answerSelected = 0
+				$scope.video = $scope.section.videos[$scope.videoOrder].video
+				$scope.questions = $scope.video.questions
+				$scope.showQuestion = false
+				$scope.showVideo = true
+				jwplayer("video").play()
+		else
+			$scope.order += 1
+			$scope.question = $scope.questions[$scope.order].question
+			if $scope.answers[$scope.question.id] is undefined then $scope.answerSelected = 0 else $scope.answerSelected = $scope.answers[$scope.question.id]
 
+	$scope.endSection = ->
+		if $scope.section.total_questions is Object.keys($scope.answers).length
+			$scope.sectionComplete() 
+
+	$scope.questionsFinished = ->
+		$scope.section.total_questions is Object.keys($scope.answers).length and $scope.video.id is $scope.section.videos.slice(-1)[0].video.id if $scope.answers and $scope.questions and $scope.video and $scope.section
+
+	$scope.lastQuestion = ->
+		$scope.question.id is $scope.questions.slice(-1)[0].question.id and $scope.video.id is $scope.section.videos.slice(-1)[0].video.id if $scope.video and $scope.section and $scope.question and $scope.questions
+		
 	$scope.setUpVideo = ->
 	    jwplayer("video").setup
 	    	width: "100%"
 	    	aspectratio: "12:5"
+	    	autostart: true
 	    	icons: false
 	    	file: "/videos/" + $scope.video.id + ".mp4"
 	    	events:
 	    		onComplete: ->
 	    			$scope.$apply ->
-	    				$scope.video = true
-	    				$scope.begin = $scope.begin + 1
+	    				$scope.showVideo = false
+	    				if $scope.video.questions.length > 0
+	    					$scope.showQuestion = true
+	    					$scope.question = $scope.questions[0].question
+	    				else
+	    					$scope.sectionComplete()
+
+	$scope.sectionComplete = ->
+		$scope.showQuestion = false
+		Section.checkAnswers($scope.id, $scope.answers).success((data) ->
+			$scope.finished = true
+			$window.sessionStorage["section" + $scope.section.order] = true
+		).error (error) ->
+			$scope.answers = {}
+			$scope.incorrect = true
+
+	$scope.restartSection = ->
+		$scope.incorrect = false
+		$route.reload()
+
+	$scope.selectAnswer = (answer) ->
+		$scope.answerSelected = answer
+		$scope.submitAnswer()
+
+	$scope.changePart = (part, id) ->
+		if part is "video"
+			if $scope.video.id is id
+				$scope.showQuestion = false
+				$scope.showVideo = true
+				jwplayer("video").play()
+		else if part is "question"
+			for item in $scope.questions
+				if item.question.id is id
+					$scope.question = item.question 
+					$scope.answerSelected = $scope.answers[id]
+
+	$scope.nextSection = ->
+		unless $scope.finalSection()
+			for section in $scope.sections
+				if section.section.order > $scope.section.order
+					if $scope.is_allowed($scope.currentUser, section.section)
+						$location.path "/section/" + section.section.id
+						break
+
+	$scope.finalSection = ->
+		allowed = 0
+		done = 0
+		for section in $scope.sections
+			if $scope.is_allowed($scope.currentUser, section.section)
+				allowed += 1
+			if $window.sessionStorage["section" + section.order] is "true"
+				done += 1
+		done > allowed
+
+	$scope.finishedTest = ->
+		finished = true
+		for section in $scope.sections
+			if $scope.is_allowed($scope.currentUser, section.section)
+				unless $window.sessionStorage["section" + section.section.order]
+					finished = false
+		finished
+
+	$scope.submitResults = ->
+		CurrentUser.submitResults().success((data) ->
+			$window.sessionStorage.clear()
+			$location.path "/"
+		).error (errors) ->
+	    	$scope.error = errors.errors
+
+	$scope.showCompleteSection = ->
+		$scope.finished && !$scope.finishedTest()
+
+	$scope.is_allowed = (user, section) ->
+      unless user is undefined or section is undefined
+        allowed = true
+        allowed = false if section.work_at_height is true and user.work_at_height isnt true
+        allowed = false if section.scaffolder is true and user.scaffolder isnt true
+        allowed = false if section.ground_worker is true and user.ground_worker isnt true
+        allowed = false if section.operate_machinery is true and user.operate_machinery isnt true
+        allowed = false if section.lift_loads is true and user.lift_loads isnt true
+        allowed = false if section.supervisor is true and user.is_supervisor isnt true
+        allowed = false if section.young is true and user.young isnt true
+        allowed
+      else
+        undefined
 
 ]

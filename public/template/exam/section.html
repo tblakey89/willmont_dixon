@@ -4,7 +4,9 @@
 		<div class="row">
 			
 			<div class="span3">
-		
+
+				<exammenu active="user" sections="sections" user="currentUser"></exammenu>
+
 			</div> <!-- /span3 -->
 			
 			<div class="span9">
@@ -13,9 +15,54 @@
 					Section {{section.order}} - {{section.name}}					
 				</h1>
 				
-				<div class="widget-content">
+				<div class="widget-content question_format">
 					
-					<div id="video"></div>
+					<div ng-show="showVideo">
+						<div id="video"></div>
+					</div>
+
+					<div ng-show="showQuestion" id="question">
+						<h3>{{question.name}}</h3>
+						<div class="well well-large answer" ng-click="selectAnswer(1)" ng-class="{selected: answerSelected == 1}">
+							<h4>{{question.answer1}}</h4>
+						</div>
+						<div class="well well-large answer" ng-click="selectAnswer(2)" ng-class="{selected: answerSelected == 2}">
+							<h4>{{question.answer2}}</h4>
+						</div>
+						<div class="well well-large answer" ng-click="selectAnswer(3)" ng-class="{selected: answerSelected == 3}">
+							<h4>{{question.answer3}}</h4>
+						</div>
+						<div class="well well-large answer" ng-click="selectAnswer(4)" ng-class="{selected: answerSelected == 4}">
+							<h4>{{question.answer4}}</h4>
+						</div>
+						<button type="button" ng-click="nextQuestion()" ng-hide="lastQuestion()" class="btn btn-primary">Next Question</button>
+						<button type="button" ng-click="endSection()" ng-show="questionsFinished()" class="btn btn-primary">Submit Answers</button>
+
+						<div class="navbar margin_up">
+							<div class="navbar-inner">
+						    	<ul ng-repeat="videoR in section.videos" class="nav">
+						      		<li><a ng-click="changePart('video', videoR.video.id)">Video {{videoR.video.order}}</a></li>
+						      		<li ng-repeat="item in videoR.video.questions"><a ng-click="changePart('question', item.question.id)">Question {{item.question.question_number}}</a></li>
+						    	</ul>
+						  	</div>
+						</div>
+					</div>
+
+					<div id="complete" class="centered" ng-show="showCompleteSection()">
+						<h2>Congratulations, you have finished:<br/>Section {{section.order}} - {{section.name}}</h2>
+						<button type="button" class="btn btn-primary" ng-click="nextSection()">Proceed To Next Question</button>
+					</div>
+
+					<div id="incorrect" class="centered" ng-show="incorrect">
+						<h2>Sorry, you have you have answered one or more questions incorrectly, please restart this section</h2>
+						<button type="button" class="btn" ng-click="restartSection()">Redo Section</button>
+					</div>
+
+					<div id="complete" class="centered" ng-show="finishedTest()">
+						<h2>Congratulations, you have finished the Willmott Dixon Pre Enrolment Test</h2>
+						<h4>Please click "Submit Results" to send your results, and to log out.</h4>
+						<button type="button" class="btn btn-primary" ng-click="submitResults()">Submit Results</button>
+					</div>
 
 				</div>
 				

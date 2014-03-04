@@ -110,6 +110,9 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.deleteSection = (id) ->
     $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
 
+  dataFactory.checkAnswers = (id, answers) ->
+    $http.post urlBase + id + "/check_answers", { answers: answers }, { headers: { 'auth-token': sessionStorage.authToken } }
+
   dataFactory
 ]).factory("Question", ["$http", ($http, $window) ->
   dataFactory = {}
@@ -159,11 +162,47 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.getVideo = (id) ->
     $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
+  dataFactory.getVideoAndQuestions = (id) ->
+    $http.get(urlBase + id + "/and_questions", { headers: { 'auth-token': sessionStorage.authToken } })
+
   dataFactory.addVideo = (video) ->
     $http.post urlBase, { video: video }, { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory.deleteVideo = (id) ->
     $http.delete urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } }
+
+  dataFactory
+]).factory("PreEnrolmentTest", ["$http", ($http, $window) ->
+  dataFactory = {}
+  urlBase = "/api/pre_enrolment_tests/1/"
+
+  dataFactory.beginTest = ->
+    $http.get(urlBase + "begin_test", { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory
+]).factory("ExamSections", ["$http", ($http, $window) ->
+  dataFactory = {}
+  dataFactory.sections = ""
+
+  dataFactory.getSections = ->
+    if dataFactory.sections is ""
+      $http.get("/api/pre_enrolment_tests/1/sections/", { headers: { 'auth-token': sessionStorage.authToken } })
+    else
+      dataFactory.sections
+
+  dataFactory
+]).factory("CurrentUser", ["$http", ($http, $window) ->
+  dataFactory = {}
+  dataFactory.user = ""
+
+  dataFactory.getUser = ->
+    if dataFactory.user is ""
+      $http.post("/api/users/find_by_auth_token", { auth_token: sessionStorage.authToken }, { headers: { 'auth-token': sessionStorage.authToken } })
+    else
+      dataFactory.user
+
+  dataFactory.submitResults = ->
+    $http.get "/api/users/submit_results", { headers: { 'auth-token': sessionStorage.authToken } }
 
   dataFactory
 ])

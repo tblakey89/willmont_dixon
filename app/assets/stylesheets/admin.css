@@ -507,3 +507,28 @@ form.form-search.inline-form {
 .pagination ul li.active a{
 	background-color: white;
 }
+
+.centered{
+  text-align: center;
+}
+
+.not_allowed{
+	opacity: 0.5;
+}
+
+.answer{
+	cursor: pointer;
+}
+
+.answer.selected{
+	background-color: #E8F6FC;
+	border: 1px solid #43D6FC;
+}
+
+.margin_up{
+	margin-top: 20px;
+}
+
+.question_format{
+	min-height: 450px;
+}

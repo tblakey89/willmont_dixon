@@ -7,4 +7,25 @@ class Section < ActiveRecord::Base
 
   has_many :videos, dependent: :destroy
   has_many :questions, dependent: :destroy
+
+  def correct? answers
+    correct = true
+    answers.each { |question, answer| correct = false unless Question.find(question).answer == answer }
+    correct
+  rescue
+    false
+  end
+
+  def question_number
+    if @number.nil?
+      @number = 1
+    else
+      @number += 1
+    end
+  end
+
+  def total_questions
+    self.videos.sum(:show_questions)
+  end
+
 end

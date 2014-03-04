@@ -9,13 +9,13 @@ class Permission
         the_user.id == user.id
       end
       allow "api/disciplinary_cards", [:index, :show, :create, :update, :destroy]
-      allow "api/users", [:index, :show, :disciplinary_cards, :update, :destroy]
+      allow "api/users", [:index, :show, :disciplinary_cards, :update, :destroy, :find_by_auth_token, :submit_results]
       allow "api/questions", [:show, :index, :create, :destroy, :update]
-      allow "api/sections", [:index, :show, :update, :create, :destroy, :questions, :videos]
+      allow "api/sections", [:index, :show, :update, :create, :destroy, :questions, :videos, :check_answers]
       allow "api/next_of_kins", [:index, :show, :update, :destroy, :create]
       allow "api/employers", [:index, :show, :update, :destroy, :create]
-      allow :pre_enrolment_tests, [:show]
-      allow "api/videos", [:index, :show, :update, :destroy, :create]
+      allow "api/pre_enrolment_tests", [:show, :begin_test]
+      allow "api/videos", [:index, :show, :update, :destroy, :create, :and_questions]
       allow "api/admins", [:index, :show, :update, :destroy, :create]
       #allow_if_owned :images, [:update, :edit, :delete, :destroy], user
       #allow_all if user.is_super_admin?

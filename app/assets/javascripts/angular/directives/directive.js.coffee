@@ -82,4 +82,45 @@ angular.module("Directive", []).directive("menu", ->
   (scope, elem) ->
     elem.bind "keydown", (event) ->
       scope.$broadcast "keydown", event.keyCode
+).directive("exammenu", ->
+  restrict: "E"
+  transclude: true
+  scope: {
+    active: '@'
+    sections: '='
+    user: '='
+  }
+  controller: ($scope, $window, $location) ->
+    $scope.changeSection = (user, section) ->
+      if $scope.is_allowed user, section
+        if $window.sessionStorage["section" + section.order] isnt "true"
+          $location.path "/section/" + section.id
+
+    $scope.isComplete = (type, id) ->
+      if type is "section"
+        $window.sessionStorage["section" + id] is "true"
+      else
+        $window.sessionStorage[type] is "true"
+
+    $scope.is_allowed = (user, section) ->
+      unless user is undefined or section is undefined
+        allowed = true
+        allowed = false if section.work_at_height is true and user.work_at_height isnt true
+        allowed = false if section.scaffolder is true and user.scaffolder isnt true
+        allowed = false if section.ground_worker is true and user.ground_worker isnt true
+        allowed = false if section.operate_machinery is true and user.operate_machinery isnt true
+        allowed = false if section.lift_loads is true and user.lift_loads isnt true
+        allowed = false if section.supervisor is true and user.is_supervisor isnt true
+        allowed = false if section.young is true and user.young isnt true
+        allowed
+      else
+        undefined
+
+    $scope.isClickable = (user, section) ->
+      if $scope.is_allowed user, section
+        "allowed"
+      else
+        "not_allowed"
+
+  templateUrl: "../../template/exam_menu.html"
 )

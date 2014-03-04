@@ -55,6 +55,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def find_by_auth_token
+    @user = User.find_by(authentication_token: params[:auth_token])
+    render :show, id: @user.id, status: 200
+  end
+
+  def submit_results
+    current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now)
+    render nothing: true, status: 200
+  end
+
 private
   def edit_params
     params.require(:user).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :postcode, :email, :job, :health_issues, :is_supervisor, :cscs_number, :cscs_expiry_date, :date_of_birth, :contact_number, :completed_pre_enrolment, :national_insurance, :lift_loads, :work_at_height, :scaffolder, :ground_worker, :operate_machinery) unless params[:user].blank?

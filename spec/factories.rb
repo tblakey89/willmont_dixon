@@ -9,6 +9,18 @@ FactoryGirl.define do
     pre_enrolment_test
   end
 
+  factory :question do
+    name "What is 2"
+    answer1 "One"
+    answer2 "Two"
+    answer3 "Three"
+    answer4 "Four"
+    answer 2
+    sequence(:order) { |n| n }
+    section
+    pre_enrolment_test
+  end
+
   factory :user do
 
   end

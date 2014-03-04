@@ -24,7 +24,7 @@ class Api::VideosController < ApplicationController
         render nothing: true, status: 400
       end
     else
-      render :json => {  }, status: 400
+      render :json => { errors: @video.errors }, status: 400
     end
   end
 
@@ -45,12 +45,16 @@ class Api::VideosController < ApplicationController
     render nothing: true, status: 204
   end
 
+  def and_questions
+    @video = @pre_enrolment_test.videos.find(params[:id])
+  end
+
 private
   def load_test
     @pre_enrolment_test = PreEnrolmentTest.find(params[:pre_enrolment_test_id])
   end
 
   def safe_params
-    params.permit(:order, :name, :section_id) unless params.blank?
+    params.permit(:order, :name, :section_id, :show_questions) unless params.blank?
   end
 end

@@ -49,4 +49,46 @@ describe Section do
 
     it { should_not be_valid }
   end
+
+  describe "#correct?" do
+    before { @section.save }
+    let(:question) { FactoryGirl.create(:question, section: @section, pre_enrolment_test: @section.pre_enrolment_test) }
+    let(:question2) { FactoryGirl.create(:question, section: @section, pre_enrolment_test: @section.pre_enrolment_test, answer: 3, name: "Other question") }
+    let(:answers) { { question.id.to_s => "2", question2.id.to_s => "3" } }
+
+    it "should return true as both questions correct" do
+      @section.correct?(answers).should eql(true)
+    end
+
+    describe "one question wrong" do
+      let(:answers) { { question.id.to_s => "2", question2.id.to_s => "4" } }
+
+      it "should return false as one question is wrong" do
+        @section.correct?(answers).should eql(false)
+      end
+    end
+
+    describe "two questions wrong" do
+      let(:answers) { { question.id.to_s => "1", question2.id.to_s => "4" } }
+
+      it "should return false as two questions are wrong" do
+        @section.correct?(answers).should eql(false)
+      end
+    end
+
+    describe "when the id is not an id" do
+      let(:answers) { { question.id.to_s => "hello", question2.id.to_s => "4" } }
+
+      it "should return false as not a valid question" do
+        @section.correct?(answers).should eql(false)
+      end
+    end
+  end
+
+  describe "#question_number" do
+    it "should return 1 on first call, then 2" do
+      @section.question_number.should eql 1
+      @section.question_number.should eql 2
+    end
+  end
 end

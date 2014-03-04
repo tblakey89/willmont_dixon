@@ -24,7 +24,7 @@
       $scope.upload = $upload.upload(
         url: "/api/pre_enrolment_tests/1/videos/"
         method: "POST"
-        data: { section_id: $scope.video.section_id, order: $scope.video.order, name: $scope.video.name }
+        data: { section_id: $scope.video.section_id, order: $scope.video.order, name: $scope.video.name, show_questions: $scope.video.show_questions }
         file: file
         headers: { 'auth-token': sessionStorage.authToken }
       ).progress((evt) ->

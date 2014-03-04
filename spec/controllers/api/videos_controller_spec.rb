@@ -140,4 +140,21 @@ describe Api::VideosController do
       end
     end
   end
+
+  describe "#and_questions" do
+    before do
+      PreEnrolmentTest.stub(:find) { double(PreEnrolmentTest, videos: videos) }
+    end
+
+    it "assigns a video" do
+      get :and_questions, pre_enrolment_test_id: 1, id: 1, format: :json
+      assigns(:video).should eq(video)
+    end
+
+    it "renders the show view" do
+      get :and_questions, pre_enrolment_test_id: 1, id: 1, format: :json
+      response.should be_success
+      response.should render_template("and_questions")
+    end
+  end
 end

@@ -43,6 +43,6 @@ private
   end
 
   def safe_params
-    params.require(:question).permit(:order, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section_id) unless params[:question].blank?
+    params.require(:question).permit(:order, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section_id, :video_id) unless params[:question].blank?
   end
 end

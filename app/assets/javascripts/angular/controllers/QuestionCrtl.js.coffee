@@ -1,4 +1,4 @@
-@admin.controller 'QuestionCrtl', ['$scope', 'Question', 'Section', 'Session', '$routeParams', '$location', ($scope, Question, Section, Session, $routeParams, $location) ->
+@admin.controller 'QuestionCrtl', ['$scope', 'Question', 'Section', 'Video', 'Session', '$routeParams', '$location', ($scope, Question, Section, Video, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
 	$scope.currentPage = 1
@@ -28,6 +28,12 @@
 	    	$scope.sections = sections
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.getVideos = ->
+		Video.getVideos().success((videos) ->
+	    	$scope.videos = videos
+	  	).error (error) ->
+	    	$scope.status = "Unable to load video data: " + error.message
 
 	$scope.updateQuestion = ->
 		Question.updateQuestion($scope.id, $scope.question).success((data) ->

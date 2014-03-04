@@ -11,4 +11,5 @@ class Question < ActiveRecord::Base
 
   belongs_to :pre_enrolment_test
   belongs_to :section
+  belongs_to :video
 end
