@@ -1,6 +1,7 @@
 @admin.controller 'QuestionCrtl', ['$scope', 'Question', 'Section', 'Video', 'Session', '$routeParams', '$location', ($scope, Question, Section, Video, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.questions = []
 	$scope.currentPage = 1
 	$scope.lastPage = 1
 

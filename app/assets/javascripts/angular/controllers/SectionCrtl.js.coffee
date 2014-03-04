@@ -1,6 +1,7 @@
 @admin.controller 'SectionCrtl', ['$scope', 'Section', 'Session', '$routeParams', '$location', ($scope, Section, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.sections = []
 	$scope.currentPage = 1
 	$scope.lastPage = 1
 

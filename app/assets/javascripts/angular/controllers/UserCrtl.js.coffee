@@ -1,6 +1,7 @@
-@admin.controller 'UserCrtl', ['$scope', 'User', 'NextOfKin', 'DisciplinaryCard', 'Session', '$routeParams', '$location', ($scope, User, NextOfKin, DisciplinaryCard, Session, $routeParams, $location) ->
+@admin.controller 'UserCrtl', ['$scope', 'User', 'NextOfKin', 'DisciplinaryCard', 'Session', 'Employer', '$routeParams', '$location', ($scope, User, NextOfKin, DisciplinaryCard, Session, Employer, $routeParams, $location) ->
 
 	$scope.id = $routeParams.userId
+	$scope.users = []
 	$scope.currentPage = 1
 	$scope.lastPage = 1
 
@@ -14,8 +15,16 @@
 	$scope.getUser = ->
 		User.getUser($scope.id).success((user) ->
 	    	$scope.user = user.user
+	    	$scope.getEmployer()
 	  	).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
+
+	$scope.getEmployer = ->
+		if $scope.user.employer_id isnt undefined
+			Employer.getEmployer($scope.user.id, $scope.user.employer_id).success((employer) ->
+		    	$scope.employer = employer.employer
+		  	).error (error) ->
+		    	$scope.status = "Unable to load user data: " + error.message
 
 	$scope.updateUser = ->
 		User.updateUser($scope.id, $scope.user).success((data) ->

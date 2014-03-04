@@ -50,4 +50,8 @@ class User < ActiveRecord::Base
   def cards colour
     self.disciplinary_cards.where("colour = '" + colour  + "' and created_at >= (NOW() -  '1 year'::interval)").count
   end
+
+  def employer_id
+    self.employers.first.id
+  end
 end

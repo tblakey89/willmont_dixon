@@ -27,7 +27,7 @@
 							<div class="widget-header">
 								<i class="icon-user"></i>
 								<h3>Users</h3>
-								<search searchmodel="search"></search>
+								<search searchmodel="search" models="users" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -44,7 +44,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="user in users | filter:search">
+										<tr ng-repeat="user in users | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td><a href="#/users/{{user.user.id}}">{{user.user.first_name}} {{user.user.last_name}}</a></td>
 											<td>{{user.user.job}}</td>
 											<td>{{user.user.cscs_expiry_date}}</td>

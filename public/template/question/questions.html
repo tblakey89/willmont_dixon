@@ -28,7 +28,7 @@
 								<i class="icon-check"></i>
 								<h3>Questions</h3>
 								<a href="#questions/new" class="btn btn-small btn-success">Add</a>
-								<search searchmodel="search"></search>
+								<search searchmodel="search" models="questions" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -36,15 +36,13 @@
 								<table class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th>Order</th>
 											<th>Name</th>
 											<th></th>
 										</tr>
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="question in questions | filter:search">
-											<td>{{question.question.order}}</td>
+										<tr ng-repeat="question in questions | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td><a href="#/questions/{{question.question.id}}">{{question.question.name}}</a></td>
 											<td class="action-td">
 												<a href="#questions/{{question.question.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						

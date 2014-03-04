@@ -1,6 +1,7 @@
 @admin.controller 'AdminCrtl', ['$scope', 'Admin', 'Session', '$routeParams', '$location', ($scope, Admin, Session, $routeParams, $location) ->
 
 	$scope.id = $routeParams.id
+	$scope.admins = []
 	$scope.currentPage = 1
 	$scope.lastPage = 1
 

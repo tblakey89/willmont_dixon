@@ -28,7 +28,7 @@
 								<i class="icon-th-list"></i>
 								<h3>Sections</h3>
 								<a href="#sections/new" class="btn btn-small btn-success">Add</a>
-								<search searchmodel="search"></search>
+								<search searchmodel="search" models="sections" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -43,7 +43,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="section in sections | filter:search">
+										<tr ng-repeat="section in sections | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td>{{section.section.order}}</td>
 											<td><a href="#/sections/{{section.section.id}}">{{section.section.name}}</a></td>
 											<td class="action-td">

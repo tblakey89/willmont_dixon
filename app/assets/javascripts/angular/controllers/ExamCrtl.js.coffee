@@ -30,9 +30,6 @@
 		).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 
-	#TODO
-	#7)Check filling in details works fine
-
 	$scope.submitAnswer = ->
 		$scope.answers[$scope.question.id] = $scope.answerSelected
 	

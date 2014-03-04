@@ -28,7 +28,7 @@
 								<i class="icon-lock"></i>
 								<h3>Admins</h3>
 								<a href="#admins/new" class="btn btn-small btn-success">Add</a>
-								<search searchmodel="search"></search>
+								<search searchmodel="search" models="admins" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -45,7 +45,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="admin in admins | filter:search">
+										<tr ng-repeat="admin in admins | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td><a href="#/admins/{{admin.admin.id}}">{{admin.admin.first_name}} {{admin.admin.last_name}}</a></td>
 											<td>{{admin.admin.email}}</td>
 											<td>{{admin.admin.last_sign_in_at}}</td>

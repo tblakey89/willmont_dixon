@@ -1,6 +1,7 @@
 @admin.controller 'VideoCrtl', ['$scope', 'Video', 'Section', 'Session', '$routeParams', '$location', "$upload", ($scope, Video, Section, Session, $routeParams, $location, $upload) ->
 
 	$scope.id = $routeParams.id
+	$scope.videos = []
 	$scope.currentPage = 1
 	$scope.lastPage = 1
 

@@ -28,7 +28,7 @@
 								<i class="icon-film"></i>
 								<h3>Videos</h3>
 								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
-								<search searchmodel="search"></search>
+								<search searchmodel="search" models="videos" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
 							<div class="widget-content">
@@ -43,7 +43,7 @@
 									</thead>
 									
 									<tbody>
-										<tr ng-repeat="video in videos | filter:search">
+										<tr ng-repeat="video in videos | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td>{{video.video.order}}</td>
 											<td><a href="#/videos/{{video.video.id}}">{{video.video.name}}</a></td>
 											<td class="action-td">

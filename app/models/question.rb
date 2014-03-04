@@ -5,7 +5,6 @@ class Question < ActiveRecord::Base
   validates :answer3, presence: true
   validates :answer4, presence: true
   validates :answer, presence: true
-  validates :order, presence: true, uniqueness: { scope: :section_id }
   validates :section_id, presence: true
   validates :pre_enrolment_test_id, presence: true
 
