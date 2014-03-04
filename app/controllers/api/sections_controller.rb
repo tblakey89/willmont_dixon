@@ -6,6 +6,11 @@ class Api::SectionsController < ApplicationController
     @sections = @pre_enrolment_test.sections
   end
 
+  def all
+    @sections = @pre_enrolment_test.sections.select { |section| !section.videos.blank? }
+    render :index, pre_enrolment_test: @pre_enrolment_test.id, status: 200
+  end
+
   def create
     @section = @pre_enrolment_test.sections.new(safe_params)
     if @section.save

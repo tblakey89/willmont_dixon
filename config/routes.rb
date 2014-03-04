@@ -8,6 +8,9 @@ WillmontDixon::Application.routes.draw do
           get 'videos'
           post 'check_answers'
         end
+        collection do
+          get 'all'
+        end
       end
       resources :questions
       resources :videos do

@@ -186,7 +186,7 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
 
   dataFactory.getSections = ->
     if dataFactory.sections is ""
-      $http.get("/api/pre_enrolment_tests/1/sections/", { headers: { 'auth-token': sessionStorage.authToken } })
+      $http.get("/api/pre_enrolment_tests/1/sections/all", { headers: { 'auth-token': sessionStorage.authToken } })
     else
       dataFactory.sections
 
