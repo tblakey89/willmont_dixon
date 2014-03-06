@@ -64,4 +64,7 @@
 		  	).error (error) ->
 		    	$scope.status = "Unable to load user data: " + error.message
 
+	$scope.finishedSignUp = ->
+		$window.sessionStorage["cscs_check"] is "true" and $window.sessionStorage["signup"] is "true" and $window.sessionStorage["signup2"] is "true"
+
 ]

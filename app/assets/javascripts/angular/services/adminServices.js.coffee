@@ -6,10 +6,10 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.getUser = (id) ->
-    $http.get(urlBase + "/" + id, { headers: { 'auth-token': sessionStorage.authToken } })
+    $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.getDisciplinaryCards = (id) ->
-    $http.get(urlBase + "/" + id + "/disciplinary_cards", { headers: { 'auth-token': sessionStorage.authToken } })
+    $http.get(urlBase + id + "/disciplinary_cards", { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.updateUser = (id, user) ->
     $http.put urlBase + id, { user: user }, { headers: { 'auth-token': sessionStorage.authToken } }
