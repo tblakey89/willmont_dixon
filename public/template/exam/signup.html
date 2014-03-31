@@ -43,6 +43,23 @@
 
 						<inputmodel type="text" id="postcode" model="user.postcode" name="Postcode" error="error.postcode[0]"></inputmodel>
 
+						<div class="control-group" ng-class="{ 'error' : error.section_id[0] != undefined}">											
+							<label class="control-label" for="order">Passport Photo</label>
+							<div class="controls">
+								<input type="file" ng-file-select="onFileSelect($files)" >
+								<span class="help-inline">{{error.section_id[0]}}</span>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group" ng-show="progress">											
+							<label class="control-label" for="order">Progress</label>
+							<div class="controls">
+								<div class="progress progress-striped active" style="width: 50%;">
+								  <div class="bar" style="width: {{progress}}%;"></div>
+								</div>		
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
 						<div class="control-group">
 						    <div class="controls">
 						      <button type="submit" class="btn" ng-click="signUp()">Submit</button>

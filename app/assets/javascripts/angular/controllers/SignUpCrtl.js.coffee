@@ -1,4 +1,4 @@
-@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', 'PreEnrolmentTest', '$routeParams', '$location', '$window', 'ExamSections', ($scope, Session, User, NextOfKin, Employer, PreEnrolmentTest, $routeParams, $location, $window, ExamSections) ->
+@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', 'PreEnrolmentTest', '$routeParams', '$location', '$window', 'ExamSections', "$upload", ($scope, Session, User, NextOfKin, Employer, PreEnrolmentTest, $routeParams, $location, $window, ExamSections, $upload) ->
 
 	$scope.sections = ExamSections.sections
 
@@ -12,11 +12,22 @@
 	    	$scope.error = error.errors
 
 	$scope.signUp = ->
-		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->
-			$window.sessionStorage["signup"] = true
-			$location.path "/signup_2"
-		).error (errors) ->
-	    	$scope.error = errors.errors
+		$scope.user.photo = true
+		$scope.progress = 0
+		file = $scope.selectedFiles[0]
+		$scope.upload = $upload.upload(
+        url: "/api/users/" + $window.sessionStorage.user_id
+        method: "PUT"
+        data: $scope.user
+        file: file
+        headers: { 'auth-token': sessionStorage.authToken }
+        ).progress((evt) ->
+
+        ).success((data, status, headers, config) ->
+        	$window.sessionStorage["signup"] = true
+        	$location.path "/signup_2"
+        ).error (errors) ->
+        	$scope.error = errors.errors
 
 	$scope.signUp2 = ->
 		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->
@@ -66,5 +77,8 @@
 
 	$scope.finishedSignUp = ->
 		$window.sessionStorage["cscs_check"] is "true" and $window.sessionStorage["signup"] is "true" and $window.sessionStorage["signup2"] is "true"
+
+	$scope.onFileSelect = ($files) ->
+	    $scope.selectedFiles = $files
 
 ]

@@ -36,6 +36,11 @@ WillmontDixon::Application.routes.draw do
     end
     resources :admins
     resources :disciplinary_cards
+    resources :passwords do
+      collection do
+        post "check_password"
+      end
+    end
   end
 
   namespace :admin do

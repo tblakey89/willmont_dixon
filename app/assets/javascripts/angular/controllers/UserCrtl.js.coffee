@@ -7,7 +7,7 @@
 
 	$scope.getUsers = ->
 		User.getUsers().success((users) ->
-	    	$scope.users = users
+	    	$scope.users = users.data.users
 	    	$scope.lastPage = Math.ceil($scope.users.length/10)
 	  	).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
@@ -73,4 +73,16 @@
 			$scope.disciplinaryCards.splice(index, 1)
 		).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
+
+	$scope.yesOrNo = (bool) ->
+		if bool == "true"
+			"Yes"
+		else
+			"No"
+
+	$scope.allowed = (role) ->
+		if window.sessionStorage.role >= role && window.sessionStorage.role != undefined
+			true
+		else
+			false
 ]

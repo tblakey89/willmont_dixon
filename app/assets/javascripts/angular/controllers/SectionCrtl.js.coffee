@@ -60,4 +60,10 @@
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this section: " + error.message
 
+	$scope.yesOrNo = (bool) ->
+		if bool == "true"
+			"Yes"
+		else
+			"No"
+
 ]

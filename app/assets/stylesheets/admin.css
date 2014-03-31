@@ -532,3 +532,20 @@ form.form-search.inline-form {
 .question_format{
 	min-height: 450px;
 }
+
+.profile_image{
+	border: #d5d5d5 1px solid;
+	margin: 10px auto 10px auto;
+}
+
+.bottomlogo{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.logo{
+	padding: 2px;
+	float: left;
+}
+.red.help-inline{
+	color: red;
+}

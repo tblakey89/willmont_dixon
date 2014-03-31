@@ -179,6 +179,23 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.beginTest = ->
     $http.get(urlBase + "begin_test", { headers: { 'auth-token': sessionStorage.authToken } })
 
+  dataFactory.getInfo = ->
+    $http.get("/api/pre_enrolment_tests", { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory
+]).factory("Password", ["$http", ($http, $window) ->
+  dataFactory = {}
+  urlBase = "/api/passwords/"
+
+  dataFactory.getPassword = ->
+    $http.get(urlBase, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.updatePassword = (id, password) ->
+    $http.put(urlBase + id, { password: password }, { headers: { 'auth-token': sessionStorage.authToken } })
+
+  dataFactory.checkPassword = (password) ->
+    $http.post(urlBase + "check_password", { password: password }, { headers: { 'auth-token': sessionStorage.authToken } })
+
   dataFactory
 ]).factory("ExamSections", ["$http", ($http, $window) ->
   dataFactory = {}

@@ -98,6 +98,12 @@
   }).when("/videos/:id", {
     templateUrl: '../../template/video/video.html',
     controller: 'VideoCrtl'
+  }).when("/password", {
+    templateUrl: '../../template/password/password.html',
+    controller: 'PasswordCrtl'
+  }).when("/password/edit", {
+    templateUrl: '../../template/password/password_edit.html',
+    controller: 'PasswordCrtl'
   }).otherwise({
     templateUrl: '../../template/home.html',
     controller: 'HomeCrtl'

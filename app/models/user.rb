@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :date_of_birth, presence: true, on: :update, if: :operative?
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_nil: true }, uniqueness: { case_insensitive: false, allow_nil: true }, on: :update
   validates :national_insurance, presence: true, uniqueness: { case_insensitive: false, allow_nil: true }, format: { with: /\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*/, allow_nil: true }, if: :operative?, on: :update
-  validates :cscs_number, presence: true, uniqueness: true, if: :operative?
+  validates :cscs_number, uniqueness: true, if: :operative?
   validates :cscs_expiry_date, presence: true, on: :update, if: :operative?
   validates :role, presence: true, on: :update
   validates :job, presence: true, on: :update, if: :operative?
@@ -53,5 +53,9 @@ class User < ActiveRecord::Base
 
   def employer_id
     self.employers.first.id unless self.employers.blank?
+  end
+
+  def extension_valid? extension
+    extension =~ /\.jpg/ || extension =~ /\.png/ || extension =~ /\.jpeg/ || extension =~ /\.gif/
   end
 end

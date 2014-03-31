@@ -1,47 +1,54 @@
 <ul id="main-nav" class="nav nav-tabs nav-stacked">
 					
-	<li ng-class="{active: 'dashboard' == active}">
+	<li ng-class="{active: 'dashboard' == active}" ng-show="allowed(2)">
 		<a href="#/">
 			<i class="icon-home"></i>
 			Home
 		</a>
 	</li>
 
-	<li ng-class="{active: 'user' == active}">
+	<li ng-class="{active: 'user' == active}" ng-show="allowed(2)">
 		<a href="#/users">
 			<i class="icon-user"></i>
 			Operatives							
 		</a>
 	</li>
 
-	<li ng-class="{active: 'admin' == active}">
+	<li ng-class="{active: 'admin' == active}" ng-show="allowed(3)">
 		<a href="#/admins">
-			<i class="icon-lock"></i>
+			<i class="icon-briefcase"></i>
 			Admin	
 		</a>
 	</li>
+
+	<li ng-class="{active: 'password' == active}" ng-show="allowed(3)">
+		<a href="#/password">
+			<i class="icon-lock"></i>
+			Password	
+		</a>
+	</li>
 	
-	<li ng-class="{active: 'discipline' == active}">
+	<li ng-class="{active: 'discipline' == active}" ng-show="allowed(2)">
 		<a href="#/disciplinary_cards">
 			<i class="icon-th-large"></i>
 			Disciplinary Card Register		
 		</a>
 	</li>
 	
-	<li ng-class="{active: 'section' == active}">
+	<li ng-class="{active: 'section' == active}" ng-show="allowed(4)">
 		<a href="#/sections">
 			<i class="icon-th-list"></i>
 			Sections	
 		</a>
 	</li>
 	
-	<li ng-class="{active: 'question' == active}">
+	<li ng-class="{active: 'question' == active}" ng-show="allowed(4)">
 		<a href="#/questions">
 			<i class="icon-check"></i>
 			Questions	
 		</a>
 	</li>
-	<li ng-class="{active: 'video' == active}">
+	<li ng-class="{active: 'video' == active}" ng-show="allowed(4)">
 		<a href="#/videos">
 			<i class="icon-film"></i>
 			Videos	

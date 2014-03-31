@@ -4,6 +4,12 @@ angular.module("Directive", []).directive("menu", ->
   scope: {
   	active: '@'
   }
+  controller: ($scope) ->
+    $scope.allowed = (role) ->
+      if window.sessionStorage.role >= role && window.sessionStorage.role != undefined
+        true
+      else
+        false
   templateUrl: "../../template/menu.html"
 ).directive("inputmodel", ->
   restrict: "E"

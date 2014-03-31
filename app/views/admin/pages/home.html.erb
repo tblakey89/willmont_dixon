@@ -30,9 +30,17 @@
 				<span class="icon-bar"></span> 				
 			</a>
 			
-			<a class="brand" href="./index.html">Willmott Dixon</a>
+			<img class="logo" src="/images/willmottdixonlogovsmall.png"/><a class="brand" href="./index.html">Willmott Dixon - Pre Enrolment</a>
 			
-
+			<div class="nav-collapse" ng-controller="LogoutCrtl">
+			
+				<ul class="nav pull-right">
+					
+					<li><a href="#" ng-show="viewable()" ng-click="logout()">Log out</a></li>
+					
+				</ul>
+				
+			</div>
 			
 		</div> <!-- /container -->
 		
@@ -45,7 +53,13 @@
 <div ng-view>
 
 </div>
-					
+<div class="container bottomlogo">
+	<div class="row">
+		<div class="span2 offset5">
+			<img src="/images/willmottdixonlogosmall.png"/>
+		</div>
+	</div>
+</div>
 
 
   </body>

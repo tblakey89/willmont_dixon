@@ -30,4 +30,10 @@
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this card: " + error.message
 
+	$scope.allowed = (role) ->
+		if window.sessionStorage.role >= role && window.sessionStorage.role != undefined
+			true
+		else
+			false
+
 ]

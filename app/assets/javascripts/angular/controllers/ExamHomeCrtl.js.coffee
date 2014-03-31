@@ -1,7 +1,9 @@
-@exam.controller 'ExamHomeCrtl', ['$scope', 'Session', '$routeParams', '$location', ($scope, Session, $routeParams, $location) ->
+@exam.controller 'ExamHomeCrtl', ['$scope', 'Session', '$routeParams', '$location', 'Password', ($scope, Session, $routeParams, $location, Password) ->
 
 	$scope.signIn = ->
-		if $scope.password is "password"
-			$location.path "/cscs_check"
+		Password.checkPassword($scope.password).success((data) ->
+	    	$location.path "/cscs_check"
+	  	).error (errors) ->
+	    	$scope.error = errors.errors
 
 ]

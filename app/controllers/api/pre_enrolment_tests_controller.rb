@@ -2,7 +2,7 @@ class Api::PreEnrolmentTestsController < ApplicationController
   before_filter :authenticate
 
   def index
-    @pre_enrolment_tests = PreEnrolmentTest.all
+    @users = User.where("pre_enrolment_due < now()")
   end
 
   def create

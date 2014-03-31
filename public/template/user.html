@@ -57,6 +57,9 @@
 									
 							<div class="widget-content">
 								<div class="row">
+									<div class="span2 offset3"  ng-hide="user.profile == undefined">
+										<img class="profile_image" ng-src="/images/{{user.profile}}"/>
+									</div>
 									<div class="span4">
 										<table class="information-table">
 											<tr>
@@ -77,11 +80,11 @@
 											</tr>
 											<tr>
 												<td>Health Issues</td>
-												<td>{{user.health_issues}}</td>
+												<td>{{yesOrNo(user.health_issues)}}</td>
 											</tr>
 											<tr>
 												<td>Is Supervisor?</td>
-												<td>{{user.is_supervisor}}</td>
+												<td>{{yesOrNo(user.is_supervisor)}}</td>
 											</tr>
 											<tr>
 												<td>CSCS Number</td>
@@ -133,23 +136,23 @@
 											</tr>
 											<tr>
 												<td>Working At Height:</td>
-												<td>{{user.work_at_height}}</td>
+												<td>{{yesOrNo(user.work_at_height)}}</td>
 											</tr>
 											<tr>
 												<td>Scaffolder:</td>
-												<td>{{user.scaffolder}}</td>
+												<td>{{yesOrNo(user.scaffolder)}}</td>
 											</tr>
 											<tr>
 												<td>Ground Worker:</td>
-												<td>{{user.ground_worker}}</td>
+												<td>{{yesOrNo(user.ground_worker)}}</td>
 											</tr>
 											<tr>
 												<td>Operates Plant and/or Machinery:</td>
-												<td>{{user.operate_machinery}}</td>
+												<td>{{yesOrNo(user.operate_machinery)}}</td>
 											</tr>
 											<tr>
 												<td>Mechanical Lifting of Loads:</td>
-												<td>{{user.lift_loads}}</td>
+												<td>{{yesOrNo(user.lift_loads)}}</td>
 											</tr>
 										</table>
 									</div>
@@ -219,7 +222,7 @@
 							<div class="widget-header">
 								<i class="icon-user"></i>
 								<h3>Next Of Kin</h3>
-								<a href="#users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success">Add</a>
+								<a href="#users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success" ng-show="allowed(3)">Add</a>
 								<search searchmodel="kinSearch"></search>
 							</div> <!-- /widget-header -->
 							
@@ -242,7 +245,7 @@
 											<td>{{item.next_of_kin.contact_number}}</td>
 											<td class="action-td">
 												<a href="#users/{{user.id}}/next_of_kins/{{item.next_of_kin.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
-												<a href="" ng-click="deleteNextOfKin(item.next_of_kin.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+												<a href="" ng-click="deleteNextOfKin(item.next_of_kin.id, $index)" class="btn btn-small btn-danger" ng-show="allowed(3)"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>
@@ -257,7 +260,7 @@
 							<div class="widget-header">
 								<i class="icon-th-large"></i>
 								<h3>Disciplinary Cards</h3>
-								<a href="#users/{{user.id}}/new_disciplinary_card" class="btn btn-small btn-success">Add</a>
+								<a href="#users/{{user.id}}/new_disciplinary_card" class="btn btn-small btn-success" ng-show="allowed(3)">Add</a>
 								<search searchmodel="cardSearch" currentpage="currentPage"></search>	
 							</div> <!-- /widget-header -->
 							
@@ -278,7 +281,7 @@
 											<td>{{item.disciplinary_card.location}}</td>
 											<td class="action-td">
 												<a href="#disciplinary_cards/{{item.disciplinary_card.id}}" class="btn btn-small btn-success"><i class="icon-search"></i></a>
-												<a ng-click="deleteDisciplinaryCard(item.disciplinary_card.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
+												<a ng-click="deleteDisciplinaryCard(item.disciplinary_card.id, $index)" class="btn btn-small btn-danger" ng-show="allowed(3)"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>
