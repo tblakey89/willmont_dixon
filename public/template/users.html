@@ -45,12 +45,12 @@
 									
 									<tbody>
 										<tr ng-repeat="user in users | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
-											<td><a href="#/users/{{user.user.id}}">{{user.user.first_name}} {{user.user.last_name}}</a></td>
+											<td><a href="/admin/users/{{user.user.id}}">{{user.user.first_name}} {{user.user.last_name}}</a></td>
 											<td>{{user.user.job}}</td>
 											<td>{{user.user.cscs_expiry_date}}</td>
 											<td>{{user.user.pre_enrolment_due}}</td>
 											<td class="action-td">
-												<a href="#/users/{{user.user.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
+												<a href="/admin/users/{{user.user.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
 												<a ng-click="deleteUserFromTable(user.user.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>

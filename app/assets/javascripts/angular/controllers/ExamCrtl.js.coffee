@@ -134,7 +134,7 @@
 	$scope.submitResults = ->
 		CurrentUser.submitResults().success((data) ->
 			$window.sessionStorage.clear()
-			$location.path "/"
+			$location.path "/test/"
 		).error (errors) ->
 	    	$scope.error = errors.errors
 

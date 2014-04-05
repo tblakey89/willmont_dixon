@@ -16,30 +16,31 @@
   ]
 
   $httpProvider.responseInterceptors.push interceptor
-]).config(["$routeProvider", ($routeProvider) ->
+]).config(["$routeProvider", '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider.when("/", {
     templateUrl: '../../template/exam/home.html',
     controller: 'ExamHomeCrtl'
-  }).when("/cscs_check", {
+  }).when("/test/cscs_check", {
     templateUrl: '../../template/exam/cscs.html',
     controller: 'SignUpCrtl'
-  }).when("/signup", {
+  }).when("/test/signup", {
     templateUrl: '../../template/exam/signup.html',
     controller: 'SignUpCrtl'
-  }).when("/signup_2", {
+  }).when("/test/signup_2", {
     templateUrl: '../../template/exam/signup2.html',
     controller: 'SignUpCrtl'
-  }).when("/next_of_kin", {
+  }).when("/test/next_of_kin", {
     templateUrl: '../../template/exam/next_of_kin.html',
     controller: 'SignUpCrtl'
-  }).when("/employer", {
+  }).when("/test/employer", {
     templateUrl: '../../template/exam/employer.html',
     controller: 'SignUpCrtl'
-  }).when("/section/:id", {
+  }).when("/test/section/:id", {
     templateUrl: '../../template/exam/section.html',
     controller: 'ExamCrtl'
   }).otherwise({
     templateUrl: '../../template/exam/home.html',
     controller: 'ExamHomeCrtl'
   })
+  $locationProvider.html5Mode(true)
 ])

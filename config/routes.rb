@@ -57,6 +57,11 @@ WillmontDixon::Application.routes.draw do
     end
   end
 
+  match "/test" => "pages#home", via: :get
+  match "/test/*path" => "pages#home", via: :get
+  match "/admin/" => "admin/pages#home", via: :get
+  match "/admin/*path" => "admin/pages#home", via: :get
+
   devise_for :user, path_prefix: 'api'
   devise_scope :user do
     post 'api/registrations' => 'api/registrations#create', as: 'register'

@@ -7,7 +7,7 @@
 	    	$window.sessionStorage.user_id = user.user.id
 	    	$window.sessionStorage.authToken = user.user.authentication_token
 	    	$window.sessionStorage["cscs_check"] = true
-	    	$location.path "/signup"
+	    	$location.path "/test/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
 
@@ -25,14 +25,14 @@
 
         ).success((data, status, headers, config) ->
         	$window.sessionStorage["signup"] = true
-        	$location.path "/signup_2"
+        	$location.path "/test/signup_2"
         ).error (errors) ->
         	$scope.error = errors.errors
 
 	$scope.signUp2 = ->
 		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->
 			$window.sessionStorage["signup2"] = true
-			$location.path "/next_of_kin"
+			$location.path "/test/next_of_kin"
 		).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -40,7 +40,7 @@
 		NextOfKin.addNextOfKin($window.sessionStorage.user_id, $scope.next_of_kin).success((data) ->
 			$window.sessionStorage.next_of_kin_id = data.next_of_kin.id unless data is " "
 			$window.sessionStorage["next_of_kin"] = true
-			$location.path "/employer"
+			$location.path "/test/employer"
 		).error (errors) ->
 			$scope.error = errors.errors
 
@@ -49,7 +49,7 @@
 			$window.sessionStorage.employer_id = data.employer.id
 			$window.sessionStorage["employer"] = true
 			PreEnrolmentTest.beginTest().success((data) ->
-				$location.path "/section/" + data.section.id
+				$location.path "/test/section/" + data.section.id
 			).error(errors) ->
 				$scope.error = errors.errors
 		).error (errors) ->

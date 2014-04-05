@@ -5,5 +5,5 @@
 		$location.path('login')
 
 	$scope.viewable = ->
-		$location.path() isnt '/login'
+		$location.path() isnt '/admin/login'
 ]

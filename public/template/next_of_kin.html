@@ -41,7 +41,7 @@
 									</tr>
 									<tr>
 										<td>For:</td>
-										<td><a href="#/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+										<td><a href="/admin/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
 									</tr>
 									<tr>
 										<td>Relationship:</td>
@@ -73,7 +73,7 @@
 								
 									
 								<div class="form-actions">
-									<a href="#users/{{userId}}/next_of_kins/{{nextOfKin.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a href="/admin/users/{{userId}}/next_of_kins/{{nextOfKin.id}}/edit" class="btn btn-warning">Edit</a> 
 									<a ng-click="deleteNextOfKin()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								

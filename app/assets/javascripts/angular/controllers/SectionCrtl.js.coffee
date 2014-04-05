@@ -32,13 +32,13 @@
 
 	$scope.addSection = ->
 		Section.addSection($scope.section).success((data) ->
-	    	$location.path('sections/' + data.section.id)
+	    	$location.path('/admin/sections/' + data.section.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
 	$scope.updateSection = ->
 		Section.updateSection($scope.id, $scope.section).success((data) ->
-	    	$location.path('sections/' + $scope.id)
+	    	$location.path('/admin/sections/' + $scope.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -50,13 +50,13 @@
 
 	$scope.deleteSection = ->
 		Section.deleteSection($scope.id).success((data) ->
-	    	$location.path('sections/')
+	    	$location.path('/admin/sections/')
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 
 	$scope.deleteDisciplinaryCard = ->
 		Section.deleteSection($scope.id).success((data) ->
-	    	$location.path('sections/')
+	    	$location.path('/admin/sections/')
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this section: " + error.message
 

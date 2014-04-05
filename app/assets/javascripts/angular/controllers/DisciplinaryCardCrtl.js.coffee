@@ -26,7 +26,7 @@
 
 	$scope.deleteDisciplinaryCard = ->
 		DisciplinaryCard.deleteDisciplinaryCard($scope.id).success((data) ->
-	    	$location.path('disciplinary_cards/')
+	    	$location.path('/admin/disciplinary_cards/')
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this card: " + error.message
 

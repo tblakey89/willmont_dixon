@@ -28,7 +28,7 @@
 
 	$scope.updateUser = ->
 		User.updateUser($scope.id, $scope.user).success((data) ->
-	    	$location.path('users/' + $scope.id)
+	    	$location.path('/admin/users/' + $scope.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -40,7 +40,7 @@
 
 	$scope.deleteUser = ->
 		User.deleteUser($scope.id).success((data) ->
-	    	$location.path('users/')
+	    	$location.path('/admin/users/')
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this user: " + error.message
 
@@ -64,7 +64,7 @@
 
 	$scope.addDisciplinaryCard = ->
 		DisciplinaryCard.addDisciplinaryCard($scope.id, $scope.disciplinaryCard).success((data) ->
-	    	$location.path('users/' + $scope.id)
+	    	$location.path('/admin/users/' + $scope.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 

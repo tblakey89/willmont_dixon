@@ -27,7 +27,7 @@
 							<div class="widget-header">
 								<i class="icon-film"></i>
 								<h3>Videos</h3>
-								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
+								<a href="/admin/videos/new" class="btn btn-small btn-success">Add</a>
 								<search searchmodel="search" models="videos" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
@@ -45,9 +45,9 @@
 									<tbody>
 										<tr ng-repeat="video in videos | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td>{{video.video.order}}</td>
-											<td><a href="#/videos/{{video.video.id}}">{{video.video.name}}</a></td>
+											<td><a href="/admin/videos/{{video.video.id}}">{{video.video.name}}</a></td>
 											<td class="action-td">
-												<!--<a href="#videos/{{video.video.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>-->				
+												<!--<a href="/admin/videos/{{video.video.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>-->				
 												<a ng-click="deleteVideoFromTable(video.video.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>

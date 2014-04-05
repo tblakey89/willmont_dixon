@@ -8,7 +8,7 @@
 	
 	$scope.updatePassword = ->
 		Password.updatePassword($scope.password.id, $scope.password).success((data) ->
-	    	$location.path('password/')
+	    	$location.path('/admin/password/')
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 

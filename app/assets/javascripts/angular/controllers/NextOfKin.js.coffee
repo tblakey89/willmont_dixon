@@ -18,19 +18,19 @@
 
 	$scope.addNextOfKin = ->
 		NextOfKin.addNextOfKin($scope.userId, $scope.nextOfKin).success((data) ->
-			$location.path('users/' + $scope.userId)
+			$location.path('/admin/users/' + $scope.userId)
 		).error (errors) ->
 			$scope.error = errors.errors
 
 	$scope.deleteNextOfKin = ->
 		NextOfKin.deleteNextOfKin($scope.userId, $scope.id).success((data) ->
-			$location.path('users/' + $scope.userId)
+			$location.path('/admin/users/' + $scope.userId)
 		).error (error) ->
 			$scope.status = "There was an error deleting your data " + error.message
 
 	$scope.updateNextOfKin = ->
 		NextOfKin.updateNextOfKin($scope.userId, $scope.id, $scope.nextOfKin).success((data) ->
-			$location.path('users/' + $scope.userId)
+			$location.path('/admin/users/' + $scope.userId)
 		).error (errors) ->
 			$scope.error = errors.errors
 ]

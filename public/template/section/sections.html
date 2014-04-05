@@ -27,7 +27,7 @@
 							<div class="widget-header">
 								<i class="icon-th-list"></i>
 								<h3>Sections</h3>
-								<a href="#sections/new" class="btn btn-small btn-success">Add</a>
+								<a href="/admin/sections/new" class="btn btn-small btn-success">Add</a>
 								<search searchmodel="search" models="sections" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
@@ -45,9 +45,9 @@
 									<tbody>
 										<tr ng-repeat="section in sections | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td>{{section.section.order}}</td>
-											<td><a href="#/sections/{{section.section.id}}">{{section.section.name}}</a></td>
+											<td><a href="/admin/sections/{{section.section.id}}">{{section.section.name}}</a></td>
 											<td class="action-td">
-												<a href="#sections/{{section.section.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
+												<a href="/admin/sections/{{section.section.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
 												<a ng-click="deleteSectionFromTable(section.section.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>

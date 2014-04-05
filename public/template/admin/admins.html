@@ -27,7 +27,7 @@
 							<div class="widget-header">
 								<i class="icon-lock"></i>
 								<h3>Admins</h3>
-								<a href="#admins/new" class="btn btn-small btn-success">Add</a>
+								<a href="/admin/admins/new" class="btn btn-small btn-success">Add</a>
 								<search searchmodel="search" models="admins" currentpage="currentPage" lastpage="lastPage"></search>
 							</div> <!-- /widget-header -->
 							
@@ -46,12 +46,12 @@
 									
 									<tbody>
 										<tr ng-repeat="admin in admins | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
-											<td><a href="#/admins/{{admin.admin.id}}">{{admin.admin.first_name}} {{admin.admin.last_name}}</a></td>
+											<td><a href="/admin/admins/{{admin.admin.id}}">{{admin.admin.first_name}} {{admin.admin.last_name}}</a></td>
 											<td>{{admin.admin.email}}</td>
 											<td>{{admin.admin.last_sign_in_at}}</td>
 											<td>{{admin.admin.sign_in_count}}</td>
 											<td class="action-td">
-												<a href="#/admins/{{admin.admin.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
+												<a href="/admin/admins/{{admin.admin.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
 												<a ng-click="deleteAdminFromTable(admin.admin.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>

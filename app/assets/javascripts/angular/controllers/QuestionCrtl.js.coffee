@@ -20,7 +20,7 @@
 
 	$scope.addQuestion = ->
 		Question.addQuestion($scope.question).success((data) ->
-	    	$location.path('questions/' + data.question.id)
+	    	$location.path('/admin/questions/' + data.question.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -38,7 +38,7 @@
 
 	$scope.updateQuestion = ->
 		Question.updateQuestion($scope.id, $scope.question).success((data) ->
-	    	$location.path('questions/' + $scope.id)
+	    	$location.path('/admin/questions/' + $scope.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -50,7 +50,7 @@
 
 	$scope.deleteQuestion = ->
 		Question.deleteQuestion($scope.id).success((data) ->
-	    	$location.path('questions/')
+	    	$location.path('/admin/questions/')
 	  	).error (error) ->
 	    	$scope.status = "Unable to load section data: " + error.message
 ]

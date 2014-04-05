@@ -73,7 +73,7 @@
 								
 									
 								<div class="form-actions">
-									<a href="#sections/{{section.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a href="/admin/sections/{{section.id}}/edit" class="btn btn-warning">Edit</a> 
 									<a ng-click="deleteSection()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								
@@ -86,7 +86,7 @@
 							<div class="widget-header">
 								<i class="icon-check"></i>
 								<h3>Questions</h3>
-								<a href="#questions/new" class="btn btn-small btn-success">Add</a>
+								<a href="/admin/questions/new" class="btn btn-small btn-success">Add</a>
 								<search searchmodel="questionSearch" currentpage="currentPage"></search>
 							</div> <!-- /widget-header -->
 							
@@ -104,9 +104,9 @@
 									<tbody>
 										<tr ng-repeat="item in questions | filter:questionSearch">
 											<td>{{item.question.order}}</td>
-											<td><a href="#/questions/{{item.question.id}}">{{item.question.name}}</a></td>
+											<td><a href="/admin/questions/{{item.question.id}}">{{item.question.name}}</a></td>
 											<td class="action-td">
-												<a href="#/questions/{{item.question.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
+												<a href="/admin/questions/{{item.question.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
 												<a class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
@@ -122,7 +122,7 @@
 							<div class="widget-header">
 								<i class="icon-film"></i>
 								<h3>Videos</h3>
-								<a href="#videos/new" class="btn btn-small btn-success">Add</a>
+								<a href="/admin/videos/new" class="btn btn-small btn-success">Add</a>
 								<search searchmodel="videoSearch" currentpage="currentPage"></search>
 							</div> <!-- /widget-header -->
 							
@@ -140,9 +140,9 @@
 									<tbody>
 										<tr ng-repeat="item in videos | filter:videoSearch">
 											<td>{{item.video.order}}</td>
-											<td><a href="#/videos/{{item.video.id}}">{{item.video.name}}</a></td>
+											<td><a href="/admin/videos/{{item.video.id}}">{{item.video.name}}</a></td>
 											<td class="action-td">
-												<a href="#/videos/{{item.video.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
+												<a href="/admin/videos/{{item.video.id}}/edit" class="btn btn-small btn-warning"><i class="icon-pencil"></i></a>						
 												<a class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>

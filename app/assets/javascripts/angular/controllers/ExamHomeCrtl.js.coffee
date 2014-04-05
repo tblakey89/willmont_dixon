@@ -2,7 +2,7 @@
 
 	$scope.signIn = ->
 		Password.checkPassword($scope.password).success((data) ->
-	    	$location.path "/cscs_check"
+	    	$location.path "/test/cscs_check"
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
