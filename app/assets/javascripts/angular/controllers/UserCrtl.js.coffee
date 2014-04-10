@@ -45,10 +45,11 @@
 	    	$scope.status = "There was an error deleting this user: " + error.message
 
 	$scope.getNextOfKins = ->
-		NextOfKin.getNextOfKins($scope.id).success((data) ->
-	    	$scope.nextOfKins = data
-	  	).error (error) ->
-	    	$scope.status = "Unable to load user data: " + error.message
+		if allowed(3)
+			NextOfKin.getNextOfKins($scope.id).success((data) ->
+		    	$scope.nextOfKins = data
+		  	).error (error) ->
+		    	$scope.status = "Unable to load user data: " + error.message
 
 	$scope.deleteNextOfKin = (id, index) ->
 		NextOfKin.deleteNextOfKin($scope.id, id).success((data) ->

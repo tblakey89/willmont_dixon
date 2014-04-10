@@ -70,7 +70,7 @@
 												<td>Last Name:</td>
 												<td>{{user.last_name}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Email:</td>
 												<td>{{user.email}}</td>
 											</tr>
@@ -98,7 +98,7 @@
 												<td>Date of Birth</td>
 												<td>{{user.date_of_birth}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>National Insurance</td>
 												<td>{{user.national_insurance}}</td>
 											</tr>
@@ -114,23 +114,23 @@
 									</div>
 									<div class="span4">
 										<table  class="information-table">
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Contact Number</td>
 												<td>{{user.contact_number}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Address Line 1</td>
 												<td>{{user.address_line_1}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Address Line 2</td>
 												<td>{{user.address_line_2}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Town/City</td>
 												<td>{{user.city}}</td>
 											</tr>
-											<tr>
+											<tr ng-show="allowed(3)">
 												<td>Postcode</td>
 												<td>{{user.postcode}}</td>
 											</tr>
@@ -217,7 +217,7 @@
 							
 						</div> <!-- /widget -->
 
-						<div class="widget widget-table">
+						<div class="widget widget-table" ng-show="allowed(3)">
 										
 							<div class="widget-header">
 								<i class="icon-user"></i>

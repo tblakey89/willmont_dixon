@@ -10,7 +10,7 @@ angular.module("Directive", []).directive("menu", ->
         true
       else
         false
-  templateUrl: "../../template/menu.html"
+  templateUrl: "/template/menu.html"
 ).directive("inputmodel", ->
   restrict: "E"
   transclude: true
@@ -23,7 +23,7 @@ angular.module("Directive", []).directive("menu", ->
   	max: "@"
   error: '='
   }
-  templateUrl: "../../template/input.html"
+  templateUrl: "/template/input.html"
 ).directive("search", ->
   restrict: "E"
   transclude: true
@@ -40,7 +40,7 @@ angular.module("Directive", []).directive("menu", ->
       $scope.currentpage = 1
       $scope.lastpage =  Math.ceil($filter('filter')($scope.array, $scope.search).length/10) unless $scope.array is undefined
 
-  templateUrl: "../../template/search.html"
+  templateUrl: "/template/search.html"
 ).directive("pagination", ->
   restrict: "E"
   transclude: true
@@ -75,7 +75,7 @@ angular.module("Directive", []).directive("menu", ->
         return  if o.code isnt code
         o.action()
         $scope.$apply()
-  templateUrl: "../../template/pagination.html"
+  templateUrl: "/template/pagination.html"
 ).directive("ngEnter", ->
   (scope, element, attrs) ->
     element.bind "keydown keypress", (event) ->
@@ -128,5 +128,5 @@ angular.module("Directive", []).directive("menu", ->
       else
         "not_allowed"
 
-  templateUrl: "../../template/exam_menu.html"
+  templateUrl: "/template/exam_menu.html"
 )
