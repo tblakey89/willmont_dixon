@@ -110,7 +110,7 @@
 			for section in $scope.sections
 				if section.section.order > $scope.section.order
 					if $scope.is_allowed($scope.currentUser, section.section)
-						$location.path "/section/" + section.section.id
+						$location.path "/test/section/" + section.section.id
 						break
 
 	$scope.finalSection = ->

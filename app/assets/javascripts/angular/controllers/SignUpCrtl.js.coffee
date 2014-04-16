@@ -12,6 +12,10 @@
 	    	$scope.error = error.errors
 
 	$scope.signUp = ->
+		if $scope.selectedFiles is undefined
+			$scope.error = {}
+			$scope.error.profile = []
+			return $scope.error.profile[0] = "Please upload an image"
 		$scope.user.photo = true
 		$scope.progress = 0
 		file = $scope.selectedFiles[0]

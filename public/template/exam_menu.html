@@ -7,28 +7,28 @@
 		</a>
 	</li>
 
-	<li ng-class="{active: 'signup' == active}">
+	<li ng-show='cscsComplete()' ng-class="{active: 'signup' == active}">
 		<a href="/test/signup">
 			Enter Info Pt.1
 			<i class="icon-ok" ng-show="isComplete('signup', 0)"></i>					
 		</a>
 	</li>
 
-	<li ng-class="{active: 'signup_2' == active}">
+	<li ng-show="cscsComplete()" ng-class="{active: 'signup_2' == active}">
 		<a href="/test/signup_2">
 			Enter Info Pt.2
 			<i class="icon-ok" ng-show="isComplete('signup2', 0)"></i>
 		</a>
 	</li>
 	
-	<li ng-class="{active: 'next_of_kin' == active}">
+	<li ng-show="cscsComplete()" ng-class="{active: 'next_of_kin' == active}">
 		<a href="/test/next_of_kin">
 			Next of Kin
 			<i class="icon-ok" ng-show="isComplete('next_of_kin', 0)"></i>	
 		</a>
 	</li>
 	
-	<li ng-class="{active: 'employer' == active}">
+	<li ng-show="cscsComplete()" ng-class="{active: 'employer' == active}">
 		<a href="/test/employer">
 			Employer
 			<i class="icon-ok" ng-show="isComplete('employer', 0)"></i>
@@ -36,7 +36,7 @@
 	</li>
 	
 	<li ng-repeat="item in sections" ng-class="{active: ('section' + item.section.order) == active}" class="{{isClickable(user, item.section)}}">
-		<a ng-click="changeSection(user, item.section)">
+		<a>
 			Section {{item.section.order}}
 			<i class="icon-ok" ng-show="isComplete('section', item.section.order)"></i>
 		</a>

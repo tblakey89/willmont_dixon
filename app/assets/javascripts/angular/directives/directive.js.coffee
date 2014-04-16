@@ -128,5 +128,8 @@ angular.module("Directive", []).directive("menu", ->
       else
         "not_allowed"
 
+    $scope.cscsComplete = ->
+      $window.sessionStorage["cscs_check"] == 'true'
+
   templateUrl: "/template/exam_menu.html"
 )

@@ -41,4 +41,16 @@
 	    	$location.path('admins/')
 	  	).error (error) ->
 	    	$scope.status = "There was an error deleting this admin: " + error.message
+
+	$scope.greaterThan = (role) ->
+		if role == undefined
+			true
+		else
+			window.sessionStorage.role >= role
+
+	$scope.allowed = (role) ->
+		if window.sessionStorage.role >= role && window.sessionStorage.role != undefined
+			true
+		else
+			false
 ]

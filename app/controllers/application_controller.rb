@@ -29,11 +29,14 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
+    if request.headers["auth-token"].present?
+      @current_user = User.find_by_authentication_token(request.headers["auth-token"])
+    end
     if current_permission.allow?(params[:controller], params[:action], current_resource)
       true
     else
-      if current_user
-        render status: 401, json: { status: false, info: "You are not allowed to view this inforation" }
+      if @current_user
+        render status: 401, json: { id: @current_user.id, role: @current_user.role, controller: params[:controller], action: params[:action], status: false, info: "You are not allowed to view this inforation" }
       else
         render status: 401, json: { status: false, info: "Please log in" }
       end

@@ -554,3 +554,7 @@ form.form-search.inline-form {
 	margin-top: -20px;
 	margin-left: 44px;
 }
+
+.jwcontrolbar{
+	display: none !important;
+}

@@ -60,7 +60,7 @@
 								<br />
 								
 									
-								<div class="form-actions">
+								<div class="form-actions" ng-show="greaterThan(admin.role)">
 									<a href="/admin/admins/{{admin.id}}/edit" class="btn btn-warning">Edit</a> 
 									<a ng-click="deleteAdmin()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							

@@ -44,13 +44,14 @@
 
 						<inputmodel type="text" id="postcode" model="user.postcode" name="Postcode" error="error.postcode[0]"></inputmodel>
 
-						<div class="control-group" ng-class="{ 'error' : error.section_id[0] != undefined}">											
+						<div class="control-group" ng-class="{ 'error' : error.profile[0] != undefined}">											
 							<label class="control-label" for="order">Passport Photo</label>
 							<div class="controls">
 								<input type="file" ng-file-select="onFileSelect($files)" >
-								<span class="help-inline">{{error.section_id[0]}}</span>
+								<span class="help-inline">{{error.profile[0]}}</span>
 							</div> <!-- /controls -->				
 						</div> <!-- /control-group -->
+						<p class="health_notice">Passport must be 200px x 200px and must be one of the following formats: png, jpg, gif.</p>
 
 						<div class="control-group" ng-show="progress">											
 							<label class="control-label" for="order">Progress</label>

@@ -37,8 +37,8 @@
 											<div class="controls">
 												<select ng-model="admin.role">
 													<option ng-selected="{{admin.role == 2}}" value="2">Basic Admin</option>
-													<option ng-selected="{{admin.role == 3}}" value="3">Super Admin</option>
-													<option ng-selected="{{admin.role == 4}}" value="4">Director Admin</option>
+													<option ng-if="allowed(3)" ng-selected="{{admin.role == 3}}" value="3">Super Admin</option>
+													<option ng-if="allowed(4)" ng-selected="{{admin.role == 4}}" value="4">Director Admin</option>
 												</select>
 												<span class="help-inline">{{error.role[0]}}</span>
 											</div> <!-- /controls -->				
