@@ -45,7 +45,7 @@
 	    	$scope.status = "There was an error deleting this user: " + error.message
 
 	$scope.getNextOfKins = ->
-		if allowed(3)
+		if $scope.allowed(3)
 			NextOfKin.getNextOfKins($scope.id).success((data) ->
 		    	$scope.nextOfKins = data
 		  	).error (error) ->

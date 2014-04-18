@@ -124,7 +124,7 @@
 		done > allowed
 
 	$scope.finishedTest = ->
-		finished = true
+		finished = true if $scope.sections.length
 		for section in $scope.sections
 			if $scope.is_allowed($scope.currentUser, section.section)
 				unless $window.sessionStorage["section" + section.section.order]

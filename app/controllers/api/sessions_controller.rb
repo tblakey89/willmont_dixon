@@ -9,6 +9,7 @@ class Api::SessionsController < Devise::SessionsController
     user = User.find_by_email(params[:user][:email])
 
     if user && user.valid_password?(params[:user][:password])
+      current_user = User.find_by_email(params[:user][:email])
       warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
       current_user.reset_authentication_token
       current_user.save

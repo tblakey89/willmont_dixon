@@ -53,4 +53,12 @@
 			true
 		else
 			false
+
+	$scope.adminRole = (role) ->
+		if "2"
+			"Basic Admin"
+		else if "3"
+			"Super Admin"
+		else if "4"
+			"Director Admin"
 ]

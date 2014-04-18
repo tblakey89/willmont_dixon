@@ -5,6 +5,8 @@
 	$scope.CSCSCheck = ->
 		User.checkCSCS($scope.user).success((user) ->
 	    	$window.sessionStorage.user_id = user.user.id
+	    	$window.sessionStorage.next_of_kin_id = user.user.next_of_kin_id
+	    	$window.sessionStorage.employer_id = user.user.employer_id
 	    	$window.sessionStorage.authToken = user.user.authentication_token
 	    	$window.sessionStorage["cscs_check"] = true
 	    	$location.path "/test/signup"

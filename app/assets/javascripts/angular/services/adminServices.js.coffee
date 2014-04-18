@@ -51,7 +51,7 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.get(urlBase(userId), { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.getNextOfKin = (userId, id) ->
-    $http.get(urlBase(userId) + "/" + id, { headers: { 'auth-token': sessionStorage.authToken } })
+    $http.get(urlBase(userId) + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.addNextOfKin = (userId, nextOfKin) ->
     $http.post urlBase(userId), { next_of_kin: nextOfKin }, { headers: { 'auth-token': sessionStorage.authToken } }
@@ -73,7 +73,7 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
     $http.get(urlBase(userId), { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.getEmployer = (userId, id) ->
-    $http.get(urlBase(userId) + "/" + id, { headers: { 'auth-token': sessionStorage.authToken } })
+    $http.get(urlBase(userId) + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
   dataFactory.addEmployer = (userId, employer) ->
     $http.post urlBase(userId), { employer: employer }, { headers: { 'auth-token': sessionStorage.authToken } }
