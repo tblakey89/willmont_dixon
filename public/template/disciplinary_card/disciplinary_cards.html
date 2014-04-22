@@ -38,6 +38,7 @@
 											<th>User</th>
 											<th>Colour</th>
 											<th>Location</th>
+											<th>Assigned</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -47,9 +48,10 @@
 											<td><a href="/admin/users/{{disciplinaryCard.disciplinary_card.user.id}}">{{disciplinaryCard.disciplinary_card.user.first_name}} {{disciplinaryCard.disciplinary_card.user.last_name}}</a></td>
 											<td>{{disciplinaryCard.disciplinary_card.colour}}</td>
 											<td>{{disciplinaryCard.disciplinary_card.location}}</td>
+											<td>{{disciplinaryCard.disciplinary_card.created_at | date:'dd/MM/yyyy HH:mm:ss'}}</td>
 											<td class="action-td">
 												<a href="/admin/disciplinary_cards/{{disciplinaryCard.disciplinary_card.id}}" class="btn btn-small btn-success"><i class="icon-search"></i></a>
-												<a ng-click="deleteDisciplinaryCardFromTable(disciplinaryCard.disciplinary_card.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove" ng-show="allowed(3)"></i></a>
+												<a ng-show="allowed(3)" ng-click="deleteDisciplinaryCardFromTable(disciplinaryCard.disciplinary_card.id, $index)" class="btn btn-small btn-danger"><i class="icon-remove"></i></a>
 											</td>
 										</tr>
 									</tbody>

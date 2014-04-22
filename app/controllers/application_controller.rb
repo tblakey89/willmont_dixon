@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   delegate :allow_param?, to: :current_permission
   helper_method :allow_param?
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+#  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   protected
 
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_resource
-    if params[:controller] == "api/employers" || params[:controller] == "api/next_of_kins"
+    if (params[:controller] == "api/employers" || params[:controller] == "api/next_of_kins") && params[:action] != "create"
       eval(params[:controller].gsub(/api\//, "").to_s.singularize.camelize).find(params[:id])
     end
   end

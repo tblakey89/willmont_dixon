@@ -19,16 +19,18 @@
 	    	$scope.status = "Unable to load disciplinary card data: " + error.message
 
 	$scope.deleteDisciplinaryCardFromTable = (id ,index) ->
-		DisciplinaryCard.deleteDisciplinaryCard(id).success((data) ->
-	    	$scope.disciplinaryCards.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this card: " + error.message
+		if (confirm("Are you sure you want to delete this disciplinary card?") is true)
+			DisciplinaryCard.deleteDisciplinaryCard(id).success((data) ->
+		    	$scope.disciplinaryCards.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this card: " + error.message
 
 	$scope.deleteDisciplinaryCard = ->
-		DisciplinaryCard.deleteDisciplinaryCard($scope.id).success((data) ->
-	    	$location.path('/admin/disciplinary_cards/')
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this card: " + error.message
+		if (confirm("Are you sure you want to delete this disciplinary card?") is true)
+			DisciplinaryCard.deleteDisciplinaryCard($scope.id).success((data) ->
+		    	$location.path('/admin/disciplinary_cards/')
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this card: " + error.message
 
 	$scope.allowed = (role) ->
 		if window.sessionStorage.role >= role && window.sessionStorage.role != undefined

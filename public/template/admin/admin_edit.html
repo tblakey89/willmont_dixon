@@ -35,10 +35,10 @@
 										<div class="control-group" ng-class="{ 'error' : error.role[0] != undefined}">											
 											<label class="control-label" for="order">Role</label>
 											<div class="controls">
-												<select ng-model="admin.role">
-													<option ng-selected="{{admin.role == 2}}" value="2">Basic Admin</option>
-													<option ng-selected="{{admin.role == 3}}" value="3">Super Admin</option>
-													<option ng-selected="{{admin.role == 4}}" value="4">Director Admin</option>
+												<select ng-model="admin.role" ng-selected="{{admin.role}}" >
+													<option value="2">Basic Admin</option>
+													<option ng-if="allowed(3)" value="3">Super Admin</option>
+													<option ng-if="allowed(4)" value="4">Director Admin</option>
 												</select>
 												<span class="help-inline">{{error.role[0]}}</span>
 											</div> <!-- /controls -->				

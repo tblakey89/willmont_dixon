@@ -20,13 +20,13 @@
 
 	$scope.addAdmin = ->
 		Admin.addAdmin($scope.admin).success((data) ->
-	    	$location.path('admins/' + data.admin.id)
+	    	$location.path('admin/admins/' + data.admin.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
 	$scope.updateAdmin = ->
 		Admin.updateAdmin($scope.id, $scope.admin).success((data) ->
-	    	$location.path('admins/' + $scope.id)
+	    	$location.path('admin/admins/' + $scope.id)
 	  	).error (errors) ->
 	    	$scope.error = errors.errors
 
@@ -55,10 +55,10 @@
 			false
 
 	$scope.adminRole = (role) ->
-		if "2"
+		if role is 2
 			"Basic Admin"
-		else if "3"
+		else if role is 3
 			"Super Admin"
-		else if "4"
+		else if role is 4
 			"Director Admin"
 ]
