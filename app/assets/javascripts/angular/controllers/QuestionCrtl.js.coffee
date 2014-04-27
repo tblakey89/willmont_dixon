@@ -43,14 +43,16 @@
 	    	$scope.error = errors.errors
 
 	$scope.deleteQuestionFromTable = (id ,index) ->
-		Question.deleteQuestion(id).success((data) ->
-	    	$scope.questions.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this section: " + error.message
+		if (confirm("Are you sure you want to delete this question?") is true)
+			Question.deleteQuestion(id).success((data) ->
+		    	$scope.questions.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this section: " + error.message
 
 	$scope.deleteQuestion = ->
-		Question.deleteQuestion($scope.id).success((data) ->
-	    	$location.path('/admin/questions/')
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+		if (confirm("Are you sure you want to delete this question?") is true)
+			Question.deleteQuestion($scope.id).success((data) ->
+		    	$location.path('/admin/questions/')
+		  	).error (error) ->
+		    	$scope.status = "Unable to load section data: " + error.message
 ]

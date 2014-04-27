@@ -558,3 +558,7 @@ form.form-search.inline-form {
 .jwcontrolbar{
 	display: none !important;
 }
+
+.jwlogo{
+	display: none;
+}

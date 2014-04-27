@@ -62,7 +62,7 @@
 	$scope.setUpVideo = ->
 	    jwplayer("video").setup
 	    	width: "100%"
-	    	aspectratio: "12:5"
+	    	aspectratio: "16:9"
 	    	autostart: true
 	    	icons: false
 	    	file: "/videos/" + $scope.video.id + ".mp4"

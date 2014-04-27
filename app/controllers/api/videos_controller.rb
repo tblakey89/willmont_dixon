@@ -30,7 +30,7 @@ class Api::VideosController < ApplicationController
 
   def update
     @video = @pre_enrolment_test.videos.find(params[:id])
-    if @video.update_attributes(safe_params)
+    if @video.update_attributes(edit_params)
       render :show, pre_enrolment_test_id: @pre_enrolment_test.id, id: @video.id, status: 200
     else
       render :json => { :errors => @video.errors }, status: 400
@@ -56,5 +56,9 @@ private
 
   def safe_params
     params.permit(:order, :name, :section_id, :show_questions) unless params.blank?
+  end
+
+  def edit_params
+    params.require(:video).permit(:order, :name, :section_id, :show_questions) unless params.blank?
   end
 end

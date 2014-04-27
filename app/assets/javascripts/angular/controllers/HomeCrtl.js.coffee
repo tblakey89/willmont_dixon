@@ -9,6 +9,7 @@
 	$scope.getInfo = ->
 		PreEnrolmentTest.getInfo().success((data) ->
 			$scope.users = data.users
+			$scope.expireds = data.expireds
 			$scope.red = data.red_cards
 			$scope.yellow = data.yellow_cards
 			$scope.green = data.green_cards

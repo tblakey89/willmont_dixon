@@ -79,7 +79,7 @@
 		    	$scope.status = "Unable to load user data: " + error.message
 
 	$scope.yesOrNo = (bool) ->
-		if bool == "true"
+		if bool == true
 			"Yes"
 		else
 			"No"

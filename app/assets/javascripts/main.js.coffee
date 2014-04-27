@@ -66,7 +66,7 @@
   }).when("/admin/sections/:id", {
     templateUrl: '/template/section/section.html',
     controller: 'SectionCrtl'
-  }).when("/admin/sections/edit/:id", {
+  }).when("/admin/sections/:id/edit", {
     templateUrl: '/template/section/section_edit.html',
     controller: 'SectionCrtl'
   }).when("/admin/questions", {
@@ -98,6 +98,9 @@
     controller: 'VideoCrtl'
   }).when("/admin/videos/:id", {
     templateUrl: '/template/video/video.html',
+    controller: 'VideoCrtl'
+  }).when("/admin/videos/:id/edit", {
+    templateUrl: '/template/video/video_edit.html',
     controller: 'VideoCrtl'
   }).when("/admin/password", {
     templateUrl: '/template/password/password.html',

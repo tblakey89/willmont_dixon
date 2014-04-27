@@ -162,6 +162,9 @@ angular.module("adminService", []).factory("User", ["$http", ($http, $window) ->
   dataFactory.getVideo = (id) ->
     $http.get(urlBase + id, { headers: { 'auth-token': sessionStorage.authToken } })
 
+  dataFactory.updateVideo = (id, video) ->
+    $http.put urlBase + id, { video: video }, { headers: { 'auth-token': sessionStorage.authToken } }
+
   dataFactory.getVideoAndQuestions = (id) ->
     $http.get(urlBase + id + "/and_questions", { headers: { 'auth-token': sessionStorage.authToken } })
 

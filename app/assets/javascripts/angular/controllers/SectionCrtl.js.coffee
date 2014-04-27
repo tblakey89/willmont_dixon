@@ -43,25 +43,35 @@
 	    	$scope.error = errors.errors
 
 	$scope.deleteSectionFromTable = (id ,index) ->
-		Section.deleteSection(id).success((data) ->
-	    	$scope.sections.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this section: " + error.message
+		if (confirm("Are you sure you want to delete this section?") is true)
+			Section.deleteSection(id).success((data) ->
+		    	$scope.sections.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this section: " + error.message
 
 	$scope.deleteSection = ->
-		Section.deleteSection($scope.id).success((data) ->
-	    	$location.path('/admin/sections/')
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+		if (confirm("Are you sure you want to delete this section?") is true)
+			Section.deleteSection($scope.id).success((data) ->
+		    	$location.path('/admin/sections/')
+		  	).error (error) ->
+		    	$scope.status = "Unable to load section data: " + error.message
 
-	$scope.deleteDisciplinaryCard = ->
-		Section.deleteSection($scope.id).success((data) ->
-	    	$location.path('/admin/sections/')
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this section: " + error.message
+	$scope.deleteVideo = (id) ->
+		if (confirm("Are you sure you want to delete this video?") is true)
+			Section.deleteVideo(id).success((data) ->
+		    	$location.path('/admin/sections/' + $scope.id)
+		  	).error (error) ->
+		    	$scope.status = "Unable to load section data: " + error.message
+
+	$scope.deleteQuestion = (id) ->
+		if (confirm("Are you sure you want to delete this question?") is true)
+			Section.deleteQuestion(id).success((data) ->
+		    	$location.path('/admin/sections/' + $scope.id)
+		  	).error (error) ->
+		    	$scope.status = "Unable to load section data: " + error.message
 
 	$scope.yesOrNo = (bool) ->
-		if bool == "true"
+		if bool == true
 			"Yes"
 		else
 			"No"

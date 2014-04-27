@@ -34,6 +34,12 @@
         $location.path('videos/' + data.video.id)
       )
 
+    $scope.updateVideo = ->
+      Video.updateVideo($scope.id, $scope.video).success((data) ->
+      	$location.path('/admin/videos/' + $scope.id)
+      ).error (errors) ->
+      	$scope.error = errors.errors
+
 	$scope.getSections = ->
 		Section.getSections().success((sections) ->
 	    	$scope.sections = sections
@@ -47,30 +53,33 @@
 	    	$scope.error = errors.errors
 
 	$scope.deleteVideoFromTable = (id ,index) ->
-		Video.deleteVideo(id).success((data) ->
-	    	$scope.videos.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this section: " + error.message
+		if (confirm("Are you sure you want to delete this video?") is true)
+			Video.deleteVideo(id).success((data) ->
+		    	$scope.videos.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this section: " + error.message
 
 	$scope.deleteVideo = ->
-		Video.deleteVideo($scope.id).success((data) ->
-	    	$location.path('/admin/videos/')
-	  	).error (error) ->
-	    	$scope.status = "Unable to load section data: " + error.message
+		if (confirm("Are you sure you want to delete this video?") is true)
+			Video.deleteVideo($scope.id).success((data) ->
+		    	$location.path('/admin/videos/')
+		  	).error (error) ->
+		    	$scope.status = "Unable to load section data: " + error.message
 
 	$scope.onFileSelect = ($files) ->
 	    $scope.selectedFiles = $files
 
 	$scope.setUpVideo = ->
-	    jwplayer("video").setup
-	    	width: "100%"
-	    	aspectratio: "12:5"
-	    	icons: false
-	    	file: "/videos/" + $scope.video.id + ".mp4"
-	    	events:
-	    		onComplete: ->
-	    			$scope.$apply ->
-	    				$scope.video = true
-	    				$scope.begin = $scope.begin + 1
+		if document.getElementById('video')
+		    jwplayer("video").setup
+		    	width: "100%"
+		    	aspectratio: "16:9"
+		    	icons: false
+		    	file: "/videos/" + $scope.video.id + ".mp4"
+		    	events:
+		    		onComplete: ->
+		    			$scope.$apply ->
+		    				$scope.video = true
+		    				$scope.begin = $scope.begin + 1
 
 ]

@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_resource
-    if (params[:controller] == "api/employers" || params[:controller] == "api/next_of_kins") && params[:action] != "create"
+    if (params[:controller] == "api/employers" || params[:controller] == "api/next_of_kins") && params[:action] != "create" && params[:action] != "index"
       eval(params[:controller].gsub(/api\//, "").to_s.singularize.camelize).find(params[:id])
     end
   end
