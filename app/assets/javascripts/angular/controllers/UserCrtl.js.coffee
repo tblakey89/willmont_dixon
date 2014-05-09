@@ -33,10 +33,11 @@
 	    	$scope.error = errors.errors
 
 	$scope.deleteUserFromTable = (id ,index) ->
-		User.deleteUser(id).success((data) ->
-	    	$scope.users.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this user: " + error.message
+		if (confirm("Are you sure you want to delete this user?") is true)
+			User.deleteUser(id).success((data) ->
+		    	$scope.users.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this user: " + error.message
 
 	$scope.deleteUser = ->
 		if (confirm("Are you sure you want to delete this user?") is true)

@@ -31,16 +31,18 @@
 	    	$scope.error = errors.errors
 
 	$scope.deleteAdminFromTable = (id ,index) ->
-		Admin.deleteAdmin(id).success((data) ->
-	    	$scope.admins.splice(index, 1)
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this admin: " + error.message
+		if (confirm("Are you sure you want to delete this admin?") is true)
+			Admin.deleteAdmin(id).success((data) ->
+		    	$scope.admins.splice(index, 1)
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this admin: " + error.message
 
 	$scope.deleteAdmin = ->
-		Admin.deleteAdmin($scope.id).success((data) ->
-	    	$location.path('admins/')
-	  	).error (error) ->
-	    	$scope.status = "There was an error deleting this admin: " + error.message
+		if (confirm("Are you sure you want to delete this admin?") is true)
+			Admin.deleteAdmin($scope.id).success((data) ->
+		    	$location.path('admins/')
+		  	).error (error) ->
+		    	$scope.status = "There was an error deleting this admin: " + error.message
 
 	$scope.greaterThan = (role) ->
 		if role == undefined

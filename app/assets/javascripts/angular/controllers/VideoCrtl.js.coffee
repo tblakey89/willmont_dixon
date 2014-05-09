@@ -31,7 +31,7 @@
       ).progress((evt) ->
          $scope.progress = parseInt(100.0 * evt.loaded / evt.total)
       ).success((data, status, headers, config) ->
-        $location.path('videos/' + data.video.id)
+        $location.path('admin/videos/' + data.video.id)
       )
 
     $scope.updateVideo = ->
