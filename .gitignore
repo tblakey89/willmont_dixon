@@ -17,3 +17,4 @@
 
 /public/images/*
 /public/videos/*
+/config/database.yml
