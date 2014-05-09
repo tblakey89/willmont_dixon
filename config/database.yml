@@ -16,3 +16,8 @@ test:
   adapter: postgresql
   host: localhost
   database: willmont_dixon_test
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: willmott_dixon_production
