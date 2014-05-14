@@ -4,3 +4,7 @@ attributes :id, :name, :answer1, :answer2, :answer3, :answer4, :answer, :section
 child :section do
   attributes :name
 end
+
+child :video do
+   attributes :name
+end
