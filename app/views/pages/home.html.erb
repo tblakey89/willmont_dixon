@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="exam">
+<html lang="en" ng-app="exam" xmlns:ng="http://angularjs.org" id="ng-app">
   <head>
     <meta charset="utf-8">
     <title>Dashboard - Willmott Dixon</title>
@@ -14,6 +14,15 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lte IE 8]>
+        <script>
+          document.createElement('inputmodel');
+          document.createElement('menu');
+          document.createElement('search');
+          document.createElement('pagination');
+          document.createElement('exammenu');
+        </script>
+      <![endif]-->
 	
   </head>
 
