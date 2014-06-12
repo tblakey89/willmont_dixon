@@ -229,7 +229,7 @@ if (!window.FormData) {
 				}
 			}
 	
-			script.setAttribute('src', <%= asset_path("FileAPI.min.js") %>);
+			script.setAttribute('src', '<%= asset_path("FileAPI.min.js") %>');
 			document.getElementsByTagName('head')[0].appendChild(script);
 		}
 	})();
