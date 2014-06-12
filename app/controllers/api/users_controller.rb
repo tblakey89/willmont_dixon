@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   before_filter :authenticate
   skip_before_filter :authorize, only: [:cscs_check]
   skip_before_filter :authenticate, only: [:cscs_check]
-  skip_before_filter :verify_authenticity_token, :only => [:cscs_check]
+  skip_before_filter :verify_authenticity_token, :only => [:cscs_check, :update]
 
   def index
     @users = User.where("role < 2")

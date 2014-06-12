@@ -4,12 +4,15 @@
 
 	$scope.CSCSCheck = ->
 		User.checkCSCS($scope.user).success((user) ->
-	    	$window.sessionStorage.user_id = user.user.id
-	    	$window.sessionStorage.next_of_kin_id = user.user.next_of_kin_id
-	    	$window.sessionStorage.employer_id = user.user.employer_id
-	    	$window.sessionStorage.authToken = user.user.authentication_token
-	    	$window.sessionStorage["cscs_check"] = true
-	    	$location.path "/test/signup"
+			if user.user.red_card_count is true
+				$location.path "/test/"
+			else
+		    	$window.sessionStorage.user_id = user.user.id
+		    	$window.sessionStorage.next_of_kin_id = user.user.next_of_kin_id
+		    	$window.sessionStorage.employer_id = user.user.employer_id
+		    	$window.sessionStorage.authToken = user.user.authentication_token
+		    	$window.sessionStorage["cscs_check"] = true
+		    	$location.path "/test/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
 
@@ -19,6 +22,7 @@
 			$scope.error.profile = []
 			return $scope.error.profile[0] = "Please upload an image"
 		$scope.user.photo = true
+		$scope.user.auth_token = sessionStorage.authToken
 		$scope.progress = 0
 		file = $scope.selectedFiles[0]
 		$scope.upload = $upload.upload(

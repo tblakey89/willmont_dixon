@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that'll be compiled into admin.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -23,7 +23,7 @@
 //= require_tree ./angular/services
 //= require_tree ./angular/directives
 //= require angular-file-upload
-//= require exam
+//= require main
 //= require_tree ./angular/controllers
 //= require_tree ./angular/services
 

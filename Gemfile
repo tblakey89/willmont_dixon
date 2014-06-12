@@ -19,12 +19,11 @@ gem "twitter-bootstrap-rails"
 gem "therubyracer"
 gem "less-rails"
 gem 'angularjs-rails'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '3.0.4'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

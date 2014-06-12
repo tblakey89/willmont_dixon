@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
     if request.headers["auth-token"].present?
       @current_user = User.find_by_authentication_token(request.headers["auth-token"])
     end
+    if params[:auth_token].present?
+      @current_user = User.find_by_authentication_token(params["auth_token"])
+    end
+    p params[:controller]
     if current_permission.allow?(params[:controller], params[:action], current_resource)
       true
     else
@@ -46,8 +50,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    if request.headers["auth-token"].present?
-      @current_user = User.find_by_authentication_token(request.headers["auth-token"])
+    if request.headers["auth-token"].present? || params["auth_token"].present?
+      @current_user = User.find_by_authentication_token(request.headers["auth-token"]) if request.headers["auth-token"].present?
+      @current_user = User.find_by_authentication_token(params["auth-token"]) if params["auth-token"].present?
       unless @current_user
         render status: 401, json: { status: false, info: request.headers["auth-token"], data: {} }
       end
