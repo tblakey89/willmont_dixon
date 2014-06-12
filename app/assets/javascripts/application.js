@@ -24,6 +24,7 @@
 //= require_tree ./angular/directives
 //= require angular-file-upload
 //= require exam
+//= require main
 //= require_tree ./angular/controllers
 //= require_tree ./angular/services
 
