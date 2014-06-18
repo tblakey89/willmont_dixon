@@ -5,6 +5,7 @@
 	$scope.CSCSCheck = ->
 		User.checkCSCS($scope.user).success((user) ->
 			if user.user.red_card_count is true
+				alert("You have received a Red Card whilst working on a Willmott Dixon site within the last 12 months. You are not permitted to access Pre Enrolment.")
 				$location.path "/test/"
 			else
 		    	$window.sessionStorage.user_id = user.user.id
