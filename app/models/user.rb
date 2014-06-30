@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def cscs_expiry_month
-    self.cscs_expiry_date.strftime("%Y-%m")
+    self.cscs_expiry_date.strftime("%Y-%m") if self.cscs_expiry_date
   end
 end
 
