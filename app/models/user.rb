@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def young
-    (Time.now - 18.years) < self.date_of_birth
+    (Time.now - 18.years) < self.date_of_birth if self.date_of_birth
   end
 
   def cscs_expiry_month
