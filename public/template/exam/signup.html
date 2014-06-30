@@ -19,7 +19,7 @@
 
 						<inputmodel type="text" id="last_name" model="user.last_name" name="Last Name" error="error.last_name[0]"></inputmodel>
 
-						<inputmodel type="date" id="date_of_birth" model="user.date_of_birth" name="Date Of Birth" error="error.date_of_birth[0]"></inputmodel>
+						<inputmodel type="date" id="date_of_birth" model="user.date_of_birth" name="Date Of Birth (dd/mm/yyyy)" error="error.date_of_birth[0]"></inputmodel>
 
 						<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
@@ -30,7 +30,7 @@
 
 						<inputmodel type="text" id="cscs_number" model="user.cscs_number" name="CSCS Number" error="error.cscs_number[0]"></inputmodel>
 
-						<inputmodel type="date" id="cscs_date" model="user.cscs_expiry_date" name="CSCS Expiry Date" error="error.cscs_expiry_date[0]"></inputmodel>
+						<inputmodel type="month" id="cscs_date" model="user.cscs_expiry_month" name="CSCS Expiry Date (yyyy-mm)" error="error.cscs_expiry_date[0]"></inputmodel>
 
 						<inputmodel type="text" id="contact_number" model="user.contact_number" name="Contact Telephone Number" error="error.contact_number[0]"></inputmodel>
 
@@ -45,13 +45,15 @@
 						<inputmodel type="text" id="postcode" model="user.postcode" name="Postcode" error="error.postcode[0]"></inputmodel>
 
 						<div class="control-group" ng-class="{ 'error' : error.profile[0] != undefined}">											
-							<label class="control-label" for="order">Passport Photo</label>
+							<label class="control-label" for="order">Headshot Photo</label>
 							<div class="controls">
 								<input type="file" ng-file-select="onFileSelect($files)" >
 								<span class="help-inline">{{error.profile[0]}}</span>
 							</div> <!-- /controls -->				
 						</div> <!-- /control-group -->
 						<p class="health_notice">Passport must be 200px x 200px and must be one of the following formats: png, jpg, gif.</p>
+						<br/>
+						<p class="health_notice">If you are using Internet Explorer, please ensure you have installed Adobe Flash Player. You can download Flash by using this link: <a href="http://get.adobe.com/flashplayer">http://get.adobe.com/flashplayer</a></p>
 
 						<div class="control-group" ng-show="progress">											
 							<label class="control-label" for="order">Progress</label>

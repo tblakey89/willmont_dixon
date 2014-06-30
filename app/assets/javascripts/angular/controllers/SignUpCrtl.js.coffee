@@ -24,6 +24,7 @@
 			return $scope.error.profile[0] = "Please upload an image"
 		$scope.user.photo = true
 		$scope.user.auth_token = sessionStorage.authToken
+		$scope.user.cscs_expiry_date = $scope.user.cscs_expiry_month + "-01" unless $scope.user.cscs_expiry_month is undefined
 		$scope.progress = 0
 		file = $scope.selectedFiles[0]
 		$scope.upload = $upload.upload(
@@ -35,8 +36,11 @@
         ).progress((evt) ->
 
         ).success((data, status, headers, config) ->
-        	$window.sessionStorage["signup"] = true
-        	$location.path "/test/signup_2"
+        	if data.errors is undefined
+	        	$window.sessionStorage["signup"] = true
+	        	$location.path "/test/signup_2"
+	        else
+	        	$scope.error = errors.errors
         ).error (errors) ->
         	$scope.error = errors.errors
 

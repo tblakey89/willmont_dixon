@@ -4,9 +4,9 @@ angular.module("Directive", []).directive("menu", ->
   scope: {
   	active: '@'
   }
-  controller: ($scope) ->
+  controller: ($scope, Session) ->
     $scope.allowed = (role) ->
-      if window.sessionStorage.role >= role && window.sessionStorage.role != undefined
+      if Session.getRole() >= role && Session.getRole() != undefined
         true
       else
         false

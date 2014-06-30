@@ -5,26 +5,42 @@ angular.module("sessionService", []).factory "Session", ($location, $http, $q, $
     url = url or "/"
     $location.path url
   service =
-    login: (email, password) ->
+    login: (email, password, remember) ->
       $http.post("/api/sessions.json",
         user:
           email: email
           password: password
       ).then((response) ->
         service.currentUser = response.data.user
-        $window.sessionStorage.authToken = response.data.auth_token
-        $window.sessionStorage.role = response.data.user.role
+        if remember is true
+          $window.localStorage.authToken = response.data.auth_token
+          $window.localStorage.role = response.data.user.role
+        else
+          $window.sessionStorage.authToken = response.data.auth_token
+          $window.sessionStorage.role = response.data.user.role
         #TODO: Send them back to where they came from
         #$location.path(response.data.redirect);
         $location.path "/"  if service.isAuthenticated()
         service.error = response.data
       )
 
+    getAuthToken: () ->
+      if sessionStorage.authToken is null or sessionStorage.authToken is undefined
+        localStorage.authToken
+      else
+        sessionStorage.authToken
+
+    getRole: () ->
+      if sessionStorage.authToken is null or sessionStorage.authToken is undefined
+        localStorage.role
+      else
+        sessionStorage.role
 
     logout: (redirectTo) ->
       $http.delete("/api/sessions.json").then ->
         service.currentUser = null
         $window.sessionStorage.authToken = null
+        $window.localStorage.authToken = null
         redirect redirectTo
 
 

@@ -62,4 +62,13 @@ class User < ActiveRecord::Base
   def extension_valid? extension
     extension =~ /\.jpg/ || extension =~ /\.png/ || extension =~ /\.jpeg/ || extension =~ /\.gif/
   end
+
+  def young
+    (Time.now - 18.years) < self.date_of_birth
+  end
+
+  def cscs_expiry_month
+    self.cscs_expiry_date.strftime("%Y-%m")
+  end
 end
+

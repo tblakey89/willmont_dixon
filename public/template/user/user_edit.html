@@ -59,9 +59,9 @@
 
 										<inputmodel type="text" id="cscs_number" model="user.cscs_number" name="CSCS Number" error="error.cscs_number[0]" ng-show="allowed(3)"></inputmodel>
 
-										<inputmodel type="date" id="cscs_date" model="user.cscs_date" name="CSCS Expiry Date" error="error.cscs_date[0]" ng-show="allowed(3)"></inputmodel>
+										<inputmodel type="month" id="cscs_date" model="user.cscs_expiry_month" name="CSCS Expiry Date (yyyy-mm)" error="error.cscs_date[0]" ng-show="allowed(3)"></inputmodel>
 
-										<inputmodel type="date" id="date_of_birth" model="user.date_of_birth" name="Date Of Birth" error="error.date_of_birth[0]"></inputmodel>
+										<inputmodel type="date" id="date_of_birth" model="user.date_of_birth" name="Date Of Birth (dd/mm/yyyy)" error="error.date_of_birth[0]"></inputmodel>
 
 										<inputmodel type="text" id="national_insurance" model="user.national_insurance" name="National Insurance" error="error.national_insurance[0]" ng-show="allowed(3)"></inputmodel>
 

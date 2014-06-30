@@ -15,6 +15,7 @@
       if response.status is 401
         $rootScope.$broadcast "event:unauthorized"
         sessionStorage.clear()
+        localStorage.clear()
         $location.path "/admin/login"
         return response
       $q.reject response
