@@ -569,3 +569,7 @@ form.form-search.inline-form {
 	width: 90%;
 	display: block;
 }
+
+.ie8-filename{
+	display: none;
+}

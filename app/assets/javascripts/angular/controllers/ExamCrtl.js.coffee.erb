@@ -34,6 +34,7 @@
 		$scope.answers[$scope.question.id] = $scope.answerSelected
 	
 	$scope.nextQuestion = ->
+		# object keys doesn't work in IE8
 		if $scope.questions.length is Object.keys($scope.answers).length
 			unless $scope.videoOrder + 1 is $scope.section.videos.length
 				$scope.videoOrder += 1
@@ -65,6 +66,7 @@
 	    	aspectratio: "16:9"
 	    	autostart: true
 	    	icons: false
+	    	controls: false
 	    	flashplayer: "<%=asset_path('jwplayer.flash.swf')%>"
 	    	file: "/videos/" + $scope.video.id + ".mp4"
 	    	events:

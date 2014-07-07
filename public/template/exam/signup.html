@@ -23,7 +23,15 @@
 
 						<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
-						<inputmodel type="checkbox" id="health_issues" model="user.health_issues" name="Health Issues*" error="error.health_issues[0]"></inputmodel>
+						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+							<label class="control-label" for="health_issues">Health Issues*</label>
+							<div class="controls">
+								<select ng-model="user.health_issues" name="health_issues" id="health_issues">
+									<option value="0" ng-selected="user.health_issues == 0">No</option>
+									<option value="1" ng-selected="user.health_issues == 1">Yes</option>
+								</select>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
 						<p class="health_notice">Please tick the box if you suffer from any medical condition that could affect your safe working on our sites. If you tick the box please discuss this confidentially with our Site Manager when you attend work.<br/>Note: You will not be disadvantaged or discriminated against in any way because of this information.</p>
 
 						<inputmodel type="text" id="national_insurance" model="user.national_insurance" name="National Insurance Number" error="error.national_insurance[0]"></inputmodel>
@@ -47,11 +55,12 @@
 						<div class="control-group" ng-class="{ 'error' : error.profile[0] != undefined}">											
 							<label class="control-label" for="order">Headshot Photo</label>
 							<div class="controls">
-								<input type="file" ng-file-select="onFileSelect($files)" >
+								<input class="file" type="file" ng-file-select="onFileSelect($files)" >
 								<span class="help-inline">{{error.profile[0]}}</span>
-							</div> <!-- /controls -->				
+								<div class="ie8-filename" ng-repeat="f in selectedFiles">{{f.name}}</div>
+							</div> <!-- /controls -->
 						</div> <!-- /control-group -->
-						<p class="health_notice">Passport must be 200px x 200px and must be one of the following formats: png, jpg, gif.</p>
+						<p class="health_notice">Headshot must be 200px x 200px and must be one of the following formats: png, jpg, gif.</p>
 						<br/>
 						<p class="health_notice">If you are using Internet Explorer, please ensure you have installed Adobe Flash Player. You can download Flash by using this link: <a href="http://get.adobe.com/flashplayer">http://get.adobe.com/flashplayer</a></p>
 

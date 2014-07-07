@@ -1,3 +1,9 @@
+unless Object.keys
+  Object.keys = (obj) ->
+    keys = []
+    for i of obj
+      keys.push i  if obj.hasOwnProperty(i)
+    keys
 
 @exam = angular.module('exam', ["sessionService", "ngRoute", "adminService", "Directive", 'angularFileUpload'])
 

@@ -6,7 +6,7 @@ angular.module("adminService", []).factory("User", ["$http", "Session", ($http, 
     $http.get(urlBase, { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.getUser = (id) ->
-    $http.get(urlBase + id, { headers: { 'auth-token': Session.getAuthToken() } })
+    $http.get(urlBase + id + '?nocache=' + (new Date()).getTime(), { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.getDisciplinaryCards = (id) ->
     $http.get(urlBase + id + "/disciplinary_cards", { headers: { 'auth-token': Session.getAuthToken() } })
@@ -94,13 +94,13 @@ angular.module("adminService", []).factory("User", ["$http", "Session", ($http, 
     $http.get(urlBase, { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.getSection = (id) ->
-    $http.get(urlBase + id, { headers: { 'auth-token': Session.getAuthToken() } })
+    $http.get(urlBase + id + '?nocache=' + (new Date()).getTime(), { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.getQuestions = (id) ->
     $http.get(urlBase + id + "/questions", { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.getVideos = (id) ->
-    $http.get(urlBase + id + "/videos", { headers: { 'auth-token': Session.getAuthToken() } })
+    $http.get(urlBase + id + "/videos" + '?nocache=' + (new Date()).getTime(), { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.addSection = (section) ->
     $http.post urlBase, { section: section }, { headers: { 'auth-token': Session.getAuthToken() } }
@@ -167,7 +167,7 @@ angular.module("adminService", []).factory("User", ["$http", "Session", ($http, 
     $http.put urlBase + id, { video: video }, { headers: { 'auth-token': Session.getAuthToken() } }
 
   dataFactory.getVideoAndQuestions = (id) ->
-    $http.get(urlBase + id + "/and_questions", { headers: { 'auth-token': Session.getAuthToken() } })
+    $http.get(urlBase + id + "/and_questions" + '?nocache=' + (new Date()).getTime(), { headers: { 'auth-token': Session.getAuthToken() } })
 
   dataFactory.addVideo = (video) ->
     $http.post urlBase, { video: video }, { headers: { 'auth-token': Session.getAuthToken() } }
