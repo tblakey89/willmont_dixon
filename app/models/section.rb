@@ -28,4 +28,10 @@ class Section < ActiveRecord::Base
     self.videos.sum(:show_questions)
   end
 
+  def correct_answers answers
+    correct_answer = []
+    answers.each { |question, answer| correct_answer << { id: question, answer: Question.find(question).answer } }
+    correct_answer
+  end
+
 end

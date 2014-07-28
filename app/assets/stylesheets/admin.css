@@ -573,3 +573,7 @@ form.form-search.inline-form {
 .ie8-filename{
 	display: none;
 }
+
+.align-left{
+	text-align: left;
+}

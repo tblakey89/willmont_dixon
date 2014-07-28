@@ -43,10 +43,13 @@
 										
 										<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
-										<div class="control-group">											
-											<label class="control-label" for="health_issues">Health Issues</label>
+										<div class="control-group" ng-class="{ 'error' : error != undefined}" ng-show="allowed(3)">											
+											<label class="control-label" for="health_issues">Health Issues*</label>
 											<div class="controls">
-												<input type="checkbox" class="input-large" id="health_issues" value="{{user.health_issues}}">
+												<select ng-model="user.health_issues" name="health_issues" id="health_issues">
+													<option value="0" ng-selected="user.health_issues == 0">No</option>
+													<option value="1" ng-selected="user.health_issues == 1">Yes</option>
+												</select>
 											</div> <!-- /controls -->				
 										</div> <!-- /control-group -->
 

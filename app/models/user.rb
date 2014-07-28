@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     self.employers.first.id unless self.employers.blank?
   end
 
+  def employer
+    self.employers.last
+  end
+
   def next_of_kin_id
     self.next_of_kins.first.id unless self.next_of_kins.blank?
   end

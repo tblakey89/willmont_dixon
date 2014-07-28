@@ -1,5 +1,6 @@
-@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', 'PreEnrolmentTest', '$routeParams', '$location', '$window', 'ExamSections', "$upload", ($scope, Session, User, NextOfKin, Employer, PreEnrolmentTest, $routeParams, $location, $window, ExamSections, $upload) ->
+@exam.controller 'SignUpCrtl', ['$scope', 'Session', 'User', 'NextOfKin', 'Employer', 'PreEnrolmentTest', '$routeParams', '$location', '$window', 'ExamSections', "$upload", "$anchorScroll", ($scope, Session, User, NextOfKin, Employer, PreEnrolmentTest, $routeParams, $location, $window, ExamSections, $upload, $anchorScroll) ->
 
+	$anchorScroll()
 	$scope.sections = ExamSections.sections
 
 	$scope.CSCSCheck = ->
@@ -52,12 +53,20 @@
 	    	$scope.error = errors.errors
 
 	$scope.addNextOfKin = ->
-		NextOfKin.addNextOfKin($window.sessionStorage.user_id, $scope.next_of_kin).success((data) ->
-			$window.sessionStorage.next_of_kin_id = data.next_of_kin.id unless data is " "
-			$window.sessionStorage["next_of_kin"] = true
-			$location.path "/test/employer"
-		).error (errors) ->
-			$scope.error = errors.errors
+		if $window.sessionStorage.next_of_kin_id and $window.sessionStorage.next_of_kin_id isnt "null"
+			NextOfKin.updateNextOfKin($window.sessionStorage.user_id, $window.sessionStorage.next_of_kin_id, $scope.next_of_kin).success((data) ->
+				$window.sessionStorage.next_of_kin_id = data.next_of_kin.id unless data is " "
+				$window.sessionStorage["next_of_kin"] = true
+				$location.path "/test/employer"
+			).error (errors) ->
+				$scope.error = errors.errors
+		else
+			NextOfKin.addNextOfKin($window.sessionStorage.user_id, $scope.next_of_kin).success((data) ->
+				$window.sessionStorage.next_of_kin_id = data.next_of_kin.id unless data is " "
+				$window.sessionStorage["next_of_kin"] = true
+				$location.path "/test/employer"
+			).error (errors) ->
+				$scope.error = errors.errors
 
 	$scope.addEmployer = ->
 		Employer.addEmployer($window.sessionStorage.user_id, $scope.employer).success((data) ->

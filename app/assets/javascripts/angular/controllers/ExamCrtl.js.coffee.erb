@@ -1,5 +1,6 @@
-@exam.controller 'ExamCrtl', ['$scope', 'Session', 'Video', 'Question', 'Section', '$routeParams', '$location', '$route', 'ExamSections', '$window', 'CurrentUser', ($scope, Session, Video, Question, Section, $routeParams, $location, $route, ExamSections, $window, CurrentUser) ->
+@exam.controller 'ExamCrtl', ['$scope', 'Session', 'Video', 'Question', 'Section', '$routeParams', '$location', '$route', 'ExamSections', '$window', 'CurrentUser', '$anchorScroll', ($scope, Session, Video, Question, Section, $routeParams, $location, $route, ExamSections, $window, CurrentUser, $anchorScroll) ->
 
+	$anchorScroll()
 	$scope.id = $routeParams.id
 	$scope.showVideo = true
 	$scope.finished = false
@@ -34,6 +35,7 @@
 		$scope.answers[$scope.question.id] = $scope.answerSelected
 	
 	$scope.nextQuestion = ->
+		$anchorScroll()
 		# object keys doesn't work in IE8
 		if $scope.questions.length is Object.keys($scope.answers).length
 			unless $scope.videoOrder + 1 is $scope.section.videos.length
@@ -51,6 +53,7 @@
 			if $scope.answers[$scope.question.id] is undefined then $scope.answerSelected = 0 else $scope.answerSelected = $scope.answers[$scope.question.id]
 
 	$scope.endSection = ->
+		$anchorScroll()
 		if $scope.section.total_questions is Object.keys($scope.answers).length
 			$scope.sectionComplete() 
 
@@ -85,11 +88,17 @@
 			$scope.finished = true
 			$window.sessionStorage["section" + $scope.section.order] = true
 		).error (error) ->
-			$scope.answers = {}
+			$scope.correct_answers = error.data
+			i = 0
+			$scope.questions = []
+			while i < $scope.section.videos.length
+				$scope.questions = $.merge($scope.questions, $scope.section.videos[i].video.questions)
+				i++
 			$scope.incorrect = true
 
 	$scope.restartSection = ->
 		$scope.incorrect = false
+		$scope.answers = {}
 		$route.reload()
 
 	$scope.selectAnswer = (answer) ->
@@ -107,6 +116,15 @@
 				if item.question.id is id
 					$scope.question = item.question 
 					$scope.answerSelected = $scope.answers[id]
+
+	$scope.getQuestionFromID = (id) ->
+		i = 0
+		while i < $scope.questions.length
+			return $scope.questions[i].question if String($scope.questions[i].question.id) is id
+			i++
+
+	$scope.correctAnswer = (question, answer) ->
+		question["answer" + answer]
 
 	$scope.nextSection = ->
 		unless $scope.finalSection()

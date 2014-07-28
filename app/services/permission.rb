@@ -26,7 +26,7 @@ class Permission
         allow "api/videos", [:show, :and_questions]
       end
       if user.role == 2
-        allow "api/disciplinary_cards", [:index, :show]
+        allow "api/disciplinary_cards", [:index, :show, :create]
         allow "api/users", [:index, :show, :disciplinary_cards, :update, :destroy, :find_by_auth_token]
         allow "api/next_of_kins", [:show, :index]
         allow "api/employers", [:show, :index]

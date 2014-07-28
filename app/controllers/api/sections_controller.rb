@@ -54,7 +54,7 @@ class Api::SectionsController < ApplicationController
     if section.correct? answers
       render status: 200, json: { data: params[:answers] }
     else
-      render status: 422, json: { data: params[:answers] }
+      render status: 422, json: { data: section.correct_answers(answers) }
     end
   end
 

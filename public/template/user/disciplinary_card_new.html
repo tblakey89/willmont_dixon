@@ -35,12 +35,12 @@
 										<input type="hidden" value="{{id}}" ng-model="disciplinaryCard.user_id"/>
 										
 										<div class="control-group" ng-class="{ 'error' : error.colour[0] != undefined}">											
-											<label class="control-label" for="order">Order</label>
+											<label class="control-label" for="order">Colour</label>
 											<div class="controls">
 												<select ng-model="disciplinaryCard.colour" class="input-medium">
 													<option value="Green">Green</option>
 													<option value="Yellow">Yellow</option>
-													<option value="Red">Red</option>
+													<option value="Red" ng-if="allowed(3)">Red</option>
 												</select>
 												<span class="help-inline">{{error.colour[0]}}</span>
 											</div> <!-- /controls -->				

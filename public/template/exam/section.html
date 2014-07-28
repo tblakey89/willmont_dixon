@@ -56,6 +56,12 @@
 					<div id="incorrect" class="centered" ng-show="incorrect">
 						<h2>Sorry, you have you have answered one or more questions incorrectly, please restart this section</h2>
 						<button type="button" class="btn" ng-click="restartSection()">Redo Section</button>
+						<div ng-repeat="answer in correct_answers" class="align-left">
+							<h3>{{getQuestionFromID(answer.id).name}}</h3>
+							<div class="well well-large answer">
+								<h4>{{correctAnswer(getQuestionFromID(answer.id), answer.answer)}}</h4>
+							</div>
+						</div>
 					</div>
 
 					<div id="complete" class="centered" ng-show="finishedTest()">
