@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">name</Data></Cell>
+        <Cell><Data ss:Type="String">employer</Data></Cell>
+        <Cell><Data ss:Type="String">colour</Data></Cell>
+        <Cell><Data ss:Type="String">location</Data></Cell>
+        <Cell><Data ss:Type="String">issued</Data></Cell>
+      </Row>
+    <% @disciplinary_cards.each do |disciplinary_card| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= disciplinary_card.user.full_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= disciplinary_card.user.employer.company_name unless disciplinary_card.user.employer.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= disciplinary_card.colour %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= disciplinary_card.location %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= disciplinary_card.created_at.strftime("%Y-%m-%dT%H:%M:%S.000") %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

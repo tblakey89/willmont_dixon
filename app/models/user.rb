@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   has_many :disciplinary_cards, dependent: :destroy
   has_many :employers, dependent: :destroy
 
+  def full_name
+    self.first_name + " " + self.last_name
+  end
+
   def operative?
     self.role < 2 unless self.role.nil?
   end
@@ -32,6 +36,19 @@ class User < ActiveRecord::Base
   def add_role current_user, role
     if current_user.role > 1
       self.role = role
+    end
+  end
+
+  def role_string
+    case self.role
+    when 1
+      "Operative"
+    when 2
+      "Basic Admin"
+    when 3
+      "Super Admin"
+    when 4
+      "Director Admin"
     end
   end
 
@@ -73,6 +90,32 @@ class User < ActiveRecord::Base
 
   def cscs_expiry_month
     self.cscs_expiry_date.strftime("%Y-%m") if self.cscs_expiry_date
+  end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << ["first name", "last name", "email", "role", "job", "cscs number",
+        "cscs expiry date","date of birth", "national insurance", "completed pre enrolment",
+        "pre enrolment due","contact number","address line 1","address line 2","city",
+        "postcode","health issues","is supervisor","work at height","scaffolder","ground worker",
+        "operate machinery","lift loads"]
+      all.each do |user|
+        csv << [user.first_name, user.last_name, user.email,user.role_string,
+          user.job,user.cscs_number,user.cscs_expiry_date,user.date_of_birth,
+          user.national_insurance,user.completed_pre_enrolment,user.pre_enrolment_due,
+          user.contact_number,user.address_line_1,user.address_line_2,user.city,
+          user.postcode,user.health_issues,user.is_supervisor,user.work_at_height,
+          user.scaffolder,user.ground_worker,user.operate_machinery,user.lift_loads]
+      end
+    end
+  end
+
+  def self.send_reminder
+    users = User.where("pre_enrolment_due < now() and (reminder is null or reminder = false)")
+    users.each do |user|
+      Reminder.send_reminder(user).deliver
+      user.update_attributes(reminder: true)
+    end
   end
 end
 

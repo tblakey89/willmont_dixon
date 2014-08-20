@@ -79,4 +79,11 @@ WillmontDixon::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.assets.precompile += %w( '.woff', '.eot', '.svg', '.ttf' )
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.123-reg.co.uk",
+    :user_name            => 'admin@allsafetowork.co.uk',
+    :password             => 'Enrolduck25!'
+  }
 end

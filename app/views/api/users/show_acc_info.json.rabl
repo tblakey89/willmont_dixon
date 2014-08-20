@@ -8,15 +8,15 @@ node :red_card_count do |user|
 end
 node :cscs_expired do |user|
    if user.cscs_expiry_date.nil? || !user.cscs_expiry_date.nil? && user.cscs_expiry_date < DateTime.now
-      "true"
+      true
    else
-      "false"
+      false
    end
 end
 node :enrolment_expired do |user|
    if user.pre_enrolment_due.nil? || !user.pre_enrolment_due.nil? && user.pre_enrolment_due < DateTime.now
-      "true"
+      true
    else
-      "false"
+      false
    end
 end

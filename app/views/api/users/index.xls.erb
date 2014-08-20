@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">first name</Data></Cell>
+        <Cell><Data ss:Type="String">last name</Data></Cell>
+        <Cell><Data ss:Type="String">email</Data></Cell>
+        <Cell><Data ss:Type="String">role</Data></Cell>
+        <Cell><Data ss:Type="String">job</Data></Cell>
+        <Cell><Data ss:Type="String">cscs number</Data></Cell>
+        <Cell><Data ss:Type="String">cscs expiry date</Data></Cell>
+        <Cell><Data ss:Type="String">date of birth</Data></Cell>
+        <Cell><Data ss:Type="String">national insurance</Data></Cell>
+        <Cell><Data ss:Type="String">completed pre enrolment</Data></Cell>
+        <Cell><Data ss:Type="String">pre enrolment due</Data></Cell>
+        <Cell><Data ss:Type="String">contact number</Data></Cell>
+        <Cell><Data ss:Type="String">address line 1</Data></Cell>
+        <Cell><Data ss:Type="String">address line 2</Data></Cell>
+        <Cell><Data ss:Type="String">city</Data></Cell>
+        <Cell><Data ss:Type="String">postcode</Data></Cell>
+        <Cell><Data ss:Type="String">health issues</Data></Cell>
+        <Cell><Data ss:Type="String">is supervisor</Data></Cell>
+        <Cell><Data ss:Type="String">work at height</Data></Cell>
+        <Cell><Data ss:Type="String">scafolder</Data></Cell>
+        <Cell><Data ss:Type="String">ground worker</Data></Cell>
+        <Cell><Data ss:Type="String">operate machinery</Data></Cell>
+        <Cell><Data ss:Type="String">lift loads</Data></Cell>
+      </Row>
+    <% @users.each do |user| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= user.first_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.last_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.role_string %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.job %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.cscs_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.cscs_expiry_date.strftime("%Y-%m-%dT%H:%M:%S.000") unless user.cscs_expiry_date.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.date_of_birth.strftime("%Y-%m-%dT%H:%M:%S.000") unless user.date_of_birth.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.national_insurance %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.completed_pre_enrolment.strftime("%Y-%m-%dT%H:%M:%S.000") unless user.completed_pre_enrolment.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.pre_enrolment_due.strftime("%Y-%m-%dT%H:%M:%S.000") unless user.pre_enrolment_due.nil? %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.contact_number %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.address_line_1 %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.address_line_2 %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.city %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.postcode %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.health_issues %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.is_supervisor %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.work_at_height %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.scaffolder %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.ground_worker %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.operate_machinery %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= user.lift_loads %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

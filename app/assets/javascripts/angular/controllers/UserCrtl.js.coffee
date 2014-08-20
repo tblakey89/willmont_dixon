@@ -1,4 +1,4 @@
-@admin.controller 'UserCrtl', ['$scope', 'User', 'NextOfKin', 'DisciplinaryCard', 'Session', 'Employer', '$routeParams', '$location', ($scope, User, NextOfKin, DisciplinaryCard, Session, Employer, $routeParams, $location) ->
+@admin.controller 'UserCrtl', ['$scope', 'User', 'NextOfKin', 'DisciplinaryCard', 'Session', 'Employer', '$routeParams', '$location', '$window', ($scope, User, NextOfKin, DisciplinaryCard, Session, Employer, $routeParams, $location, $window) ->
 
 	$scope.id = $routeParams.userId
 	$scope.users = []
@@ -54,7 +54,7 @@
 		    	$scope.status = "Unable to load user data: " + error.message
 
 	$scope.deleteNextOfKin = (id, index) ->
-		if (confirm("Are you sure you want to delete this next of kin?") is true)
+		if ($window.confirm("Are you sure you want to delete this next of kin?") is true)
 			NextOfKin.deleteNextOfKin($scope.id, id).success((data) ->
 				$scope.nextOfKins.splice(index, 1)
 			).error (error) ->
@@ -90,4 +90,13 @@
 			true
 		else
 			false
+
+	$scope.enrolmentOverdue = (date) ->
+		new Date(date) < Date.now()
+
+	$scope.userCSV = ->
+		window.location = "/api/users.csv?auth_token=" + sessionStorage.authToken
+
+	$scope.userXLS = ->
+		window.location = "/api/users.xls?auth_token=" + sessionStorage.authToken
 ]

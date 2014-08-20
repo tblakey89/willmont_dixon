@@ -549,6 +549,9 @@ form.form-search.inline-form {
 .red.help-inline{
 	color: red;
 }
+.red{
+	color: red;
+}
 
 .health_notice{
 	margin-top: -20px;
@@ -576,4 +579,12 @@ form.form-search.inline-form {
 
 .align-left{
 	text-align: left;
+}
+
+.float-left{
+	float: left;
+}
+
+.spreadsheet-link{
+	cursor: pointer;
 }

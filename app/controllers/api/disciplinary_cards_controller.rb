@@ -3,6 +3,11 @@ class Api::DisciplinaryCardsController < ApplicationController
 
   def index
     @disciplinary_cards = DisciplinaryCard.all
+    respond_to do |format|
+      format.json
+      format.xls
+      format.csv { send_data @disciplinary_cards.to_csv  }
+    end
   end
 
   def show

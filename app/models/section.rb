@@ -5,7 +5,7 @@ class Section < ActiveRecord::Base
 
   belongs_to :pre_enrolment_test
 
-  has_many :videos, dependent: :destroy
+  has_many :videos, dependent: :destroy, order: "videos.order asc"
   has_many :questions, dependent: :destroy
 
   def correct? answers

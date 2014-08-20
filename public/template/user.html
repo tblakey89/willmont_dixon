@@ -218,7 +218,7 @@
 							<div class="widget-header">
 								<i class="icon-user"></i>
 								<h3>Next Of Kin</h3>
-								<a href="/admin/users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success" ng-show="allowed(3)">Add</a>
+								<a href="/admin/users/{{user.id}}/next_of_kins/new" class="btn btn-small btn-success" ng-show="allowed(3)" ng-hide="nextOfKins">Add</a>
 								<search searchmodel="kinSearch"></search>
 							</div> <!-- /widget-header -->
 							

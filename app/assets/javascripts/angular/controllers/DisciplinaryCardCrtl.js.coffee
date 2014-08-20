@@ -38,4 +38,10 @@
 		else
 			false
 
+	$scope.cardCSV = ->
+		window.location = "/api/disciplinary_cards.csv?auth_token=" + sessionStorage.authToken
+
+	$scope.cardXLS = ->
+		window.location = "/api/disciplinary_cards.xls?auth_token=" + sessionStorage.authToken
+
 ]

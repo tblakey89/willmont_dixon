@@ -5,3 +5,4 @@
 # Mime::Type.register_alias "text/html", :iphone
 
  Mime::Type.register "video/mp4", :mp4
+ Mime::Type.register "application/xls", :xls

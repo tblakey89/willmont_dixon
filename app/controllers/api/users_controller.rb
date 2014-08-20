@@ -7,6 +7,11 @@ class Api::UsersController < ApplicationController
 
   def index
     @users = User.where("role < 2")
+    respond_to do |format|
+      format.json
+      format.csv {send_data @users.to_csv}
+      format.xls
+    end
   end
 
   def show

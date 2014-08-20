@@ -36,6 +36,7 @@
 									<thead>
 										<tr>
 											<th>User</th>
+											<th>Company</th>
 											<th>Colour</th>
 											<th>Location</th>
 											<th>Assigned</th>
@@ -46,6 +47,7 @@
 									<tbody>
 										<tr ng-repeat="disciplinaryCard in disciplinaryCards | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td><a href="/admin/users/{{disciplinaryCard.disciplinary_card.user.id}}">{{disciplinaryCard.disciplinary_card.user.first_name}} {{disciplinaryCard.disciplinary_card.user.last_name}}</a></td>
+											<td>{{disciplinaryCard.disciplinary_card.user.employer.company_name}}</td>
 											<td>{{disciplinaryCard.disciplinary_card.colour}}</td>
 											<td>{{disciplinaryCard.disciplinary_card.location}}</td>
 											<td>{{disciplinaryCard.disciplinary_card.created_at | date:'dd/MM/yyyy HH:mm:ss'}}</td>
@@ -60,7 +62,9 @@
 							</div> <!-- /widget-content -->
 							
 						</div> <!-- /widget -->
-
+						<div class="float-left">
+							<a class="spreadsheet-link" ng-click="cardCSV()">CSV</a> | <a class="spreadsheet-link" ng-click="cardXLS()">XLS</a>
+						</div>
 						<pagination lastpage="lastPage" currentpage="currentPage"></pagination>
 						
 					</div> <!-- /span9 -->
