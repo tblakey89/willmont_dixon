@@ -106,7 +106,7 @@ class Api::UsersController < ApplicationController
   end
 
   def submit_results
-    current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now)
+    current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now, reminder: nil)
     render nothing: true, status: 200
   end
 
