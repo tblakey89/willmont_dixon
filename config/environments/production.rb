@@ -94,4 +94,3 @@ WillmontDixon::Application.config.middleware.use ExceptionNotification::Rack,
       :sender_address => %{"admin" <admin@allsafetowork.co.uk>},
       :exception_recipients => %w{tomblakey89@gmail.com}
   }
-}
