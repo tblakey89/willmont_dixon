@@ -14,10 +14,10 @@ angular.module("sessionService", []).factory "Session", ($location, $http, $q, $
         service.currentUser = response.data.user
         if remember is true
           $window.localStorage.authToken = response.data.auth_token
-          $window.localStorage.role = response.data.user.role
+          $window.localStorage.role = response.data.user.role unless response.data.user is undefined
         else
           $window.sessionStorage.authToken = response.data.auth_token
-          $window.sessionStorage.role = response.data.user.role
+          $window.sessionStorage.role = response.data.user.role unless response.data.user is undefined
         #TODO: Send them back to where they came from
         #$location.path(response.data.redirect);
         $location.path "/"  if service.isAuthenticated()

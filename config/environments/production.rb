@@ -87,3 +87,11 @@ WillmontDixon::Application.configure do
     :password             => 'Enrolduck25!'
   }
 end
+
+WillmontDixon::Application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Willmott Dixon] ",
+      :sender_address => %{"admin" <admin@allsafetowork.co.uk>},
+      :exception_recipients => %w{tomblakey89@gmail.com}
+  }
+}
