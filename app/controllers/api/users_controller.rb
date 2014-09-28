@@ -46,7 +46,7 @@ class Api::UsersController < ApplicationController
           @user.update_attributes(profile: @user.id.to_s + extension)
           File.open(path, "wb") { |f| f.write(params[:file].read) }
           img = Magick::Image::read(path).first
-          img = img.scale(200, 200)
+          img = img.resize_to_fit(200, 200)
           img.write(path)
           render :show, id: @user.id, status: 200
         else
