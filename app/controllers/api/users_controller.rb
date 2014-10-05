@@ -74,7 +74,7 @@ class Api::UsersController < ApplicationController
   def cscs_check
     if params[:user][:last_name] && (params[:user][:cscs_number] || params[:user][:national_insurance])
       if !params[:user][:cscs_number].blank?
-        @user = User.where("lower(cscs_number) = ?", params[:user][:cscs_number]).first
+        @user = User.where("lower(cscs_number) = ?", params[:user][:cscs_number].downcase).first
         @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
       elsif !params[:user][:national_insurance].blank?
         @user = User.find_by(national_insurance: params[:user][:national_insurance])
