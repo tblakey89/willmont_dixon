@@ -26,6 +26,9 @@
 		$scope.user.photo = true
 		$scope.user.auth_token = sessionStorage.authToken
 		$scope.user.cscs_expiry_date = $scope.user.cscs_expiry_month + "-01" unless $scope.user.cscs_expiry_month is undefined
+		angular.forEach $scope.users, (value, key) ->
+			@scope.users[key] = "" if @scope.users[key] is undefined or @scope.users[key] is null
+			return
 		$scope.progress = 0
 		file = $scope.selectedFiles[0]
 		$scope.upload = $upload.upload(
@@ -35,7 +38,7 @@
         file: file
         headers: { 'auth-token': sessionStorage.authToken }
         ).progress((evt) ->
-
+        	$scope.progress = parseInt(100.0 * evt.loaded / evt.total)
         ).success((data, status, headers, config) ->
         	if data.errors is undefined
 	        	$window.sessionStorage["signup"] = true
@@ -44,6 +47,7 @@
 	        	$scope.error = errors.errors
         ).error (errors) ->
         	$scope.error = errors.errors
+        	$scope.progress = false
 
 	$scope.signUp2 = ->
 		User.updateUser($window.sessionStorage.user_id, $scope.user).success((data) ->

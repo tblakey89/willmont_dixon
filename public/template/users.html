@@ -37,6 +37,7 @@
 										<tr>
 											<th>Name</th>
 											<th>Job</th>
+											<th>Employer</th>
 											<th>CSCS Expiry Date</th>
 											<th>Pre-Enrolment Due</th>
 											<th></th>
@@ -47,6 +48,7 @@
 										<tr ng-repeat="user in users | filter:search | slice:((currentPage-1)*10):(currentPage-1)*10+10">
 											<td><a href="/admin/users/{{user.user.id}}">{{user.user.first_name}} {{user.user.last_name}}</a></td>
 											<td>{{user.user.job}}</td>
+											<td>{{user.user.company_name}}</td>
 											<td>{{user.user.cscs_expiry_date}}</td>
 											<td ng-class="{red: enrolmentOverdue(user.user.pre_enrolment_due)}">{{user.user.pre_enrolment_due}}</td>
 											<td class="action-td">

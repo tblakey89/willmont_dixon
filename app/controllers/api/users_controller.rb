@@ -41,7 +41,7 @@ class Api::UsersController < ApplicationController
       if @user.update_attributes(new_params)
         directory = Rails.root.join("public", "images")
         extension = params[:file].original_filename[-4..-1]
-        if @user.extension_valid? extension
+        if @user.extension_valid? extension.downcase
           path = File.join(directory, @user.id.to_s + extension)
           @user.update_attributes(profile: @user.id.to_s + extension)
           File.open(path, "wb") { |f| f.write(params[:file].read) }
