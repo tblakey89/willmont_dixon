@@ -23,7 +23,7 @@
 
 						<inputmodel type="text" id="job" model="user.job" name="Job" error="error.job[0]"></inputmodel>
 
-						<div class="control-group" ng-class="{ 'error' : error != undefined}">											
+						<div class="control-group" ng-class="{ 'error' : error.health_issues[0] != undefined}">											
 							<label class="control-label" for="health_issues">Health Issues*</label>
 							<div class="controls">
 								<select ng-model="user.health_issues" name="health_issues" id="health_issues">
@@ -60,9 +60,9 @@
 								<div class="ie8-filename" ng-repeat="f in selectedFiles">{{f.name}}</div>
 							</div> <!-- /controls -->
 						</div> <!-- /control-group -->
-						<p class="health_notice">Headshot must be 200px x 200px and must be one of the following formats: png, jpg, gif.</p>
+						<p class="health_notice">Headshot must be one of the following formats: png, jpg, gif. You can add a photo from the camera on your mobile phone, webcam or any digital camera.</p>
 						<br/>
-						<p class="health_notice">If you are using Internet Explorer, please ensure you have installed Adobe Flash Player. You can download Flash by using this link: <a href="http://get.adobe.com/flashplayer">http://get.adobe.com/flashplayer</a></p>
+						<p class="health_notice">If you are using Internet Explorer 8 or 9, please ensure you have installed Adobe Flash Player. You can download Flash by using this link: <a href="http://get.adobe.com/flashplayer">http://get.adobe.com/flashplayer</a></p>
 
 						<div class="control-group" ng-show="progress">											
 							<label class="control-label" for="order">Progress</label>

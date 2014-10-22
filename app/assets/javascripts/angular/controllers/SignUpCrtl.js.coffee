@@ -26,8 +26,8 @@
 		$scope.user.photo = true
 		$scope.user.auth_token = sessionStorage.authToken
 		$scope.user.cscs_expiry_date = $scope.user.cscs_expiry_month + "-01" unless $scope.user.cscs_expiry_month is undefined
-		angular.forEach $scope.users, (value, key) ->
-			@scope.users[key] = "" if @scope.users[key] is undefined or @scope.users[key] is null
+		angular.forEach $scope.user, (value, key) ->
+			$scope.user[key] = "" if $scope.user[key] is undefined or $scope.user[key] is null
 			return
 		$scope.progress = 0
 		file = $scope.selectedFiles[0]
@@ -86,6 +86,7 @@
 	$scope.getUser = ->
 		User.getUser($window.sessionStorage.user_id).success((user) ->
 	    	$scope.user = user.user
+	    	$scope.user.health_issues = 0 if $scope.user.health_issues is "" or $scope.user.health_issues is null
 	  	).error (error) ->
 	    	$scope.status = "Unable to load user data: " + error.message
 

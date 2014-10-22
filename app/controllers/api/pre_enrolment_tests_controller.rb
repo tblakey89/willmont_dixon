@@ -1,8 +1,8 @@
 class Api::PreEnrolmentTestsController < ApplicationController
   before_filter :authenticate
   def index
-    @users = User.where("pre_enrolment_due < now()")
-    @expired = User.where("cscs_expiry_date < now()")
+    @users = User.where("pre_enrolment_due < now() and pre_enrolment_due is not null")
+    @expired = User.where("cscs_expiry_date < now() and pre_enrolment_due is not null")
   end
 
   def create
