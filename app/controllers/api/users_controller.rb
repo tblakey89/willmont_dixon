@@ -77,7 +77,7 @@ class Api::UsersController < ApplicationController
         @user = User.where("lower(cscs_number) = ?", params[:user][:cscs_number].downcase).first
         @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
       elsif !params[:user][:national_insurance].blank?
-        @user = User.find_by("lower(national_insurance) = ?", params[:user][:national_insurance].downcase).first
+        @user = User.where("lower(national_insurance) = ?", params[:user][:national_insurance].downcase).first
         @user = User.create(national_insurance: params[:user][:national_insurance], role: 1, last_name: params[:user][:last_name], cscs_number: params[:user][:cscs_number]) if @user.nil? && params[:search].nil?
       end
       if @user && @user.errors.blank?
