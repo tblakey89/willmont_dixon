@@ -17,6 +17,8 @@
 		PreEnrolmentTest.getInfo().success((data) ->
 			$scope.users = data.users
 			$scope.expireds = data.expireds
+			$scope.lastPage = Math.ceil($scope.users.length/10)
+			$scope.lastPage = Math.ceil($scope.expireds.length/10)
 			$scope.red = data.red_cards
 			$scope.yellow = data.yellow_cards
 			$scope.green = data.green_cards
