@@ -18,12 +18,12 @@
 		    	unless user.user.exam_progress is null
 			    	progressArray = user.user.exam_progress.split(",")
 			    	while i < progressArray.length
+			    		console.log("progress saved")
 			    		$window.sessionStorage["section" + progressArray[i]] = true
 			    		i++
 		    	$location.path "/test/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
-	    	
 
 	$scope.signUp = ->
 		if $scope.selectedFiles is undefined
