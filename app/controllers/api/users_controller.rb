@@ -51,7 +51,7 @@ class Api::UsersController < ApplicationController
           render :show, id: @user.id, status: 200
         else
           @user.update_attributes(@user.attributes)
-          render json: { errors: { passport_photo: "There was a problem with the profile picture" } }
+          render json: { errors: { passport_photo: "There was a problem with the profile picture" } }, status: 400
         end
       else
         render json: { errors: @user.errors }, status: 400

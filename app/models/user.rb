@@ -91,7 +91,8 @@ class User < ActiveRecord::Base
   end
 
   def extension_valid? extension
-    extension =~ /\.jpg/ || extension =~ /\.png/ || extension =~ /\.jpeg/ || extension =~ /\.gif/
+    p extension
+    extension =~ /\.jpg/ || extension =~ /\.png/ || extension =~ /jpeg/ || extension =~ /\.gif/
   end
 
   def young
