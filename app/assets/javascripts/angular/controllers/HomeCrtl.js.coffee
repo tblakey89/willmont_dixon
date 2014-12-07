@@ -18,7 +18,7 @@
 			$scope.users = data.users
 			$scope.expireds = data.expireds
 			$scope.lastPage = Math.ceil($scope.users.length/10)
-			$scope.expiredlastPage = Math.ceil($scope.expireds.length/10)
+			$scope.expiredLastPage = Math.ceil($scope.expireds.length/10)
 			$scope.red = data.red_cards
 			$scope.yellow = data.yellow_cards
 			$scope.green = data.green_cards
