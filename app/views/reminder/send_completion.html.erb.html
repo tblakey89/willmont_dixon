@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Reference Number for <%= @user.full_name %>: <%= @user.uid %></p>
+
+    <p>This is an automated email to confirm that <%= @user.full_name %> successfully completed Pre Enrolment on <%= @user.completed_pre_enrolment %> and listed you as their employer.</p>
+
+    <p>Following a short site-specific briefing, <%= @user.first_name %> will now be able to start work on any Willmott Dixon site for the next 12 months. There will be no further requirement within this period to sit through an onsite Health, Safety & Environmental induction.</p>
+
+    <p>Upon arriving on site, <%= @user.first_name %> will need to report to a member of the Willmott Dixon site team. They will check the Reference Number issued in this email and provide the short site-specific briefing.</p>
+
+    <p>Reference Number for <%= @user.full_name %>: <%= @user.id %></p>
+
+    <p>Please ensure your Operative has a copy of this reference number when they arrive on site.</p>
+
+    <p><%= @user.first_name %> will need to re sit Pre Enrolment by <%= @user.pre_enrolment_due %>.</p>
+
+    <p>If you have any further questions or queries regarding Pre Enrolment please get in touch.</p>
+     
+    <p>Kind regards,</p>
+
+    <p>The All Safe To Work team<br/>
+    admin@allsafetowork.co.uk</p>
+  </body>
+</html>

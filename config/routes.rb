@@ -29,6 +29,7 @@ WillmontDixon::Application.routes.draw do
         get 'disciplinary_cards'
       end
       collection do
+        post 'save_progress'
         post 'cscs_check'
         post 'find_by_auth_token'
         get 'submit_results'

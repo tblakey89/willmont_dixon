@@ -11,7 +11,7 @@ class Permission
         allow :users, [:show, :update] do |the_user|
           the_user.id == user.id
         end
-        allow "api/users", [:show, :update, :submit_results, :find_by_auth_token]
+        allow "api/users", [:show, :update, :submit_results, :find_by_auth_token, :save_progress]
         allow "api/questions", [:show, :index, :create, :destroy, :update]
         allow "api/sections", [:index, :show, :update, :create, :destroy, :questions, :videos, :check_answers, :all]
         allow "api/next_of_kins", [:show, :update] do |next_of_kin|
@@ -27,7 +27,7 @@ class Permission
       end
       if user.role == 2
         allow "api/disciplinary_cards", [:index, :show, :create]
-        allow "api/users", [:index, :show, :disciplinary_cards, :update, :destroy, :find_by_auth_token]
+        allow "api/users", [:index, :show, :disciplinary_cards, :find_by_auth_token]
         allow "api/next_of_kins", [:show, :index]
         allow "api/employers", [:show, :index]
         allow "api/pre_enrolment_tests", [:index]

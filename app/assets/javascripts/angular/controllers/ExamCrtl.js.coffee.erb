@@ -87,6 +87,7 @@
 		Section.checkAnswers($scope.id, $scope.answers).success((data) ->
 			$scope.finished = true
 			$window.sessionStorage["section" + $scope.section.order] = true
+			CurrentUser.saveProgress($scope.section.order)
 		).error (error) ->
 			$scope.correct_answers = error.data
 			i = 0

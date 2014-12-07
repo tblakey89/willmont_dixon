@@ -72,31 +72,22 @@ class Api::UsersController < ApplicationController
   end
 
   def cscs_check
-    if params[:user][:last_name] && (params[:user][:cscs_number] || params[:user][:national_insurance])
-      if !params[:user][:cscs_number].blank?
-        @user = User.where("lower(cscs_number) = ?", params[:user][:cscs_number].downcase).first
-        @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
-      elsif !params[:user][:national_insurance].blank?
-        @user = User.where("lower(national_insurance) = ?", params[:user][:national_insurance].downcase).first
-        @user = User.create(national_insurance: params[:user][:national_insurance], role: 1, last_name: params[:user][:last_name], cscs_number: params[:user][:cscs_number]) if @user.nil? && params[:search].nil?
-      end
-      if @user && @user.errors.blank?
+    errors = {}
+    if params[:user][:last_name] && params[:user][:cscs_number] && params[:user][:national_insurance] 
+      @user = User.where("lower(cscs_number) = ? and lower(national_insurance) = ?", params[:user][:cscs_number].downcase, params[:user][:national_insurance].downcase).first
+      @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
+      if @user.id
         render :show_acc_info, id: @user.id, status: 200
       else
-        if @user
-          render json: { errors: @user.errors }, status: 400
-        else
-          render nothing: true, status: 400
-        end
+        errors[:message] = "Error: You have entered either your CSCS Card Number or Last Name incorrectly. Please check the information you have entered and try again." if @user.errors.messages[:cscs_number].blank?
+        errors[:message] = "Error: You have entered either your National Insurance or Last Name incorrectly. Please check the information you have entered and try again." if @user.errors.messages[:national_insurance].blank?
+        render json: { errors: errors }, status: 400
       end
     else
-      if params[:user][:last_name].blank? && params[:user][:cscs_number].blank? && params[:user][:national_insurance].blank?
-        render json: { errors: { last_name: ["Your last name can't be blank"], cscs_number: ["Your CSCS number or national insurance number can't be blank"], national_insrance: ["Your national insurance number or your CSCS number can't be blank"] } }, status: 400
-      elsif params[:user][:last_name].blank?
-        render json: { errors: { last_name: ["Your last name can't be blank"] } }, status: 400
-      else
-        render nothing: true, status: 400
-      end
+      errors[:last_name] = ["Your last name can't be blank"] if params[:user][:last_name].blank?
+      errors[:national_insurance] = ["Your national insurance number can't be blank"] if params[:user][:national_insurance].blank?
+      errors[:cscs_number] = ["Your CSCS number can't be blank"] if params[:user][:cscs_number].blank?
+      render json: { errors: errors }, status: 400
     end
   end
 
@@ -106,7 +97,13 @@ class Api::UsersController < ApplicationController
   end
 
   def submit_results
-    current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now, reminder: nil)
+    current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now, reminder: nil, exam_progress: nil)
+    Reminder.send_completion(user).deliver
+    render nothing: true, status: 200
+  end
+
+  def save_progress
+    current_user.update_progress params[:progress]
     render nothing: true, status: 200
   end
 

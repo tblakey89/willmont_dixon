@@ -588,3 +588,7 @@ form.form-search.inline-form {
 .spreadsheet-link{
 	cursor: pointer;
 }
+
+p.error {
+	color: red;
+}

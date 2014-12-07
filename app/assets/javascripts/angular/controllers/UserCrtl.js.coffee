@@ -91,7 +91,7 @@
 		else
 			false
 
-	$scope.enrolmentOverdue = (date) ->
+	$scope.overdue = (date) ->
 		new Date(date) < Date.now()
 
 	$scope.userCSV = ->

@@ -39,6 +39,6 @@ private
   end
 
   def safe_params
-    params.require(:employer).permit(:company_name, :address_line_1, :address_line_2, :city, :postal_code, :contact_number) unless params[:employer].blank?
+    params.require(:employer).permit(:company_name, :address_line_1, :address_line_2, :city, :postal_code, :contact_number, :email) unless params[:employer].blank?
   end
 end

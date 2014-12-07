@@ -1,35 +1,35 @@
 <ul id="main-nav" class="nav nav-tabs nav-stacked">
 					
 	<li ng-class="{active: 'cscs_check' == active}">
-		<a href="/test/cscs_check">
+		<a>
 			CSCS Check
 			<i class="icon-ok" ng-show="isComplete('cscs_check', 0)"></i>
 		</a>
 	</li>
 
 	<li ng-show='cscsComplete()' ng-class="{active: 'signup' == active}">
-		<a href="/test/signup">
+		<a>
 			Enter Info Pt.1
 			<i class="icon-ok" ng-show="isComplete('signup', 0)"></i>					
 		</a>
 	</li>
 
 	<li ng-show="cscsComplete()" ng-class="{active: 'signup_2' == active}">
-		<a href="/test/signup_2">
+		<a>
 			Enter Info Pt.2
 			<i class="icon-ok" ng-show="isComplete('signup2', 0)"></i>
 		</a>
 	</li>
 	
 	<li ng-show="cscsComplete()" ng-class="{active: 'next_of_kin' == active}">
-		<a href="/test/next_of_kin">
+		<a>
 			Next of Kin
 			<i class="icon-ok" ng-show="isComplete('next_of_kin', 0)"></i>	
 		</a>
 	</li>
 	
 	<li ng-show="cscsComplete()" ng-class="{active: 'employer' == active}">
-		<a href="/test/employer">
+		<a>
 			Employer
 			<i class="icon-ok" ng-show="isComplete('employer', 0)"></i>
 		</a>

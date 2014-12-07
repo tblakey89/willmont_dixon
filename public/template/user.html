@@ -63,6 +63,10 @@
 									<div class="span4">
 										<table class="information-table">
 											<tr>
+												<td>Reference:</td>
+												<td>{{user.uid}}</td>
+											</tr>
+											<tr>
 												<td>First Name:</td>
 												<td>{{user.first_name}}</td>
 											</tr>
@@ -162,8 +166,8 @@
 								
 									
 								<div class="form-actions">
-									<a href="/admin/users/{{user.id}}/edit" class="btn btn-warning">Edit</a> 
-									<a ng-click="deleteUser()" class="btn btn-danger">Delete</a>
+									<a ng-show="allowed(3)" href="/admin/users/{{user.id}}/edit" class="btn btn-warning">Edit</a> 
+									<a ng-show="allowed(3)" ng-click="deleteUser()" class="btn btn-danger">Delete</a>
 								</div> <!-- /form-actions -->							
 								
 							</div> <!-- /widget-content -->
@@ -184,6 +188,10 @@
 											<tr>
 												<td>Company Name:</td>
 												<td>{{employer.company_name}}</td>
+											</tr>
+											<tr>
+												<td>Email:</td>
+												<td>{{employer.email}}</td>
 											</tr>
 											<tr>
 												<td>Contact Number:</td>

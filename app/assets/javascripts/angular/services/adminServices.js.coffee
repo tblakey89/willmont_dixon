@@ -225,5 +225,8 @@ angular.module("adminService", []).factory("User", ["$http", "Session", ($http, 
   dataFactory.submitResults = ->
     $http.get "/api/users/submit_results", { headers: { 'auth-token': Session.getAuthToken() } }
 
+  dataFactory.saveProgress = (progress) ->
+    $http.post "/api/users/save_progress", { progress: progress }, { headers: { 'auth-token': Session.getAuthToken() } }
+
   dataFactory
 ])

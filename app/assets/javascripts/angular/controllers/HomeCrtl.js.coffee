@@ -1,4 +1,11 @@
 @admin.controller 'HomeCrtl', ['$scope', 'User', 'Session', 'PreEnrolmentTest', ($scope, User, Session, PreEnrolmentTest) ->
+
+	$scope.users = []
+	$scope.expireds = []
+	$scope.currentPage = 1
+	$scope.lastPage = 1
+	$scope.expiredCurrentPage = 1
+	$scope.expiredLastPage = 1
 	
 	$scope.getUsers = ->
 		User.getUsers().success((users) ->

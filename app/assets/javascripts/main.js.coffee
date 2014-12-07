@@ -103,12 +103,6 @@
   }).when("/admin/videos/:id/edit", {
     templateUrl: '/template/video/video_edit.html',
     controller: 'VideoCrtl'
-  }).when("/admin/password", {
-    templateUrl: '/template/password/password.html',
-    controller: 'PasswordCrtl'
-  }).when("/admin/password/edit", {
-    templateUrl: '/template/password/password_edit.html',
-    controller: 'PasswordCrtl'
   }).otherwise({
     templateUrl: '/template/home.html',
     controller: 'HomeCrtl'

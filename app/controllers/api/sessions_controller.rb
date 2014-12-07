@@ -13,6 +13,7 @@ class Api::SessionsController < Devise::SessionsController
       warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
       current_user.reset_authentication_token
       current_user.save
+      p current_user.errors
       render status: 200, json: { success: true, info: "Logged in", user: current_user, auth_token: current_user.authentication_token }
     else
       render status: 401, json: { status: false, info: "Login failed", data: {} }

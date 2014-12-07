@@ -20,6 +20,8 @@
 
 					<form class="form-horizontal">
 
+						<p ng-show="error.message" ng-class="{ 'error' : error.message != undefined}">{{error.message}}</p>
+
 						<inputmodel type="text" id="last_name" model="user.last_name" name="Last name" error="error.last_name[0]"></inputmodel>
 
 						<inputmodel type="text" id="national_insurance" model="user.national_insurance" name="National Insurance" error="error.national_insurance[0]"></inputmodel>

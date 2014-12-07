@@ -4,15 +4,21 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Pre enrolment overdue</h1>
-    <p>Hello <%= @user.full_name %><br/></p>
-    <p>
-      It has been over a year since you last completed your pre enrolment.<br>
-    </p>
-    <p>
-      To redo your pre enrolment please visit <a href="https://www.allsafetowork.co.uk/">https://www.allsafetowork.co.uk/</a>.
-    </p>
-    <p>Thanks</p>
-    <p>Willmott Dixon</p>
+    <p>Reference Number for <%= @user.full_name %>: <%= @user.id %></p>
+
+    <p>This is an automated email to inform you that <%= @user.full_name %> will need to re sit Pre Enrolment by <%= @user.pre_enrolment_due %></p>
+
+    <p>After <%= @user.pre_enrolment_due %>, <%= @user.first_name %> will not be able to work on any Willmott Dixon site until Pre Enrolment has been recompleted.</p>
+
+    <p>All the information entered at the beginning of Pre Enrolment by the Operative will be saved from last year. As a result, recompletion will only involve confirmation, the uploading of an up-to-date headshot photo and the watching and answering of all necessary videos and questions.</p>
+
+    <p>If you will not be working on Willmott Dixon sites in the future and do not wish to recomplete Pre Enrolment, please inform us by replying to this email. All information will then be removed from the system.</p>
+
+    <p>If you have any further questions or queries regarding Pre Enrolment please get in touch.</p>
+     
+    <p>Kind regards,</p>
+
+    <p>The All Safe To Work team<br/>
+    admin@allsafetowork.co.uk</p>
   </body>
 </html>

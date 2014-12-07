@@ -3,21 +3,25 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
 
-  validates :first_name, presence: true, on: :update
+  validates :first_name, presence: true, on: :update, if: :operative?
+  validates :first_name, presence: true, unless: :operative?
   validates :last_name, presence: true, on: :update
+  validates :last_name, presence: true, unless: :operative?
   validates :date_of_birth, presence: true, on: :update, if: :operative?
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_nil: true }, on: :update, if: :email?
-  validates :national_insurance, presence: true, uniqueness: { case_insensitive: false, allow_nil: true }, format: { with: /\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*/, allow_nil: true }, if: :operative?, on: :update
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_nil: true }, unless: :operative?
+  validates :national_insurance, presence: true, uniqueness: { case_insensitive: false, allow_nil: true }, format: { with: /\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*/, allow_nil: true }, if: :operative?
   validates :cscs_number, uniqueness: { allow_nil: true, case_sensitive: false  }, if: :operative?
   validates :cscs_expiry_date, presence: true, on: :update, if: :operative?
   validates :role, presence: true, on: :update
   validates :job, presence: true, on: :update, if: :operative?
   validates :postcode, presence: true, format: { with: /([A-PR-UWYZ][A-HK-Y0-9][A-HJKS-UW0-9]?[A-HJKS-UW0-9]?)\s*([0-9][ABD-HJLN-UW-Z]{2})/i, allow_nil: true }, if: :operative?, on: :update
   validates :contact_number, presence: true, numericality: { only_integer: true, allow_nil: true }, if: :operative?, on: :update
+  validates :uid, uniqueness: { allow_nil: true }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :token_authenticatable
+         :token_authenticatable, :validatable
 
   before_save :ensure_authentication_token
 
@@ -25,8 +29,10 @@ class User < ActiveRecord::Base
   has_many :disciplinary_cards, dependent: :destroy
   has_many :employers, dependent: :destroy
 
+  after_save :check_uid
+
   def full_name
-    self.first_name + " " + self.last_name
+    self.first_name + " " + self.last_name if self.first_name && self.last_name
   end
 
   def operative?
@@ -98,27 +104,50 @@ class User < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["first name", "last name", "email", "role", "job", "cscs number",
+      csv << ["first name", "last name", "role", "job", "cscs number",
         "cscs expiry date","date of birth", "national insurance", "completed pre enrolment",
-        "pre enrolment due","contact number","address line 1","address line 2","city",
-        "postcode","health issues","is supervisor","work at height","scaffolder","ground worker",
+        "pre enrolment due","health issues","is supervisor","work at height","scaffolder","ground worker",
         "operate machinery","lift loads"]
       all.each do |user|
-        csv << [user.first_name, user.last_name, user.email,user.role_string,
+        csv << [user.first_name, user.last_name,user.role_string,
           user.job,user.cscs_number,user.cscs_expiry_date,user.date_of_birth,
           user.national_insurance,user.completed_pre_enrolment,user.pre_enrolment_due,
-          user.contact_number,user.address_line_1,user.address_line_2,user.city,
-          user.postcode,user.health_issues,user.is_supervisor,user.work_at_height,
+          user.health_issues,user.is_supervisor,user.work_at_height,
           user.scaffolder,user.ground_worker,user.operate_machinery,user.lift_loads]
       end
     end
   end
 
   def self.send_reminder
-    users = User.where("pre_enrolment_due < now() and (reminder is null or reminder = false)")
+    users = User.where("pre_enrolment_due < date_trunc('day', NOW() - interval '1 month') and (reminder is null or reminder = false)")
     users.each do |user|
       Reminder.send_reminder(user).deliver
       user.update_attributes(reminder: true)
+    end
+  end
+
+  def check_uid
+    if self.uid.nil?
+      self.update_attributes(uid: rand(1000000))
+    end
+  end
+
+  def update_progress progress
+    prev_progress = []
+    prev_progress = self.exam_progress.split(",") if self.exam_progress
+    prev_progress.push(progress) unless prev_progress.include? progress
+    self.update_attributes exam_progress: prev_progress.join(",")
+  end
+
+  def email_required?
+    false
+  end
+
+  def password_required?
+    if self.role == 1 && self.id.nil?
+      false
+    else
+      super
     end
   end
 end

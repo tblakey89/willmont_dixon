@@ -14,6 +14,12 @@
 		    	$window.sessionStorage.employer_id = user.user.employer_id
 		    	$window.sessionStorage.authToken = user.user.authentication_token
 		    	$window.sessionStorage["cscs_check"] = true
+		    	i = 0
+		    	unless user.user.exam_progress is null
+			    	progressArray = user.user.exam_progress.split(",")
+			    	while i < progressArray.length
+			    		$window.sessionStorage["section" + progressArray[i]] = true
+			    		i++
 		    	$location.path "/test/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
