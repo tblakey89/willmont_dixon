@@ -23,6 +23,7 @@
 		    	$location.path "/test/signup"
 	  	).error (error) ->
 	    	$scope.error = error.errors
+	    	
 
 	$scope.signUp = ->
 		if $scope.selectedFiles is undefined
