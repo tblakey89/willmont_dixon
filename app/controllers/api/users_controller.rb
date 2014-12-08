@@ -98,7 +98,10 @@ class Api::UsersController < ApplicationController
 
   def submit_results
     current_user.update_attributes(completed_pre_enrolment: DateTime.now, pre_enrolment_due: 1.year.from_now, reminder: nil, exam_progress: nil)
-    Reminder.send_completion(current_user).deliver
+    begin
+      Reminder.send_completion(current_user).deliver
+    rescue
+    end
     render nothing: true, status: 200
   end
 
