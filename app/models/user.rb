@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_nil: true }, on: :update, if: :email?
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_nil: true }, unless: :operative?
   validates :national_insurance, presence: true, uniqueness: { case_insensitive: false, allow_nil: true }, format: { with: /\s*[a-zA-Z]{2}(?:\s*\d\s*){6}[a-zA-Z]?\s*/, allow_nil: true }, if: :operative?
-  validates :cscs_number, uniqueness: { allow_nil: true, case_sensitive: false  }, if: :operative?
+  validates :cscs_number, presence: true, uniqueness: { case_sensitive: false }, if: :operative?
   validates :cscs_expiry_date, presence: true, on: :update, if: :operative?
   validates :role, presence: true, on: :update
   validates :job, presence: true, on: :update, if: :operative?
@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << ["first name", "last name", "role", "job", "cscs number",
-        "cscs expiry date","date of birth", "national insurance", "completed pre enrolment",
+        "cscs expiry date","date of birth", "completed pre enrolment",
         "pre enrolment due","health issues","is supervisor","work at height","scaffolder","ground worker",
         "operate machinery","lift loads"]
       all.each do |user|
