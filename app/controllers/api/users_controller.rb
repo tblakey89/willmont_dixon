@@ -76,7 +76,7 @@ class Api::UsersController < ApplicationController
     if params[:user][:last_name] && params[:user][:cscs_number] && params[:user][:national_insurance] 
       @user = User.where("lower(cscs_number) = ? and lower(national_insurance) = ?", params[:user][:cscs_number].downcase, params[:user][:national_insurance].downcase).first
       @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
-      if params[:user][:last_name] == @user.last_name
+      if @user && params[:user][:last_name] == @user.last_name
         if !@user.nil? && @user.id
           render :show_acc_info, id: @user.id, status: 200
         else
@@ -85,7 +85,7 @@ class Api::UsersController < ApplicationController
           render json: { errors: errors }, status: 400
         end
       else
-        errors[:message] = "Error: You have entered either your Last Name incorrectly. Please check the information you have entered and try again."
+        errors[:message] = "Error: You have entered your Last Name incorrectly. Please check the information you have entered and try again."
         render json: { errors: errors }, status: 400
       end
     else
