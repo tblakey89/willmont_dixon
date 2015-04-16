@@ -103,10 +103,10 @@ ActiveRecord::Schema.define(version: 20141120223559) do
     t.integer  "role"
     t.string   "job"
     t.boolean  "health_issues"
-    t.boolean  "is_supervisor",           default: false
     t.string   "cscs_number"
     t.date     "cscs_expiry_date"
     t.date     "date_of_birth"
+    t.boolean  "is_supervisor",           default: false
     t.string   "national_insurance"
     t.date     "completed_pre_enrolment"
     t.date     "pre_enrolment_due"

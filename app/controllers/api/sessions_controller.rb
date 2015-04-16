@@ -6,14 +6,12 @@ class Api::SessionsController < Devise::SessionsController
   respond_to :json
 
   def create
-    user = User.find_by_email(params[:user][:email])
-
+    user = User.find_by(email: params[:user][:email])
     if user && user.valid_password?(params[:user][:password])
-      current_user = User.find_by_email(params[:user][:email])
-      warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+      current_user = user
+      # warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
       current_user.reset_authentication_token
       current_user.save
-      p current_user.errors
       render status: 200, json: { success: true, info: "Logged in", user: current_user, auth_token: current_user.authentication_token }
     else
       render status: 401, json: { status: false, info: "Login failed", data: {} }

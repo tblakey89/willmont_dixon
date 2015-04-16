@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:cscs_check, :update]
 
   def index
-    @users = User.where("role < 2")
+    @users = User.includes(:employers).where("role < 2")
     respond_to do |format|
       format.json
       format.csv {send_data @users.to_csv}
@@ -73,7 +73,7 @@ class Api::UsersController < ApplicationController
 
   def cscs_check
     errors = {}
-    if params[:user][:last_name] && params[:user][:cscs_number] && params[:user][:national_insurance] 
+    if params[:user][:last_name] && params[:user][:cscs_number] && params[:user][:national_insurance]
       @user = User.where("lower(cscs_number) = ? and lower(national_insurance) = ?", params[:user][:cscs_number].downcase, params[:user][:national_insurance].downcase).first
       @user = User.create(cscs_number: params[:user][:cscs_number], role: 1, national_insurance: params[:user][:national_insurance], last_name: params[:user][:last_name]) if @user.nil? && params[:search].nil?
       if @user && params[:user][:last_name] == @user.last_name

@@ -8,6 +8,8 @@ development:
   adapter: postgresql
   host: localhost
   database: willmont_dixon
+  username: postgres
+  password: password
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -16,6 +18,8 @@ test:
   adapter: postgresql
   host: localhost
   database: willmont_dixon_test
+  username: postgres
+  password: password
 
 production:
   adapter: postgresql
